@@ -1,0 +1,181 @@
+.bg-black {
+    background-color: black;
+}
+
+.text-lg {
+    font-size: 2rem;
+}
+
+.text-md {
+    font-size: 1.2rem;
+}
+
+.navbar {
+    padding: 0.5rem 2rem;
+}
+
+.navbar-brand {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.nav-item {
+    padding: 0 18px;
+}
+
+.nav-link {
+    font-size: 1.2rem;
+    font-family: "Montserrat-Light", sans-serif;
+}
+
+.nav-right {
+    right: 0;
+}
+
+
+#products {
+    background-color: white;
+}
+
+#description {
+    background-color: lightgray;
+}
+
+#recommended {
+    background-color: white;
+}
+
+.title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    line-height: 1.5;
+    font-weight: 900;
+}
+
+.text-montserrat {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container-fluid {
+    padding: 3% 15% 7%;
+}
+
+.hover-white {
+    border: none;
+}
+
+.hover-white:active {
+    border: white 3px solid;
+}
+
+.hover-white:hover {
+    border: white 3px solid;
+}
+
+.hover-white:checked {
+    border: white 3px solid;
+}
+
+.color {
+    padding: 16px;
+}
+
+.color:hover {
+    padding: 13px;
+}
+
+.my-container {
+    padding: 1rem;
+}
+
+.padding-5 {
+    padding: 100px;
+}
+
+.card-img-top {
+    transition: 0.3s ease-in-out;
+}
+
+.card-img-top:hover {
+    transform: scale(1.2);
+}
+
+.hover-slow {
+    transition: 0.3s ease-in-out;
+}
+
+.hover-slow:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 1028px) {
+    .mobile-text {
+        font-size: 3rem;
+    }
+
+    .row {
+        padding: 1rem;
+    }
+
+    .mb-btn-m {
+        margin: 10px 0 10px 0;
+        font-size: 3rem;
+    }
+
+    .mb-btn-long {
+        width: 100%;
+        font-size: 3rem;
+    }
+
+    .text-md {
+        font-size: 4rem;
+    }
+
+    .text-lg {
+        font-size: 5rem;
+    }
+
+    .color {
+        padding: 60px;
+    }
+
+    .color:hover {
+        padding: 50px;
+    }
+
+    .hover-white {
+        border: none;
+    }
+
+    .hover-white:hover {
+        border: white 10px solid;
+    }
+
+    .nav-link {
+        padding-top: 10px;
+        font-size: 3rem;
+    }
+
+    .text-sm {
+        font-size: 2rem;
+    }
+
+    .dropdown-item {
+        padding-top: 10px;
+        font-size: 2.5rem;
+        margin-bottom: auto;
+    }
+    .carousel-caption {
+        display: none;
+    }
+}
+
+
+.carousel-caption {
+    padding-bottom: 600px;
+}
+
+.buttons-mb {
+    margin-bottom: 10px;
+}
