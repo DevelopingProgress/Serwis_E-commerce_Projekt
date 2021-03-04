@@ -1,9 +1,11 @@
 import {Carousel} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import Products from "./ProductsScreen";
 
 
 export default function Home(props) {
     return (
+        <>
             <Carousel indicators={false}>
                 <Carousel.Item>
                     <img
@@ -34,7 +36,8 @@ export default function Home(props) {
                     </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>
-
+            <Products/>
+        </>
 
 
     );
