@@ -1,6 +1,7 @@
 import {Nav, Navbar, NavDropdown} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
+import Login from "../pages/LoginScreen";
 
 
 export default function MyNavbar() {
@@ -21,9 +22,7 @@ export default function MyNavbar() {
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="/">Separated link</NavDropdown.Item>
                     </NavDropdown>
-                    <Nav.Link className="mr-lg-3" href="/login">
-                        Zaloguj się
-                    </Nav.Link>
+                    <Login/>
                 </Nav>
             </Navbar.Collapse>
 

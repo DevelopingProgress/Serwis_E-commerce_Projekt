@@ -8,6 +8,7 @@ import ProductPage from "./pages/ProductScreen";
 import Login from "./pages/LoginScreen";
 import Products from "./pages/ProductsScreen";
 import MyNavbar from "./components/Navbar";
+import MyFooter from "./components/Footer";
 
 
 function App() {
@@ -18,14 +19,11 @@ function App() {
           <BrowserRouter>
               <Route path="/" component={Home} exact/>
               <Route path="/product" component={Products} exact/>
-              <Route path="/login" component={Login}/>
               <Route path="/product/:id" component={ProductPage}/>
           </BrowserRouter>
 
-
+          <MyFooter/>
       </>
-
-
   );
 }
 

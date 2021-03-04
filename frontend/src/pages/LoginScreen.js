@@ -1,9 +1,52 @@
+import {Button, Modal, Nav} from "react-bootstrap";
+import React from 'react';
 
 
-export default function Login(props) {
+    function MyVerticallyCenteredModal(props) {
+
     return (
-        <div>
-            Login Form
-        </div>
+        <Modal
+            {...props}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    Modal heading
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <h4>Centered Modal</h4>
+                <p>
+                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+                    dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+                    consectetur ac, vestibulum at eros.
+                </p>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button onClick={props.onHide}>Close</Button>
+            </Modal.Footer>
+        </Modal>
     );
 }
+
+export default function Login(props) {
+    const [modalShow, setModalShow] = React.useState(false);
+
+    return (
+        <>
+
+            <Nav.Link onClick={() => setModalShow(true)}>
+                Zaloguj się
+            </Nav.Link>
+
+
+            <MyVerticallyCenteredModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+            />
+        </>
+    );
+}
+
