@@ -8,6 +8,8 @@ import "./index.css";
 import {BrowserRouter, Route} from "react-router-dom";
 import Home from "./pages/HomeScreen";
 import ProductPage from "./pages/ProductScreen";
+import Login from "./pages/LoginScreen";
+import Products from "./pages/ProductsScreen";
 
 
 function App() {
@@ -29,25 +31,22 @@ function App() {
                           <NavDropdown.Divider />
                           <NavDropdown.Item href="/">Separated link</NavDropdown.Item>
                       </NavDropdown>
-                      <Nav.Link className="mr-lg-3" href="/">
+                      <Nav.Link className="mr-lg-3" href="/login">
                           Zaloguj się
                       </Nav.Link>
-                      <NavDropdown className="mr-lg-3" title="Administrator" id="collasible-nav-dropdown">
-                          <NavDropdown.Item href="/">Action</NavDropdown.Item>
-                          <NavDropdown.Item href="/">Another action</NavDropdown.Item>
-                          <NavDropdown.Item href="/">Something</NavDropdown.Item>
-                          <NavDropdown.Divider />
-                          <NavDropdown.Item href="/">Separated link</NavDropdown.Item>
-                      </NavDropdown>
                   </Nav>
               </Navbar.Collapse>
 
           </Navbar>
 
           <BrowserRouter>
-            <Route path="/" component={Home}/>
-            <Route path="/product/:id" component={ProductPage} exact/>
+              <Route path="/" component={Home} exact/>
+              <Route path="/product" component={Products} exact/>
+              <Route path="/login" component={Login}/>
+              <Route path="/product/:id" component={ProductPage}/>
           </BrowserRouter>
+
+
       </>
 
 
