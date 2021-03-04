@@ -1,0 +1,28 @@
+.black-text-lg {
+    color: black;
+    font-size: 3rem;
+}
+
+.black-text-md {
+    color: black;
+    font-size: 2rem;
+}
+
+.carousel-caption-p {
+    padding-bottom: 700px;
+}
+
+.my-container {
+    padding: 1rem;
+}
+
+.buttons-mb {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 1028px) {
+
+    .carousel-caption-p {
+        display: none;
+    }
+}
