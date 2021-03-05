@@ -79,7 +79,7 @@ export default function Products(props) {
                                                 <Card.Text>{product.thumbnail}</Card.Text>
                                                 <h3 style={{textAlign: 'right'}}>{product.price} zł</h3>
                                                 <a href="/" className="btn btn-outline-success mb-btn-m w-100 buttons-mb"><i className="fas fa-shopping-cart"/> Kup teraz</a>
-                                                <a href="/" className="btn btn-outline-dark mb-btn-m w-100"><i className="fas fa-clipboard-list"/> Do listy życzeń</a>
+                                                <a href="/" className="btn btn-outline-dark mb-btn-m w-100"><i className="fas fa-clipboard-list"/> Do koszyka</a>
                                             </Card.Body>
                                         </Card>
                                     </div>

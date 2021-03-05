@@ -73,12 +73,12 @@ export default function ProductPage(props) {
 
                                 <Col lg="12">
                                     <Button variant="success" size="lg" type="submit" className="mt-5 text-lg mb-3" block>
-                                        Do Koszyka
+                                        Kup teraz
                                     </Button>
                                 </Col>
                                 <Col lg="12">
                                     <Button variant="dark" size="lg" type="submit" className="text-lg mb-5" block>
-                                        Do Listy Życzeń
+                                        Do koszyka
                                     </Button>
                                 </Col>
                             </Form.Row>
@@ -124,7 +124,7 @@ export default function ProductPage(props) {
                                 <Card.Text>Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</Card.Text>
                                 <h3 style={{textAlign: 'right'}}>121 zł</h3>
                                 <a href="/" className="btn btn-outline-success mb-btn-m w-100 buttons-mb"><i className="fas fa-shopping-cart"/> Kup teraz</a>
-                                <a href="/" className="btn btn-outline-dark mb-btn-m w-100"><i className="fas fa-clipboard-list"/> Do listy życzeń</a>
+                                <a href="/" className="btn btn-outline-dark mb-btn-m w-100"><i className="fas fa-clipboard-list"/> Do koszyka</a>
                             </Card.Body>
                         </Card>
                     </div>
@@ -140,7 +140,7 @@ export default function ProductPage(props) {
                                 <Card.Text>Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</Card.Text>
                                 <h3 style={{textAlign: 'right'}}>121 zł</h3>
                                 <a href="/" className="btn btn-outline-success mb-btn-m w-100 buttons-mb"><i className="fas fa-shopping-cart"/> Kup teraz</a>
-                                <a href="/" className="btn btn-outline-dark mb-btn-m w-100"><i className="fas fa-clipboard-list"/> Do listy życzeń</a>
+                                <a href="/" className="btn btn-outline-dark mb-btn-m w-100"><i className="fas fa-clipboard-list"/> Do koszyka</a>
                             </Card.Body>
                         </Card>
                     </div>
@@ -156,7 +156,7 @@ export default function ProductPage(props) {
                                 <Card.Text>Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</Card.Text>
                                 <h3 style={{textAlign: 'right'}}>121 zł</h3>
                                 <a href="/" className="btn btn-outline-success mb-btn-m w-100 buttons-mb"><i className="fas fa-shopping-cart"/> Kup teraz</a>
-                                <a href="/" className="btn btn-outline-dark mb-btn-m w-100"><i className="fas fa-clipboard-list"/> Do listy życzeń</a>
+                                <a href="/" className="btn btn-outline-dark mb-btn-m w-100"><i className="fas fa-clipboard-list"/> Do koszyka</a>
                             </Card.Body>
                         </Card>
                     </div>
@@ -172,7 +172,7 @@ export default function ProductPage(props) {
                                 <Card.Text>Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</Card.Text>
                                 <h3 style={{textAlign: 'right'}}>121 zł</h3>
                                 <a href="/" className="btn btn-outline-success mb-btn-m w-100 buttons-mb"><i className="fas fa-shopping-cart"/> Kup teraz</a>
-                                <a href="/" className="btn btn-outline-dark mb-btn-m w-100"><i className="fas fa-clipboard-list"/> Do listy życzeń</a>
+                                <a href="/" className="btn btn-outline-dark mb-btn-m w-100"><i className="fas fa-clipboard-list"/> Do koszyka</a>
                             </Card.Body>
                         </Card>
                     </div>
@@ -188,7 +188,7 @@ export default function ProductPage(props) {
                                 <Card.Text>Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</Card.Text>
                                 <h3 style={{textAlign: 'right'}}>121 zł</h3>
                                 <a href="/" className="btn btn-outline-success mb-btn-m w-100 buttons-mb"><i className="fas fa-shopping-cart"/> Kup teraz</a>
-                                <a href="/" className="btn btn-outline-dark mb-btn-m w-100"><i className="fas fa-clipboard-list"/> Do listy życzeń</a>
+                                <a href="/" className="btn btn-outline-dark mb-btn-m w-100"><i className="fas fa-clipboard-list"/> Do koszyka</a>
                             </Card.Body>
                         </Card>
                     </div>
@@ -204,7 +204,7 @@ export default function ProductPage(props) {
                                 <Card.Text>Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</Card.Text>
                                 <h3 style={{textAlign: 'right'}}>121 zł</h3>
                                 <a href="/" className="btn btn-outline-success mb-btn-m w-100 buttons-mb"><i className="fas fa-shopping-cart"/> Kup teraz</a>
-                                <a href="/" className="btn btn-outline-dark mb-btn-m w-100"><i className="fas fa-clipboard-list"/> Do listy życzeń</a>
+                                <a href="/" className="btn btn-outline-dark mb-btn-m w-100"><i className="fas fa-clipboard-list"/> Do koszyka</a>
                             </Card.Body>
                         </Card>
                     </div>
@@ -220,7 +220,7 @@ export default function ProductPage(props) {
                                 <Card.Text>Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</Card.Text>
                                 <h3 style={{textAlign: 'right'}}>121 zł</h3>
                                 <a href="/" className="btn btn-outline-success mb-btn-m w-100 buttons-mb"><i className="fas fa-shopping-cart"/> Kup teraz</a>
-                                <a href="/" className="btn btn-outline-dark mb-btn-m w-100"><i className="fas fa-clipboard-list"/> Do listy życzeń</a>
+                                <a href="/" className="btn btn-outline-dark mb-btn-m w-100"><i className="fas fa-clipboard-list"/> Do koszyka</a>
                             </Card.Body>
                         </Card>
                     </div>
