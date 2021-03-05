@@ -18,8 +18,8 @@ export default function ProductPage(props) {
 
     return (
         <>
-        <div className="container">
-            <Row className="p-4">
+        <div className="my-container m-3">
+            <Row className="p-4 mt-3">
                 <Col lg="12">
                     <h1 className="title">Karta Techniczna Produktu</h1>
                 </Col>
