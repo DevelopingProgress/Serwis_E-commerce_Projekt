@@ -59,6 +59,9 @@ export default function ProductPage(props) {
                               </Carousel>
                           </Col>
                           <Col lg="6">
+                              <div className="mt-4 mb-4">
+                                  <h1 className="text-lg">{product.name}</h1>
+                              </div>
                               <div className="text-md">
                                   {product.thumbnail}
                               </div>
@@ -78,7 +81,9 @@ export default function ProductPage(props) {
                                                   <option>...</option>
                                               </Form.Control>
                                           </Form.Group>
-
+                                          <div className="col-lg-3 mt-4">
+                                              <h1 className="text-lg">{product.price} zł</h1>
+                                          </div>
                                           <Col lg="12">
                                               <Button variant="success" size="lg" type="submit" className="mt-5 text-lg mb-3" block>
                                                   Kup teraz
@@ -96,7 +101,7 @@ export default function ProductPage(props) {
                           </Col>
                       </Row>
                       <div className="container  bg-light mt-5">
-                          <Row className="p-4">
+                          <Row className="p-4 pr-2">
                               <Col>
                                   <h2>
                                       Opis Produktu
@@ -116,123 +121,6 @@ export default function ProductPage(props) {
 
         </div>
 
-            <div className="my-container container">
-                <h1 className="ms-3 pt-5 mt-5 text-lg">Polecane</h1>
-                <div className="row">
-                    <div className="col-lg-3">
-                        <Card className="m-lg-3">
-                            <Link to={`/product/1`}>
-                                <Card.Img variant="top" src={"../../images/subufery-z-cieniem-removebg-preview.png"} />
-                            </Link>
-                            <Card.Body>
-                                <Link to={`/product/1`} className="link-color">
-                                    <Card.Title>Product 1</Card.Title>
-                                </Link>
-                                <Card.Text>Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</Card.Text>
-                                <h3 style={{textAlign: 'right'}}>121 zł</h3>
-                                <a href="/" className="btn btn-outline-success mb-btn-m w-100 buttons-mb"><i className="fas fa-shopping-cart"/> Kup teraz</a>
-                                <a href="/" className="btn btn-outline-dark mb-btn-m w-100"><i className="fas fa-clipboard-list"/> Do koszyka</a>
-                            </Card.Body>
-                        </Card>
-                    </div>
-                    <div className="col-lg-3">
-                        <Card className="m-lg-3">
-                            <Link to={`/product/2`}>
-                                <Card.Img variant="top" src={"../../images/subufery-z-cieniem-removebg-preview.png"} />
-                            </Link>
-                            <Card.Body>
-                                <Link to={`/product/2`} className="link-color">
-                                    <Card.Title>Product 1</Card.Title>
-                                </Link>
-                                <Card.Text>Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</Card.Text>
-                                <h3 style={{textAlign: 'right'}}>121 zł</h3>
-                                <a href="/" className="btn btn-outline-success mb-btn-m w-100 buttons-mb"><i className="fas fa-shopping-cart"/> Kup teraz</a>
-                                <a href="/" className="btn btn-outline-dark mb-btn-m w-100"><i className="fas fa-clipboard-list"/> Do koszyka</a>
-                            </Card.Body>
-                        </Card>
-                    </div>
-                    <div className="col-lg-3">
-                        <Card className="m-lg-3">
-                            <Link to={`/product/3`}>
-                                <Card.Img variant="top" src={"../../images/subufery-z-cieniem-removebg-preview.png"} />
-                            </Link>
-                            <Card.Body>
-                                <Link to={`/product/3`} className="link-color">
-                                    <Card.Title>Product 1</Card.Title>
-                                </Link>
-                                <Card.Text>Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</Card.Text>
-                                <h3 style={{textAlign: 'right'}}>121 zł</h3>
-                                <a href="/" className="btn btn-outline-success mb-btn-m w-100 buttons-mb"><i className="fas fa-shopping-cart"/> Kup teraz</a>
-                                <a href="/" className="btn btn-outline-dark mb-btn-m w-100"><i className="fas fa-clipboard-list"/> Do koszyka</a>
-                            </Card.Body>
-                        </Card>
-                    </div>
-                    <div className="col-lg-3">
-                        <Card className="m-lg-3">
-                            <Link to={`/product/4`}>
-                                <Card.Img variant="top" src={"../../images/subufery-z-cieniem-removebg-preview.png"} />
-                            </Link>
-                            <Card.Body>
-                                <Link to={`/product/4`} className="link-color">
-                                    <Card.Title>Product 1</Card.Title>
-                                </Link>
-                                <Card.Text>Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</Card.Text>
-                                <h3 style={{textAlign: 'right'}}>121 zł</h3>
-                                <a href="/" className="btn btn-outline-success mb-btn-m w-100 buttons-mb"><i className="fas fa-shopping-cart"/> Kup teraz</a>
-                                <a href="/" className="btn btn-outline-dark mb-btn-m w-100"><i className="fas fa-clipboard-list"/> Do koszyka</a>
-                            </Card.Body>
-                        </Card>
-                    </div>
-                    <div className="col-lg-3">
-                        <Card className="m-lg-3">
-                            <Link to={`/product/5`}>
-                                <Card.Img variant="top" src={"../../images/subufery-z-cieniem-removebg-preview.png"} />
-                            </Link>
-                            <Card.Body>
-                                <Link to={`/product/5`} className="link-color">
-                                    <Card.Title>Product 1</Card.Title>
-                                </Link>
-                                <Card.Text>Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</Card.Text>
-                                <h3 style={{textAlign: 'right'}}>121 zł</h3>
-                                <a href="/" className="btn btn-outline-success mb-btn-m w-100 buttons-mb"><i className="fas fa-shopping-cart"/> Kup teraz</a>
-                                <a href="/" className="btn btn-outline-dark mb-btn-m w-100"><i className="fas fa-clipboard-list"/> Do koszyka</a>
-                            </Card.Body>
-                        </Card>
-                    </div>
-                    <div className="col-lg-3">
-                        <Card className="m-lg-3">
-                            <Link to={`/product/6`}>
-                                <Card.Img variant="top" src={"../../images/subufery-z-cieniem-removebg-preview.png"} />
-                            </Link>
-                            <Card.Body>
-                                <Link to={`/product/6`} className="link-color">
-                                    <Card.Title>Product 1</Card.Title>
-                                </Link>
-                                <Card.Text>Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</Card.Text>
-                                <h3 style={{textAlign: 'right'}}>121 zł</h3>
-                                <a href="/" className="btn btn-outline-success mb-btn-m w-100 buttons-mb"><i className="fas fa-shopping-cart"/> Kup teraz</a>
-                                <a href="/" className="btn btn-outline-dark mb-btn-m w-100"><i className="fas fa-clipboard-list"/> Do koszyka</a>
-                            </Card.Body>
-                        </Card>
-                    </div>
-                    <div className="col-lg-3">
-                        <Card className="m-lg-3">
-                            <Link to={`/product/7`}>
-                                <Card.Img variant="top" src={"../../images/subufery-z-cieniem-removebg-preview.png"} />
-                            </Link>
-                            <Card.Body>
-                                <Link to={`/product/7`} className="link-color">
-                                    <Card.Title>Product 1</Card.Title>
-                                </Link>
-                                <Card.Text>Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</Card.Text>
-                                <h3 style={{textAlign: 'right'}}>121 zł</h3>
-                                <a href="/" className="btn btn-outline-success mb-btn-m w-100 buttons-mb"><i className="fas fa-shopping-cart"/> Kup teraz</a>
-                                <a href="/" className="btn btn-outline-dark mb-btn-m w-100"><i className="fas fa-clipboard-list"/> Do koszyka</a>
-                            </Card.Body>
-                        </Card>
-                    </div>
-                </div>
-            </div>
         </>
 
     )
