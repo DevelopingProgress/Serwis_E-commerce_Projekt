@@ -1,7 +1,7 @@
 import React from 'react';
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button, Card, Col, DropdownButton, Form, Dropdown} from "react-bootstrap";
+import {Button, Card, Col, Form} from "react-bootstrap";
 import "../index.css";
 import {Link} from "react-router-dom";
 import {useEffect} from "react";

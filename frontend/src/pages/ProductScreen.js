@@ -87,7 +87,7 @@ export default function ProductPage(props) {
                     </Row>
                 </Col>
             </Row>
-            <div className="container mt-5">
+            <div className="container  bg-light mt-5">
                 <Row className="p-4">
                     <Col>
                         <h2>
@@ -109,7 +109,7 @@ export default function ProductPage(props) {
             </div>
         </div>
 
-            <div className="my-container">
+            <div className="my-container container">
                 <h1 className="ms-3 pt-5 mt-5 text-lg">Polecane</h1>
                 <div className="row">
                     <div className="col-lg-3">

@@ -51,11 +51,11 @@ export default function Login(props) {
 
     return (
         <>
-            <Button variant="primary" onClick={() => setModalShow(true)}>
+            <Nav.Link onClick={() => setModalShow(true)}>
 
                     Zaloguj się
 
-            </Button>
+            </Nav.Link>
 
             <MyVerticallyCenteredModal
                 show={modalShow}
