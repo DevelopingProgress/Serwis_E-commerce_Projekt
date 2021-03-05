@@ -23,7 +23,7 @@ export default function MyNavbar() {
                                         <img style={{marginRight: "20px"}} src="../../../images/subufery-z-cieniem-removebg-preview.png" alt="" width="100px" height="100px"/>
                                     </Col>
                                     <Col lg="4">
-                                        <p className="mt-4" style={{marginRight: "200px"}}>
+                                        <p className="mt-4" style={{marginRight: "200px",whiteSpace: "nowrap", overflow: "hidden",textOverflow: "ellipsis",width: "13ch"}}>
                                             Produkt 1dasdasda
                                         </p>
                                     </Col>
@@ -38,7 +38,7 @@ export default function MyNavbar() {
                                         <img style={{marginRight: "20px"}} src="../../../images/subufery-z-cieniem-removebg-preview.png" alt="" width="100px" height="100px"/>
                                     </Col>
                                     <Col lg="4">
-                                        <p className="mt-4" style={{marginRight: "200px"}}>
+                                        <p className="mt-4" style={{marginRight: "200px",whiteSpace: "nowrap", overflow: "hidden",textOverflow: "ellipsis",width: "13ch"}}>
                                             Produkt 1dasdasda
                                         </p>
                                     </Col>
@@ -53,7 +53,7 @@ export default function MyNavbar() {
                                         <img style={{marginRight: "20px"}} src="../../../images/subufery-z-cieniem-removebg-preview.png" alt="" width="100px" height="100px"/>
                                     </Col>
                                     <Col lg="4">
-                                        <p className="mt-4" style={{marginRight: "200px"}}>
+                                        <p className="mt-4" style={{marginRight: "200px",whiteSpace: "nowrap", overflow: "hidden",textOverflow: "ellipsis",width: "13ch"}}>
                                             Produkt 1dasdasda
                                         </p>
                                     </Col>

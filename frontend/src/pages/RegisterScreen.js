@@ -39,6 +39,9 @@ function MyVerticallyCenteredModal(props) {
                                 type="text"
                                 placeholder="Imię"
                             />
+                            <Form.Control.Feedback type="invalid">
+                                Pole imię jest wymagane.
+                            </Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group as={Col} md="4" controlId="validationCustom02">
                             <Form.Label>Nazwisko</Form.Label>
@@ -47,6 +50,9 @@ function MyVerticallyCenteredModal(props) {
                                 type="text"
                                 placeholder="Nazwisko"
                             />
+                            <Form.Control.Feedback type="invalid">
+                                Pole nazwisko jest wymagane.
+                            </Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group as={Col} md="4" controlId="validationCustomUsername">
                             <Form.Label>Email</Form.Label>
@@ -58,7 +64,7 @@ function MyVerticallyCenteredModal(props) {
                                     required
                                 />
                                 <Form.Control.Feedback type="invalid">
-                                    Proszę wpisać poprawny email!
+                                    Proszę wpisać poprawny email.
                                 </Form.Control.Feedback>
                             </InputGroup>
                         </Form.Group>
@@ -68,7 +74,7 @@ function MyVerticallyCenteredModal(props) {
                             <Form.Label>Miasto</Form.Label>
                             <Form.Control type="text" placeholder="Miasto" required />
                             <Form.Control.Feedback type="invalid">
-                                Proszę wpisać poprawny email!
+                                Pole miasto jest wymagane.
                             </Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group as={Col} md="5" controlId="formGridState">

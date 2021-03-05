@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/DevelopingProgress/Serwis_E-commerce_Projekt#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-brands-svg-icons": "^5.15.2",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "express": "^4.17.1"
   },
   "devDependencies": {
