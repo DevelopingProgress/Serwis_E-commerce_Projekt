@@ -27,7 +27,7 @@ export default function Products(props) {
             behavior: 'smooth'
         }, 500)
 
-    }, []);
+    }, [dispatch]);
 
 
     return (

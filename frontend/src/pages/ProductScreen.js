@@ -1,20 +1,30 @@
 import React, {useEffect} from 'react';
 import {Button, Card, Carousel, Col, Form, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import LoadingBox from "../components/Loading";
+import ErrorBox from "../components/Error";
+import {detailsProduct} from "../actions/productActions";
 
 
 export default function ProductPage(props) {
 
+    const productDetails = useSelector((state) => state.productDetails);
+    const {loading, error, product} = productDetails;
+    const productId = props.match.params.id;
+    const dispatch = useDispatch();
     const body = document.querySelector('#root');
 
     useEffect(() => {
+
+        dispatch(detailsProduct(productId));
 
         body.scrollIntoView({
             behavior: 'smooth'
         }, 500);
 
 
-    }, []);
+    }, [dispatch, productId]);
 
     return (
         <>
@@ -24,89 +34,86 @@ export default function ProductPage(props) {
                     <h1 className="title">Karta Techniczna Produktu</h1>
                 </Col>
             </Row>
-            <Row>
-                <Col lg="6">
-                    <Carousel indicators={false}>
-                        <Carousel.Item>
-                            <img
-                                className="d-block w-100"
-                                src="../../../images/subufery-z-cieniem-removebg-preview.png"
-                                alt="First slide"
-                            />
-                        </Carousel.Item>
+            {
+              loading ? <LoadingBox/>  : error ? <ErrorBox variant="danger">{error}</ErrorBox> : (
+                  <>
+                      <Row>
+                          <Col lg="6">
+                              <Carousel indicators={false}>
+                                  <Carousel.Item>
+                                      <img
+                                          className="d-block w-100"
+                                          src={product.image}
+                                          alt="First slide"
+                                      />
+                                  </Carousel.Item>
 
-                        <Carousel.Item>
-                            <img
-                                className="d-block w-100"
-                                src="../../../images/subufery-z-cieniem-removebg-preview.png"
-                                alt="Third slide"
-                            />
+                                  <Carousel.Item>
+                                      <img
+                                          className="d-block w-100"
+                                          src={product.image}
+                                          alt="Third slide"
+                                      />
 
-                        </Carousel.Item>
-                    </Carousel>
-                </Col>
-                <Col lg="6">
-                    <div className="text-md">
-                        UV-C LAMP to antybakteryjna i antywirusowa lampa przepływowa, generująca promienie ultrafioletowe o odpowiedniej częstotliwości,
-                        które skutecznie usuwają z otoczenia wirusy, bakterie, grzyby oraz roztocza.
-                        Urządzenie powinno być stosowane wszędzie tam, gdzie pomieszczenie powinno spełniać wysoki poziom sterylności.
-                        Dezynfekcja powietrza odbywa się wewnątrz urządzenia w zabezpieczonym kanale przepływowym gdzie promienie UV-C
-                        oczyszczają przepływające powietrze. Urządzenie jest bezpieczne dla ludzi i zwierząt i może pracować jednocześnie
-                        z przebywającymi w pomieszczeniu ludźmi.
-                    </div>
-                    <Row className="ms-0 mt-3 ml-1 p-0">
-                        <Form>
+                                  </Carousel.Item>
+                              </Carousel>
+                          </Col>
+                          <Col lg="6">
+                              <div className="text-md">
+                                  {product.thumbnail}
+                              </div>
+                              <Row className="ms-0 mt-3 ml-1 p-0">
+                                  <Form>
 
-                            <Form.Row>
-                                <Form.Group as={Col} lg="6" controlId="formGridSize">
-                                    <Form.Control as="select" defaultValue="Rozmiar..." className="mt-5 text-lg">
-                                        <option>Rozmiar...</option>
-                                        <option>...</option>
-                                    </Form.Control>
-                                </Form.Group>
-                                <Form.Group as={Col} lg="6" controlId="formGridQty">
-                                    <Form.Control as="select" defaultValue="Ilość..." className="mt-5 text-lg">
-                                        <option>Ilość...</option>
-                                        <option>...</option>
-                                    </Form.Control>
-                                </Form.Group>
+                                      <Form.Row>
+                                          <Form.Group as={Col} lg="6" controlId="formGridSize">
+                                              <Form.Control as="select" defaultValue="Rozmiar..." className="mt-5 text-lg">
+                                                  <option>Rozmiar...</option>
+                                                  <option>...</option>
+                                              </Form.Control>
+                                          </Form.Group>
+                                          <Form.Group as={Col} lg="6" controlId="formGridQty">
+                                              <Form.Control as="select" defaultValue="Ilość..." className="mt-5 text-lg">
+                                                  <option>Ilość...</option>
+                                                  <option>...</option>
+                                              </Form.Control>
+                                          </Form.Group>
 
-                                <Col lg="12">
-                                    <Button variant="success" size="lg" type="submit" className="mt-5 text-lg mb-3" block>
-                                        Kup teraz
-                                    </Button>
-                                </Col>
-                                <Col lg="12">
-                                    <Button variant="dark" size="lg" type="submit" className="text-lg mb-5" block>
-                                        Do koszyka
-                                    </Button>
-                                </Col>
-                            </Form.Row>
+                                          <Col lg="12">
+                                              <Button variant="success" size="lg" type="submit" className="mt-5 text-lg mb-3" block>
+                                                  Kup teraz
+                                              </Button>
+                                          </Col>
+                                          <Col lg="12">
+                                              <Button variant="dark" size="lg" type="submit" className="text-lg mb-5" block>
+                                                  Do koszyka
+                                              </Button>
+                                          </Col>
+                                      </Form.Row>
 
-                        </Form>
-                    </Row>
-                </Col>
-            </Row>
-            <div className="container  bg-light mt-5">
-                <Row className="p-4">
-                    <Col>
-                        <h2>
-                            Opis Produktu
-                        </h2>
-                    </Col>
-                </Row>
-                <Row className="p-4">
-                    <Col>
-                        <div className="col-lg text-dark text-start text-break lh-lg text-sm">
-                            UV-C Lamp to lampa antybakteryjna służąca do sterylizacji powietrza w różnego rodzaju pomieszczeniach. Umożliwia ona usuwanie z powietrza bakterii, wirusów, grzybów, pleśni oraz innych drobnoustrojów, które mają negatywny wpływ na zdrowie.
-                            Przepływające przez kanał sterylizujący nieoczyszczone powietrze zostaje tam naświetlone oraz zdezynfekowane przy użyciu promieni światła UV-C o odpowiedniej długości fali. Światło UV-C degraduje kod DNA i RNA znajdujący się w komórkach
-                            żywych organizmów drobnoustrojów wewnątrz lampy. W przeciwieństwie do tradycyjnych lamp działających w układzie otwartym, konstrukcja UV-C Lamp zapewnia, że człowiek nie ma bezpośredniego kontaktu z promieniami UV-C, które zwykle są
-                            szkodliwe dla organizmów żywych. W UV-C Lamp naświetlanie powietrza promieniami UV-C odbywa się wewnątrz UV-C Lamp, a promienie nie wydostają się na zewnątrz. Tym samym ludzie, zwierzęta i rośliny, jeśli tylko zachowane są proste zasady
-                            bezpieczeństwa, opisane w dołączonej do produktu instrukcji użytkowania, mogą bezpiecznie przebywać w bezpośredniej bliskości UV- C Lamp, bez narażenia życia lub zdrowia.
-                        </div>
-                    </Col>
-                </Row>
-            </div>
+                                  </Form>
+                              </Row>
+                          </Col>
+                      </Row>
+                      <div className="container  bg-light mt-5">
+                          <Row className="p-4">
+                              <Col>
+                                  <h2>
+                                      Opis Produktu
+                                  </h2>
+                              </Col>
+                          </Row>
+                          <Row className="p-4">
+                              <Col>
+                                  <div className="col-lg text-dark text-start text-break lh-lg text-sm">
+                                      {product.description}
+                                  </div>
+                              </Col>
+                          </Row>
+                      </div>
+                  </>
+              )}
+
         </div>
 
             <div className="my-container container">
