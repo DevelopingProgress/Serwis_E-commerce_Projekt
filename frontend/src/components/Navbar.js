@@ -5,6 +5,7 @@ import Login from "../pages/LoginScreen";
 import {useMediaQuery} from "react-responsive/src";
 import {useSelector} from "react-redux";
 import {useState} from "react";
+import ErrorBox from "./Error";
 
 
 export default function MyNavbar() {
@@ -34,31 +35,32 @@ export default function MyNavbar() {
                         isSmallMedia ? <Nav.Link href="/cart"><div style={{display: "inline-block"}}><FontAwesomeIcon icon={faShoppingCart} /> Koszyk(0) </div></Nav.Link> : (
                             <NavDropdown show={show}  onMouseEnter={showDropdown} onMouseLeave={hideDropdown} className="mr-lg-5" title={<div style={{display: "inline-block"}}><FontAwesomeIcon icon={faShoppingCart} /> Koszyk(0) </div>} id="collasible-nav-dropdown">
 
-
                                 {
+                                    cartItems.length === 0 ? (<h6 className="text-danger ml-1 p-2">Koszyk jest pusty!</h6>) : (
+
                                     cartItems.map((item) => (
-                                        <NavDropdown.Item href={`/product/${item.product}`} key={item._id}>
-                                            <Row className="mr-auto">
-                                                <Col lg="4">
-                                                    <img style={{marginRight: "20px"}} src={item.image} alt="" width="100px" height="100px"/>
-                                                </Col>
-                                                <Col lg="4">
-                                                    <p className="mt-4" style={{marginRight: "200px",whiteSpace: "nowrap", overflow: "hidden",textOverflow: "ellipsis",width: "13ch"}}>
-                                                        {item.name}
-                                                    </p>
-                                                </Col>
-                                                <Col lg="4">
-                                                    <Button variant="outline-danger" className="mt-4">X</Button>
-                                                </Col>
-                                            </Row>
-                                        </NavDropdown.Item>
-                                    ))
+                                        <>
+                                            <NavDropdown.Item href={`/product/${item.product}`} key={item._id}>
+                                                <Row className="mr-auto">
+                                                    <Col lg="4">
+                                                        <img style={{marginRight: "20px"}} src={item.image} alt="" width="100px" height="100px"/>
+                                                    </Col>
+                                                    <Col lg="4">
+                                                        <p className="mt-4" style={{marginRight: "200px",whiteSpace: "nowrap", overflow: "hidden",textOverflow: "ellipsis",width: "13ch"}}>
+                                                            {item.name}
+                                                        </p>
+                                                    </Col>
+                                                    <Col lg="4">
+                                                        <Button variant="outline-danger" className="mt-4">X</Button>
+                                                    </Col>
+                                                </Row>
+                                            </NavDropdown.Item>
+                                            <NavDropdown.Divider />
+                                            <NavDropdown.Item href="/cart">Przejdź do koszyka</NavDropdown.Item>
+                                        </>
+
+                                    )))
                                 }
-
-
-
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="/cart">Przejdź do koszyka</NavDropdown.Item>
 
                             </NavDropdown>
                         )
