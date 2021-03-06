@@ -84,16 +84,27 @@ export default function ProductPage(props) {
                                           <div className="col-lg-3 mt-4">
                                               <h1 className="text-lg">{product.price} zł</h1>
                                           </div>
-                                          <Col lg="12">
-                                              <Button variant="success" size="lg" type="submit" className="mt-5 text-lg mb-3" block>
-                                                  Kup teraz
-                                              </Button>
-                                          </Col>
-                                          <Col lg="12">
-                                              <Button variant="dark" size="lg" type="submit" className="text-lg mb-5" block>
-                                                  Do koszyka
-                                              </Button>
-                                          </Col>
+                                          {
+                                              product.countInStock > 0 ? (
+                                                  <>
+                                                      <Col lg="12">
+                                                          <Button variant="success" size="lg" type="submit"
+                                                                  className="mt-5 text-lg mb-3" block>
+                                                              Kup teraz
+                                                          </Button>
+                                                      </Col>
+                                                      <Col lg="12">
+                                                          <Button variant="dark" size="lg" type="submit"
+                                                                  className="text-lg mb-5" block>
+                                                              Do koszyka
+                                                          </Button>
+                                                      </Col>
+                                                  </>) : (
+                                                      <Col lg="12">
+                                                        <h3 className="text-danger mt-3 pb-4">Wyprzedano</h3>
+                                                      </Col>
+                                              )
+                                          }
                                       </Form.Row>
 
                                   </Form>

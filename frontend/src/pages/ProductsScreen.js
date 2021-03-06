@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, Card, Col, Form} from "react-bootstrap";
@@ -9,6 +9,9 @@ import LoadingBox from "../components/Loading";
 import ErrorBox from "../components/Error";
 import {useDispatch, useSelector} from "react-redux";
 import {listProducts} from "../actions/productActions";
+import {faDollarSign, faShoppingCart} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {addToCart} from "../actions/cartActions";
 
 
 export default function Products(props) {
@@ -16,6 +19,8 @@ export default function Products(props) {
     const productList = useSelector((state) => state.productList);
     const {loading, error, products} = productList;
     const dispatch = useDispatch();
+
+
 
     useEffect(() => {
 
@@ -25,10 +30,15 @@ export default function Products(props) {
 
         body.scrollIntoView({
             behavior: 'smooth'
-        }, 500)
+        }, 500);
+
+
 
     }, [dispatch]);
 
+    const addToCartHandler = prodId => event =>{
+        dispatch(addToCart(prodId, 1))
+    }
 
     return (
             <div className="my-container" id="products">
@@ -78,8 +88,17 @@ export default function Products(props) {
                                                 </Link>
                                                 <Card.Text>{product.thumbnail}</Card.Text>
                                                 <h3 style={{textAlign: 'right'}}>{product.price} zł</h3>
-                                                <a href="/" className="btn btn-outline-success mb-btn-m w-100 buttons-mb"><i className="fas fa-shopping-cart"/> Kup teraz</a>
-                                                <a href="/" className="btn btn-outline-dark mb-btn-m w-100"><i className="fas fa-clipboard-list"/> Do koszyka</a>
+                                                {
+                                                    product.countInStock > 0 ? (
+                                                        <>
+                                                            <Button variant="outline-success" className="mb-btn-m w-100 buttons-mb pl-1"><FontAwesomeIcon icon={faDollarSign}/> Kup teraz</Button>
+                                                            <Button onClick={addToCartHandler(product._id)} variant="outline-dark" className="mb-btn-m w-100 buttons-mb"><FontAwesomeIcon icon={faShoppingCart} /> Do koszyka</Button>
+                                                        </>
+                                                    ) : (
+                                                        <h3 className="text-danger m-3 pb-4">Wyprzedano</h3>
+                                                    )
+                                                }
+
                                             </Card.Body>
                                         </Card>
                                     </div>
