@@ -34,11 +34,9 @@ export default function Products(props) {
 
 
 
-    }, [dispatch]);
+    }, []);
 
-    const addToCartHandler = prodId => event =>{
-        dispatch(addToCart(prodId, 1))
-    }
+
 
     return (
             <div className="my-container" id="products">
@@ -92,7 +90,7 @@ export default function Products(props) {
                                                     product.countInStock > 0 ? (
                                                         <>
                                                             <Button variant="outline-success" className="mb-btn-m w-100 buttons-mb pl-1"><FontAwesomeIcon icon={faDollarSign}/> Kup teraz</Button>
-                                                            <Button onClick={addToCartHandler(product._id)} variant="outline-dark" className="mb-btn-m w-100 buttons-mb"><FontAwesomeIcon icon={faShoppingCart} /> Do koszyka</Button>
+                                                            <Button onClick={() => dispatch(addToCart(product._id, 1))} variant="outline-dark" className="mb-btn-m w-100 buttons-mb"><FontAwesomeIcon icon={faShoppingCart} /> Do koszyka</Button>
                                                         </>
                                                     ) : (
                                                         <h3 className="text-danger m-3 pb-4">Wyprzedano</h3>

@@ -4,17 +4,25 @@ import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 import Login from "../pages/LoginScreen";
 import {useMediaQuery} from "react-responsive/src";
 import {useSelector} from "react-redux";
+import {useState} from "react";
 
 
 export default function MyNavbar() {
 
     const isSmallMedia =  useMediaQuery({ query: '(max-width: 1028px)' });
-
-    const cart = useSelector(state => state.cart);
+    const cart = useSelector((state) => state.cart);
     const {cartItems} = cart;
 
+    const [show, setShow] = useState(false);
+    const showDropdown = (e)=>{
+        setShow(!show);
+    }
+    const hideDropdown = e => {
+        setShow(false);
+    }
+
     return (
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar  expand="lg" bg="dark" variant="dark">
             <Navbar.Brand href="/">E-Commerce Brand</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
@@ -24,7 +32,7 @@ export default function MyNavbar() {
                 <Nav className="mr-lg-5">
                     {
                         isSmallMedia ? <Nav.Link href="/cart"><div style={{display: "inline-block"}}><FontAwesomeIcon icon={faShoppingCart} /> Koszyk(0) </div></Nav.Link> : (
-                            <NavDropdown className="mr-lg-5" title={<div style={{display: "inline-block"}}><FontAwesomeIcon icon={faShoppingCart} /> Koszyk(0) </div>} id="collasible-nav-dropdown">
+                            <NavDropdown show={show}  onMouseEnter={showDropdown} onMouseLeave={hideDropdown} className="mr-lg-5" title={<div style={{display: "inline-block"}}><FontAwesomeIcon icon={faShoppingCart} /> Koszyk(0) </div>} id="collasible-nav-dropdown">
 
 
                                 {
