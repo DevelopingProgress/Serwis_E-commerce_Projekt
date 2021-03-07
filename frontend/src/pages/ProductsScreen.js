@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button, Card, Col, Form} from "react-bootstrap";
+import {Button, Card, Col, Form, Nav} from "react-bootstrap";
 import "../index.css";
 import {Link} from "react-router-dom";
 import {useEffect} from "react";
@@ -9,7 +9,7 @@ import LoadingBox from "../components/Loading";
 import ErrorBox from "../components/Error";
 import {useDispatch, useSelector} from "react-redux";
 import {listProducts} from "../actions/productActions";
-import {faDollarSign, faShoppingCart} from "@fortawesome/free-solid-svg-icons";
+import {faDollarSign, faEdit, faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {addToCart} from "../actions/cartActions";
 
@@ -19,6 +19,9 @@ export default function Products(props) {
     const productList = useSelector((state) => state.productList);
     const {loading, error, products} = productList;
     const dispatch = useDispatch();
+    const userSignin = useSelector(state => state.userSignin);
+    const {userInfo} = userSignin;
+
 
 
 
@@ -87,14 +90,45 @@ export default function Products(props) {
                                                 <Card.Text>{product.thumbnail}</Card.Text>
                                                 <h3 style={{textAlign: 'right'}}>{product.price} zł</h3>
                                                 {
-                                                    product.countInStock > 0 ? (
-                                                        <>
-                                                            <Button variant="outline-success" className="mb-btn-m w-100 buttons-mb pl-1"><FontAwesomeIcon icon={faDollarSign}/> Kup teraz</Button>
-                                                            <Button onClick={() => dispatch(addToCart(product._id, 1))} variant="outline-dark" className="mb-btn-m w-100 buttons-mb"><FontAwesomeIcon icon={faShoppingCart} /> Do koszyka</Button>
-                                                        </>
-                                                    ) : (
-                                                        <h3 className="text-danger m-3 pb-4">Wyprzedano</h3>
-                                                    )
+                                                    userInfo && !userInfo.isAdmin ? (
+
+                                                        product.countInStock > 0 ? (
+                                                                    <>
+                                                                        <Button variant="outline-success"
+                                                                                className="mb-btn-m w-100 buttons-mb pl-1"><FontAwesomeIcon
+                                                                            icon={faDollarSign}/> Kup teraz</Button>
+                                                                        <Button
+                                                                            onClick={() => dispatch(addToCart(product._id, 1))}
+                                                                            variant="outline-dark"
+                                                                            className="mb-btn-m w-100 buttons-mb"><FontAwesomeIcon
+                                                                            icon={faShoppingCart}/> Do koszyka</Button>
+                                                                    </>
+                                                                ) : (
+                                                                    <h3 className="text-danger m-3 pb-4">Wyprzedano</h3>
+                                                            )
+                                                        ) :
+                                                        (userInfo && userInfo.isAdmin ? (
+                                                            <Button
+                                                                variant="outline-dark"
+                                                                className="mb-btn-m w-100 buttons-mb"><FontAwesomeIcon
+                                                                icon={faEdit}/> Edytuj Produkt</Button>
+                                                        ) : (
+                                                                product.countInStock > 0 ? (
+                                                                    <>
+                                                                        <Button variant="outline-success"
+                                                                                className="mb-btn-m w-100 buttons-mb pl-1"><FontAwesomeIcon
+                                                                            icon={faDollarSign}/> Kup teraz</Button>
+                                                                        <Button
+                                                                            onClick={() => dispatch(addToCart(product._id, 1))}
+                                                                            variant="outline-dark"
+                                                                            className="mb-btn-m w-100 buttons-mb"><FontAwesomeIcon
+                                                                            icon={faShoppingCart}/> Do koszyka</Button>
+                                                                    </>
+                                                                ) : (
+                                                                    <h3 className="text-danger m-3 pb-4">Wyprzedano</h3>
+                                                                )
+                                                        )
+                                                        )
                                                 }
 
                                             </Card.Body>

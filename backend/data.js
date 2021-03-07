@@ -2,15 +2,15 @@ import bcrypt from 'bcryptjs';
 export const data = {
     users: [
         {
-            name: 'Kacper A',
-            email: 'kacpergawel1@wp.pl',
-            password: bcrypt.hashSync('Gawlokacpi1', 8),
+            name: 'Administrator',
+            email: 'admin@admin.com',
+            password: bcrypt.hashSync('admin', 8),
             isAdmin: true,
         },
         {
-            name: 'Kacper C',
-            email: 'kacperpawel1@wp.pl',
-            password: bcrypt.hashSync('Gawlokacpi1', 8),
+            name: 'User',
+            email: 'user@user.com',
+            password: bcrypt.hashSync('user', 8),
             isAdmin: false,
         }
     ],

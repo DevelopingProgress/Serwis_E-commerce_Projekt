@@ -1,12 +1,13 @@
 import {Button, Card, Col, Nav, Navbar, NavDropdown, Row} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
+import {faShoppingCart, faUser} from "@fortawesome/free-solid-svg-icons";
 import Login from "../pages/LoginScreen";
 import {useMediaQuery} from "react-responsive/src";
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect, useState} from "react";
 import {removeFromCart} from "../actions/cartActions";
 import {Link} from "react-router-dom";
+import {signout} from "../actions/userActions";
 
 
 export default function MyNavbar() {
@@ -16,13 +17,27 @@ export default function MyNavbar() {
     const {cartItems} = cart;
     const dispatch = useDispatch();
     const [show, setShow] = useState(false);
+    const [showUser, setShowUser] = useState(false);
+    const userSignin = useSelector(state => state.userSignin);
+    const {userInfo} = userSignin;
 
+    const signoutHandler = () => {
+        dispatch(signout());
+        window.location.reload(false);
+    }
 
     const showDropdown = (e)=>{
         setShow(!show);
     }
     const hideDropdown = e => {
         setShow(false);
+    }
+
+    const showDropdownUser = (e)=>{
+        setShowUser(!showUser);
+    }
+    const hideDropdownUser = e => {
+        setShowUser(false);
     }
 
 
@@ -36,6 +51,7 @@ export default function MyNavbar() {
                 </Nav>
                 <Nav className="mr-lg-5">
                     {
+                        (userInfo && !userInfo.isAdmin || !userInfo ? (
                         isSmallMedia ? <Nav.Link href="/cart"><div style={{display: "inline-block"}}><FontAwesomeIcon icon={faShoppingCart} /> Koszyk({cartItems.length}) </div></Nav.Link> : (
                             <NavDropdown show={show}  onMouseEnter={showDropdown} onMouseLeave={hideDropdown} className="mr-lg-5" title={<div style={{display: "inline-block"}}><FontAwesomeIcon icon={faShoppingCart} /> Koszyk({cartItems.length}) </div>} id="collasible-nav-dropdown">
 
@@ -80,9 +96,40 @@ export default function MyNavbar() {
                                 }
 
                             </NavDropdown>
+                        )) :
+                            (
+                                <></>
+                            )
                         )
                     }
-                    <Login/>
+                    {
+                        userInfo && !userInfo.isAdmin ? (
+
+                            <>
+                                <Nav className="mr-lg-1">
+                                    <NavDropdown show={showUser}  onMouseEnter={showDropdownUser} onMouseLeave={hideDropdownUser} className="mr-lg-1" title={<div style={{display: "inline-block"}}><FontAwesomeIcon icon={faUser} /> Użytkownik({userInfo.name}) </div>} id="collasible-nav-dropdown">
+                                        <NavDropdown.Item onClick={signoutHandler}>
+                                            Wyloguj się
+                                        </NavDropdown.Item>
+                                    </NavDropdown>
+                                </Nav>
+                            </>
+
+                            ) :
+                        (userInfo && userInfo.isAdmin ? (
+
+                            <>
+                                <Nav className="mr-lg-1">
+                                    <NavDropdown show={showUser}  onMouseEnter={showDropdownUser} onMouseLeave={hideDropdownUser} className="mr-lg-1" title={<div style={{display: "inline-block"}}><FontAwesomeIcon icon={faUser} /> Administrator({userInfo.name}) </div>} id="collasible-nav-dropdown">
+                                        <NavDropdown.Item onClick={signoutHandler}>
+                                            Wyloguj się
+                                        </NavDropdown.Item>
+                                    </NavDropdown>
+                                </Nav>
+                            </>
+
+                        ) : (<Login/>))
+                    }
                 </Nav>
             </Navbar.Collapse>
 
