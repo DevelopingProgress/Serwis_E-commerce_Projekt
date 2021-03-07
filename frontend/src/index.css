@@ -75,6 +75,14 @@
     background-color: #eeffe0;
 }
 
+.cartImg {
+    transition: 0.3s ease-in-out;
+}
+
+.cartImg:hover {
+    transform: scale(1.2);
+}
+
 
 @media (max-width: 1028px) {
 
