@@ -6,6 +6,8 @@ import LoadingBox from "../components/Loading";
 import ErrorBox from "../components/Error";
 import {detailsProduct} from "../actions/productActions";
 import {addToCart} from "../actions/cartActions";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faEdit} from "@fortawesome/free-solid-svg-icons";
 
 
 export default function ProductPage(props) {
@@ -16,6 +18,8 @@ export default function ProductPage(props) {
     const dispatch = useDispatch();
     const body = document.querySelector('#root');
     const [qty, setQty] = useState('');
+    const userSignin = useSelector(state => state.userSignin);
+    const {userInfo} = userSignin;
 
     useEffect(() => {
 
@@ -67,58 +71,73 @@ export default function ProductPage(props) {
                               <div className="text-md">
                                   {product.thumbnail}
                               </div>
-                              <Row className="ms-0 mt-3 ml-1 p-0">
-                                  <Form>
+                              {
+                                  userInfo && !userInfo.isAdmin || !userInfo ? (
+                                      <Row className="ms-0 mt-3 ml-1 p-0">
+                                          <Form>
 
-                                      <Form.Row>
-                                          {product.countInStock > 0 && (
-                                              <>
-                                                  <Form.Group as={Col} lg="6" controlId="formGridQty">
-                                                      <Form.Label className="mt-5 text-lg">Ilość</Form.Label>
-                                                      <Form.Control as="select" defaultValue="Ilość..." className="text-lg" value={qty} onChange={(e) => setQty(e.target.value)}>
-                                                          {[...Array(product.countInStock).keys()].map(
-                                                              (x) => (
-                                                                  <option key={x + 1} value={x + 1}>
-                                                                      {x + 1}
-                                                                  </option>
-                                                              )
-                                                          )}
-                                                      </Form.Control>
-                                                  </Form.Group>
-                                                  <Form.Group as={Col} lg="6" controlId="formGridSize">
+                                              <Form.Row>
+                                                  {product.countInStock > 0 && (
+                                                      <>
+                                                          <Form.Group as={Col} lg="6" controlId="formGridQty">
+                                                              <Form.Label className="mt-5 text-lg">Ilość</Form.Label>
+                                                              <Form.Control as="select" defaultValue="Ilość..." className="text-lg" value={qty} onChange={(e) => setQty(e.target.value)}>
+                                                                  {[...Array(product.countInStock).keys()].map(
+                                                                      (x) => (
+                                                                          <option key={x + 1} value={x + 1}>
+                                                                              {x + 1}
+                                                                          </option>
+                                                                      )
+                                                                  )}
+                                                              </Form.Control>
+                                                          </Form.Group>
+                                                          <Form.Group as={Col} lg="6" controlId="formGridSize">
 
-                                                  </Form.Group>
-                                              </>
-                                          )}
+                                                          </Form.Group>
+                                                      </>
+                                                  )}
 
-                                          <div className="col mt-4">
+                                                  <div className="col mt-4">
+                                                      <h1 className="text-lg">{product.price} zł</h1>
+                                                  </div>
+                                                  {
+                                                      product.countInStock > 0 ? (
+                                                          <>
+                                                              <Col lg="12">
+                                                                  <Button variant="success" size="lg"
+                                                                          className="mt-5 text-lg mb-3" block>
+                                                                      Kup teraz
+                                                                  </Button>
+                                                              </Col>
+                                                              <Col lg="12">
+                                                                  <Button variant="dark" size="lg"
+                                                                          className="text-lg mb-5" onClick={() => dispatch(addToCart(product._id, qty))} block>
+                                                                      Do koszyka
+                                                                  </Button>
+                                                              </Col>
+                                                          </>) : (
+                                                          <Col lg="12">
+                                                              <h3 className="text-danger mt-3 pb-4">Wyprzedano</h3>
+                                                          </Col>
+                                                      )
+                                                  }
+                                              </Form.Row>
+
+                                          </Form>
+                                      </Row>
+                                  ) : (
+                                      <>
+                                          <div className="mt-4">
                                               <h1 className="text-lg">{product.price} zł</h1>
                                           </div>
-                                          {
-                                              product.countInStock > 0 ? (
-                                                  <>
-                                                      <Col lg="12">
-                                                          <Button variant="success" size="lg"
-                                                                  className="mt-5 text-lg mb-3" block>
-                                                              Kup teraz
-                                                          </Button>
-                                                      </Col>
-                                                      <Col lg="12">
-                                                          <Button variant="dark" size="lg"
-                                                                  className="text-lg mb-5" onClick={() => dispatch(addToCart(product._id, qty))} block>
-                                                              Do koszyka
-                                                          </Button>
-                                                      </Col>
-                                                  </>) : (
-                                                      <Col lg="12">
-                                                        <h3 className="text-danger mt-3 pb-4">Wyprzedano</h3>
-                                                      </Col>
-                                              )
-                                          }
-                                      </Form.Row>
+                                          <Button
+                                              variant="outline-dark"
+                                              className="mb-btn-m mt-5 w-100 buttons-mb"><FontAwesomeIcon
+                                              icon={faEdit}/> Edytuj Produkt</Button>
+                                      </>
+                                  )
 
-                                  </Form>
-                              </Row>
+                              }
                           </Col>
                       </Row>
                       <div className="container  bg-light mt-5">
