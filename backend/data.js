@@ -3,14 +3,26 @@ export const data = {
     users: [
         {
             name: 'Administrator',
+            surname: 'A',
             email: 'admin@admin.com',
             password: bcrypt.hashSync('admin', 8),
+            address: 'Prosta 6',
+            city: 'Gliwice',
+            state: 'śląskie',
+            zip: '44-003',
+            acceptedRules: true,
             isAdmin: true,
         },
         {
             name: 'User',
+            surname: 'U',
             email: 'user@user.com',
             password: bcrypt.hashSync('user', 8),
+            address: 'Prosta 6',
+            city: 'Gliwice',
+            state: 'śląskie',
+            zip: '44-003',
+            acceptedRules: true,
             isAdmin: false,
         }
     ],

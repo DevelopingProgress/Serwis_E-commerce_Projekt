@@ -1,27 +1,38 @@
-import {Button, Col, Form, InputGroup, Modal, Nav} from "react-bootstrap";
+import {Button, Col, Form, InputGroup, Modal} from "react-bootstrap";
 import React, {useState} from 'react';
+import {useDispatch} from "react-redux";
+import {register} from "../actions/userActions";
 
 
 function MyVerticallyCenteredModal(props) {
     const [validated, setValidated] = useState(false);
+    const [name, setName] = useState('');
+    const [surname, setSurname] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [address, setAddress] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
+    const [zip, setZip] = useState('');
+    const [acceptedRules, setAcceptedRules] = useState('');
+    const dispatch = useDispatch();
 
-    const handleSubmit = (event) => {
-        const form = event.currentTarget;
+
+    const submitHandler = (e) => {
+        const form = e.currentTarget;
         if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
+            e.preventDefault();
+            e.stopPropagation();
         }
 
         setValidated(true);
-    };
-    return (
-        <Modal
 
-            {...props}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-        >
+        dispatch(register(name, surname, email, password, address, city, state, zip, acceptedRules));
+    };
+
+
+    return (
+        <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
                     Rejestracja
@@ -30,56 +41,76 @@ function MyVerticallyCenteredModal(props) {
             <Modal.Body>
 
 
-                <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                <Form onSubmit={submitHandler} noValidate validated={validated}>
                     <Form.Row>
-                        <Form.Group as={Col} md="4" controlId="validationCustom01">
+
+                        <Form.Group as={Col} md="6" controlId="validationCustom01">
                             <Form.Label>Imię</Form.Label>
-                            <Form.Control
-                                required
-                                type="text"
-                                placeholder="Imię"
-                            />
+                            <Form.Control required type="text" placeholder="Imię" value={name} onChange={e => setName(e.target.value)}/>
                             <Form.Control.Feedback type="invalid">
                                 Pole imię jest wymagane.
                             </Form.Control.Feedback>
                         </Form.Group>
-                        <Form.Group as={Col} md="4" controlId="validationCustom02">
+
+                        <Form.Group as={Col} md="6" controlId="validationCustom02">
                             <Form.Label>Nazwisko</Form.Label>
-                            <Form.Control
-                                required
-                                type="text"
-                                placeholder="Nazwisko"
-                            />
+                            <Form.Control required type="text" placeholder="Nazwisko" value={surname} onChange={e => setSurname(e.target.value)}/>
                             <Form.Control.Feedback type="invalid">
                                 Pole nazwisko jest wymagane.
                             </Form.Control.Feedback>
                         </Form.Group>
-                        <Form.Group as={Col} md="4" controlId="validationCustomUsername">
+
+                    </Form.Row>
+
+                    <Form.Row>
+
+                        <Form.Group as={Col} md="6" controlId="validationCustomUsername">
                             <Form.Label>Email</Form.Label>
                             <InputGroup hasValidation>
-                                <Form.Control
-                                    type="email"
-                                    placeholder="Email"
-                                    aria-describedby="inputGroupPrepend"
-                                    required
-                                />
+                                <Form.Control type="email" placeholder="Email" aria-describedby="inputGroupPrepend" required value={email} onChange={e => setEmail(e.target.value)}/>
                                 <Form.Control.Feedback type="invalid">
                                     Proszę wpisać poprawny email.
                                 </Form.Control.Feedback>
                             </InputGroup>
                         </Form.Group>
+
+                        <Form.Group as={Col} md="6" controlId="validationCustomUsername">
+                            <Form.Label>Hasło</Form.Label>
+                            <InputGroup hasValidation>
+                                <Form.Control type="password" placeholder="Hasło" aria-describedby="inputGroupPrepend" required value={password} onChange={e => setPassword(e.target.value)}/>
+                                <Form.Control.Feedback type="invalid">
+                                    Proszę wpisać poprawne hasło.
+                                </Form.Control.Feedback>
+                            </InputGroup>
+                        </Form.Group>
+
                     </Form.Row>
+
                     <Form.Row>
-                        <Form.Group as={Col} md="4" controlId="validationCustom03">
-                            <Form.Label>Miasto</Form.Label>
-                            <Form.Control type="text" placeholder="Miasto" required />
+
+                        <Form.Group as={Col} md="12" controlId="validationCustom03">
+                            <Form.Label>Adres</Form.Label>
+                            <Form.Control type="text" placeholder="Adres" required  value={address} onChange={e => setAddress(e.target.value)}/>
                             <Form.Control.Feedback type="invalid">
                                 Pole miasto jest wymagane.
                             </Form.Control.Feedback>
                         </Form.Group>
+
+                    </Form.Row>
+
+                    <Form.Row>
+
+                        <Form.Group as={Col} md="4" controlId="validationCustom03">
+                            <Form.Label>Miasto</Form.Label>
+                            <Form.Control type="text" placeholder="Miasto" required value={city} onChange={e => setCity(e.target.value)}/>
+                            <Form.Control.Feedback type="invalid">
+                                Pole miasto jest wymagane.
+                            </Form.Control.Feedback>
+                        </Form.Group>
+
                         <Form.Group as={Col} md="5" controlId="formGridState">
                             <Form.Label>Województwo</Form.Label>
-                            <Form.Control as="select" >
+                            <Form.Control as="select" value={state} onChange={e => setState(e.target.value)}>
                                 <option>dolnośląskie</option>
                                 <option>kujawsko-pomorskie</option>
                                 <option>lubelskie</option>
@@ -101,21 +132,24 @@ function MyVerticallyCenteredModal(props) {
                                 Proszę wybrać województwo.
                             </Form.Control.Feedback>
                         </Form.Group>
+
                         <Form.Group as={Col} md="3" controlId="validationCustom05">
                             <Form.Label>Numer pocztowy</Form.Label>
-                            <Form.Control type="text" placeholder="xx-xxx" required />
+                            <Form.Control type="text" placeholder="xx-xxx" required value={zip} onChange={e => setZip(e.target.value)}/>
                             <Form.Control.Feedback type="invalid">
                                 Proszę podać poprawny numer pocztowy.
                             </Form.Control.Feedback>
                         </Form.Group>
+
                     </Form.Row>
+
                     <Form.Group>
-                        <Form.Check
-                            required
-                            label="Akceptuję regulamin sklepu"
-                        />
+                        <Form.Check required label="Akceptuję regulamin sklepu" value={acceptedRules} onChange={e => setAcceptedRules(e.target.value)}/>
                     </Form.Group>
-                    <Button type="submit">Załóż konto</Button>
+
+                    <Button type="submit">
+                        Załóż konto
+                    </Button>
                 </Form>
 
             </Modal.Body>

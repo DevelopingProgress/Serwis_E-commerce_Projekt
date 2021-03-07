@@ -8,7 +8,7 @@ import bcrypt from "bcryptjs";
 export const userRouter = express.Router();
 
 userRouter.get('/seed', expressAsyncHandler(async (req, res) => {
-    await User.remove({});
+    // await User.remove({});
     const createdUsers = await User.insertMany(data.users);
     res.send({createdUsers});
 }));
@@ -30,6 +30,33 @@ userRouter.post('/signin', expressAsyncHandler(async (req, res) =>{
         }
     }else {
         res.status(401).send({message: 'Niepoprawny email lub hasło'});
+    }
+
+}));
+
+userRouter.post('/register', expressAsyncHandler(async (req, res) => {
+    const user = new User({
+        name: req.body.name,
+        surname: req.body.surname,
+        email: req.body.email,
+        password: bcrypt.hashSync(req.body.password, 8),
+        address: req.body.address,
+        city: req.body.city,
+        state: req.body.state,
+        zip: req.body.zip,
+        acceptedRules: req.body.acceptedRules,
+    });
+    const createduser = await user.save();
+    if(createduser) {
+        res.send({
+            _id: createduser._id,
+            name: createduser.name,
+            email: createduser.email,
+            isAdmin: createduser.isAdmin,
+            token: generateToken(createduser),
+        });
+    }else {
+        res.status(402).send({message: 'Niepoprawne dane'});
     }
 
 }));

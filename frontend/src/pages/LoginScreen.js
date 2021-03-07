@@ -1,7 +1,7 @@
 import {Button, Form, Modal, Nav} from "react-bootstrap";
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Register from "./RegisterScreen";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {signin} from "../actions/userActions";
 
     function MyVerticallyCenteredModal(props) {
@@ -19,12 +19,7 @@ import {signin} from "../actions/userActions";
 
 
         return (
-            <Modal
-                {...props}
-                size="lg"
-                aria-labelledby="contained-modal-title-vcenter"
-                centered
-            >
+            <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
                         Logowanie
@@ -33,6 +28,7 @@ import {signin} from "../actions/userActions";
                 <Modal.Body>
                     <p>
                         <Form onSubmit={submitHandler}>
+
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Label>Adres email</Form.Label>
                                 <Form.Control type="email" placeholder="Email" onChange={e => setEmail(e.target.value)}/>
@@ -45,7 +41,8 @@ import {signin} from "../actions/userActions";
                                 <Form.Label>Hasło</Form.Label>
                                 <Form.Control type="password" placeholder="Hasło" onChange={e => setPassword(e.target.value)}/>
                             </Form.Group>
-                            <Button variant="primary" type="submit" onClick={props.onHide}>
+
+                            <Button variant="primary" type="submit">
                                 Zaloguj się
                             </Button>
                         </Form>
