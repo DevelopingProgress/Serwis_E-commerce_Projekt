@@ -72,20 +72,23 @@ export default function ProductPage(props) {
 
                                       <Form.Row>
                                           {product.countInStock > 0 && (
+                                              <>
+                                                  <Form.Group as={Col} lg="6" controlId="formGridQty">
+                                                      <Form.Label className="mt-5 text-lg">Ilość</Form.Label>
+                                                      <Form.Control as="select" defaultValue="Ilość..." className="text-lg" value={qty} onChange={(e) => setQty(e.target.value)}>
+                                                          {[...Array(product.countInStock).keys()].map(
+                                                              (x) => (
+                                                                  <option key={x + 1} value={x + 1}>
+                                                                      {x + 1}
+                                                                  </option>
+                                                              )
+                                                          )}
+                                                      </Form.Control>
+                                                  </Form.Group>
+                                                  <Form.Group as={Col} lg="6" controlId="formGridSize">
 
-                                              <Form.Group as={Col} lg="6" controlId="formGridQty">
-                                                  <Form.Control as="select" defaultValue="Ilość..." className="mt-5 text-lg" value={qty} onChange={(e) => setQty(e.target.value)}>
-                                                      <option>Ilość...</option>
-                                                      {[...Array(product.countInStock).keys()].map(
-                                                          (x) => (
-                                                              <option key={x + 1} value={x + 1}>
-                                                                  {x + 1}
-                                                              </option>
-                                                          )
-                                                      )}
-                                                  </Form.Control>
-                                              </Form.Group>
-
+                                                  </Form.Group>
+                                              </>
                                           )}
 
                                           <div className="col mt-4">

@@ -69,7 +69,14 @@ export default function MyNavbar() {
                                     )))
                                 }
                                 {
-                                    cartItems.length > 0 && <NavDropdown.Item href="/cart">Przejdź do koszyka</NavDropdown.Item>
+                                    cartItems.length > 0 && (
+                                        <>
+                                            <NavDropdown.ItemText><h6>Wartość koszyka: {cartItems.reduce((a, c) => a + c.price * c.qty, 0).toFixed(2)} zł</h6></NavDropdown.ItemText>
+                                            <NavDropdown.Divider />
+                                            <NavDropdown.Item href="/cart">Przejdź do koszyka</NavDropdown.Item>
+                                        </>
+                                    )
+
                                 }
 
                             </NavDropdown>
