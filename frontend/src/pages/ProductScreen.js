@@ -1,10 +1,11 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Card, Carousel, Col, Form, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import LoadingBox from "../components/Loading";
 import ErrorBox from "../components/Error";
 import {detailsProduct} from "../actions/productActions";
+import {addToCart} from "../actions/cartActions";
 
 
 export default function ProductPage(props) {
@@ -14,6 +15,7 @@ export default function ProductPage(props) {
     const productId = props.match.params.id;
     const dispatch = useDispatch();
     const body = document.querySelector('#root');
+    const [qty, setQty] = useState('');
 
     useEffect(() => {
 
@@ -69,33 +71,38 @@ export default function ProductPage(props) {
                                   <Form>
 
                                       <Form.Row>
-                                          <Form.Group as={Col} lg="6" controlId="formGridSize">
-                                              <Form.Control as="select" defaultValue="Rozmiar..." className="mt-5 text-lg">
-                                                  <option>Rozmiar...</option>
-                                                  <option>...</option>
-                                              </Form.Control>
-                                          </Form.Group>
-                                          <Form.Group as={Col} lg="6" controlId="formGridQty">
-                                              <Form.Control as="select" defaultValue="Ilość..." className="mt-5 text-lg">
-                                                  <option>Ilość...</option>
-                                                  <option>...</option>
-                                              </Form.Control>
-                                          </Form.Group>
-                                          <div className="col-lg-3 mt-4">
+                                          {product.countInStock > 0 && (
+
+                                              <Form.Group as={Col} lg="6" controlId="formGridQty">
+                                                  <Form.Control as="select" defaultValue="Ilość..." className="mt-5 text-lg" value={qty} onChange={(e) => setQty(e.target.value)}>
+                                                      <option>Ilość...</option>
+                                                      {[...Array(product.countInStock).keys()].map(
+                                                          (x) => (
+                                                              <option key={x + 1} value={x + 1}>
+                                                                  {x + 1}
+                                                              </option>
+                                                          )
+                                                      )}
+                                                  </Form.Control>
+                                              </Form.Group>
+
+                                          )}
+
+                                          <div className="col mt-4">
                                               <h1 className="text-lg">{product.price} zł</h1>
                                           </div>
                                           {
                                               product.countInStock > 0 ? (
                                                   <>
                                                       <Col lg="12">
-                                                          <Button variant="success" size="lg" type="submit"
+                                                          <Button variant="success" size="lg"
                                                                   className="mt-5 text-lg mb-3" block>
                                                               Kup teraz
                                                           </Button>
                                                       </Col>
                                                       <Col lg="12">
-                                                          <Button variant="dark" size="lg" type="submit"
-                                                                  className="text-lg mb-5" block>
+                                                          <Button variant="dark" size="lg"
+                                                                  className="text-lg mb-5" onClick={() => dispatch(addToCart(product._id, qty))} block>
                                                               Do koszyka
                                                           </Button>
                                                       </Col>

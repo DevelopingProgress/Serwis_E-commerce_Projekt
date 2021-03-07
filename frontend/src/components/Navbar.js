@@ -54,7 +54,7 @@ export default function MyNavbar() {
                                                     <Col lg="4">
                                                         <a className="link-color-carousel" href={`/product/${item.product}`}>
                                                             <p className="mt-4" style={{marginRight: "200px",whiteSpace: "nowrap", overflow: "hidden",textOverflow: "ellipsis",width: "13ch"}}>
-                                                                {item.name}
+                                                                {item.name} x {item.qty}
                                                             </p>
                                                         </a>
                                                     </Col>
