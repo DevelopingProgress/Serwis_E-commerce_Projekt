@@ -21,11 +21,13 @@ export default function Products(props) {
     const dispatch = useDispatch();
     const userSignin = useSelector(state => state.userSignin);
     const {userInfo} = userSignin;
+    const [name, setName] = useState('');
 
 
 
 
     useEffect(() => {
+
 
         dispatch(listProducts());
 
@@ -46,28 +48,23 @@ export default function Products(props) {
                 <Form>
 
                     <Form.Row>
-                        <Col lg="2"><h1 className="ml-3 mt-5 text-lg">Produkty</h1></Col>
-                        <Col lg="2"/>
-                        <Form.Group as={Col} lg="2" controlId="formGridSort">
+                        <Col lg="3"><h1 className="ml-3 mt-5 text-lg">Produkty</h1></Col>
+                        <Form.Group as={Col} lg="3" controlId="formGridSort">
                             <Form.Control as="select" defaultValue="Sortuj po..." className="mt-5 text-lg">
                                 <option>Sortuj po...</option>
                                 <option>...</option>
                             </Form.Control>
                         </Form.Group>
-                        <Form.Group as={Col} lg="2" defaultValue="Wybierz kategorię..." controlId="formGridCategory">
+                        <Form.Group as={Col} lg="3" defaultValue="Wybierz kategorię..." controlId="formGridCategory">
                             <Form.Control as="select" className="mt-5 text-lg">
                                 <option>Wybierz kategorię...</option>
                                 <option>...</option>
                             </Form.Control>
                         </Form.Group>
-                        <Form.Group as={Col} lg="2" controlId="formGridSearch">
-                            <Form.Control className=" mt-5 text-lg"/>
+                        <Form.Group as={Col} lg="3" controlId="formGridSearch">
+                            <Form.Label className="mt-3">Wyszukaj</Form.Label>
+                            <Form.Control className="text-lg" onChange={e => setName(e.target.value)}/>
                         </Form.Group>
-                        <Col lg="2">
-                            <Button variant="primary" type="submit" className=" mt-5 text-lg mb-5">
-                                Wyszukaj
-                            </Button>
-                        </Col>
                     </Form.Row>
 
 
@@ -77,7 +74,18 @@ export default function Products(props) {
 
                     <div className="row">
                         {
-                            products.map( (product) => (
+                            products.filter((product) => {
+                            if(name === "") {
+                                return product;
+                            } else if(product.name.toLowerCase().includes(name.toLowerCase())){
+                                return product;
+                            } else if(product.thumbnail.toLowerCase().includes(name.toLowerCase())){
+                                return product;
+                            } else if(product.price.toString().toLowerCase().includes(name.toLowerCase())){
+                                return product;
+                            }
+
+                            }).map( (product) => (
                                     <div className="col-lg-3" key={product._id}>
                                         <Card className="m-lg-3">
                                             <Link to={`/product/${product._id}`}>
