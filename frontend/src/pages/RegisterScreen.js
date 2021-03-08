@@ -46,7 +46,7 @@ function MyVerticallyCenteredModal(props) {
 
                         <Form.Group as={Col} md="6" controlId="validationCustom01">
                             <Form.Label>Imię</Form.Label>
-                            <Form.Control required type="text" placeholder="Imię" value={name} onChange={e => setName(e.target.value)}/>
+                            <Form.Control required type="text" placeholder="Imię" onChange={e => setName(e.target.value)}/>
                             <Form.Control.Feedback type="invalid">
                                 Pole imię jest wymagane.
                             </Form.Control.Feedback>
@@ -54,7 +54,7 @@ function MyVerticallyCenteredModal(props) {
 
                         <Form.Group as={Col} md="6" controlId="validationCustom02">
                             <Form.Label>Nazwisko</Form.Label>
-                            <Form.Control required type="text" placeholder="Nazwisko" value={surname} onChange={e => setSurname(e.target.value)}/>
+                            <Form.Control required type="text" placeholder="Nazwisko" onChange={e => setSurname(e.target.value)}/>
                             <Form.Control.Feedback type="invalid">
                                 Pole nazwisko jest wymagane.
                             </Form.Control.Feedback>
@@ -67,7 +67,7 @@ function MyVerticallyCenteredModal(props) {
                         <Form.Group as={Col} md="6" controlId="validationCustomUsername">
                             <Form.Label>Email</Form.Label>
                             <InputGroup hasValidation>
-                                <Form.Control type="email" placeholder="Email" aria-describedby="inputGroupPrepend" required value={email} onChange={e => setEmail(e.target.value)}/>
+                                <Form.Control type="email" placeholder="Email" aria-describedby="inputGroupPrepend" required onChange={e => setEmail(e.target.value)}/>
                                 <Form.Control.Feedback type="invalid">
                                     Proszę wpisać poprawny email.
                                 </Form.Control.Feedback>
@@ -77,7 +77,7 @@ function MyVerticallyCenteredModal(props) {
                         <Form.Group as={Col} md="6" controlId="validationCustomUsername">
                             <Form.Label>Hasło</Form.Label>
                             <InputGroup hasValidation>
-                                <Form.Control type="password" placeholder="Hasło" aria-describedby="inputGroupPrepend" required value={password} onChange={e => setPassword(e.target.value)}/>
+                                <Form.Control type="password" placeholder="Hasło" aria-describedby="inputGroupPrepend" required onChange={e => setPassword(e.target.value)}/>
                                 <Form.Control.Feedback type="invalid">
                                     Proszę wpisać poprawne hasło.
                                 </Form.Control.Feedback>
@@ -90,7 +90,7 @@ function MyVerticallyCenteredModal(props) {
 
                         <Form.Group as={Col} md="12" controlId="validationCustom03">
                             <Form.Label>Adres</Form.Label>
-                            <Form.Control type="text" placeholder="Adres" required  value={address} onChange={e => setAddress(e.target.value)}/>
+                            <Form.Control type="text" placeholder="Adres" required  onChange={e => setAddress(e.target.value)}/>
                             <Form.Control.Feedback type="invalid">
                                 Pole miasto jest wymagane.
                             </Form.Control.Feedback>
@@ -102,7 +102,7 @@ function MyVerticallyCenteredModal(props) {
 
                         <Form.Group as={Col} md="4" controlId="validationCustom03">
                             <Form.Label>Miasto</Form.Label>
-                            <Form.Control type="text" placeholder="Miasto" required value={city} onChange={e => setCity(e.target.value)}/>
+                            <Form.Control type="text" placeholder="Miasto" required  onChange={e => setCity(e.target.value)}/>
                             <Form.Control.Feedback type="invalid">
                                 Pole miasto jest wymagane.
                             </Form.Control.Feedback>
@@ -110,7 +110,7 @@ function MyVerticallyCenteredModal(props) {
 
                         <Form.Group as={Col} md="5" controlId="formGridState">
                             <Form.Label>Województwo</Form.Label>
-                            <Form.Control as="select" value={state} onChange={e => setState(e.target.value)}>
+                            <Form.Control as="select" onChange={e => setState(e.target.value)}>
                                 <option>dolnośląskie</option>
                                 <option>kujawsko-pomorskie</option>
                                 <option>lubelskie</option>
@@ -135,7 +135,7 @@ function MyVerticallyCenteredModal(props) {
 
                         <Form.Group as={Col} md="3" controlId="validationCustom05">
                             <Form.Label>Numer pocztowy</Form.Label>
-                            <Form.Control type="text" placeholder="xx-xxx" required value={zip} onChange={e => setZip(e.target.value)}/>
+                            <Form.Control type="text" placeholder="xx-xxx" required onChange={e => setZip(e.target.value)}/>
                             <Form.Control.Feedback type="invalid">
                                 Proszę podać poprawny numer pocztowy.
                             </Form.Control.Feedback>
@@ -144,7 +144,7 @@ function MyVerticallyCenteredModal(props) {
                     </Form.Row>
 
                     <Form.Group>
-                        <Form.Check required label="Akceptuję regulamin sklepu" value={acceptedRules} onChange={e => setAcceptedRules(e.target.value)}/>
+                        <Form.Check required label="Akceptuję regulamin sklepu" onChange={e => setAcceptedRules(e.target.value)}/>
                     </Form.Group>
 
                     <Button type="submit">
