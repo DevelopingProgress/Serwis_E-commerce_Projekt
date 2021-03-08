@@ -18,12 +18,14 @@
   },
   "homepage": "https://github.com/DevelopingProgress/Serwis_E-commerce_Projekt#readme",
   "dependencies": {
+    "@agney/react-loading": "^0.1.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
+    "halogen": "^0.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.19",
     "react-responsive": "^8.2.0"

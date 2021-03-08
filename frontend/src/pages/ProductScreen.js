@@ -17,7 +17,7 @@ export default function ProductPage(props) {
     const productId = props.match.params.id;
     const dispatch = useDispatch();
     const body = document.querySelector('#root');
-    const [qty, setQty] = useState('');
+    const [qty, setQty] = useState(1);
     const userSignin = useSelector(state => state.userSignin);
     const {userInfo} = userSignin;
 

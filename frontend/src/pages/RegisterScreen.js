@@ -1,7 +1,10 @@
 import {Button, Col, Form, InputGroup, Modal} from "react-bootstrap";
-import React, {useState} from 'react';
-import {useDispatch} from "react-redux";
+import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
 import {register} from "../actions/userActions";
+
+import LoadingBox from "../components/Loading";
+import ErrorBox from "../components/Error";
 
 
 function MyVerticallyCenteredModal(props) {
@@ -14,8 +17,11 @@ function MyVerticallyCenteredModal(props) {
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [zip, setZip] = useState('');
-    const [acceptedRules, setAcceptedRules] = useState('');
+    const [acceptedRules, setAcceptedRules] = useState(false);
     const dispatch = useDispatch();
+    const userRegister = useSelector(state => state.userRegister);
+    const {loading, error} = userRegister;
+
 
 
     const submitHandler = (e) => {
@@ -31,132 +37,138 @@ function MyVerticallyCenteredModal(props) {
     };
 
 
+
+
+
     return (
-        <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
-            <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    Rejestracja
-                </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
+        <>
+            <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        Rejestracja
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
 
 
-                <Form onSubmit={submitHandler} noValidate validated={validated}>
-                    <Form.Row>
+                    <Form onSubmit={submitHandler} noValidate validated={validated}>
+                        <Form.Row>
 
-                        <Form.Group as={Col} md="6" controlId="validationCustom01">
-                            <Form.Label>Imię</Form.Label>
-                            <Form.Control required type="text" placeholder="Imię" onChange={e => setName(e.target.value)}/>
-                            <Form.Control.Feedback type="invalid">
-                                Pole imię jest wymagane.
-                            </Form.Control.Feedback>
-                        </Form.Group>
-
-                        <Form.Group as={Col} md="6" controlId="validationCustom02">
-                            <Form.Label>Nazwisko</Form.Label>
-                            <Form.Control required type="text" placeholder="Nazwisko" onChange={e => setSurname(e.target.value)}/>
-                            <Form.Control.Feedback type="invalid">
-                                Pole nazwisko jest wymagane.
-                            </Form.Control.Feedback>
-                        </Form.Group>
-
-                    </Form.Row>
-
-                    <Form.Row>
-
-                        <Form.Group as={Col} md="6" controlId="validationCustomUsername">
-                            <Form.Label>Email</Form.Label>
-                            <InputGroup hasValidation>
-                                <Form.Control type="email" placeholder="Email" aria-describedby="inputGroupPrepend" required onChange={e => setEmail(e.target.value)}/>
+                            <Form.Group as={Col} md="6" controlId="validationCustom01">
+                                <Form.Label>Imię</Form.Label>
+                                <Form.Control required type="text" placeholder="Imię" onChange={e => setName(e.target.value)}/>
                                 <Form.Control.Feedback type="invalid">
-                                    Proszę wpisać poprawny email.
+                                    Pole imię jest wymagane.
                                 </Form.Control.Feedback>
-                            </InputGroup>
-                        </Form.Group>
+                            </Form.Group>
 
-                        <Form.Group as={Col} md="6" controlId="validationCustomUsername">
-                            <Form.Label>Hasło</Form.Label>
-                            <InputGroup hasValidation>
-                                <Form.Control type="password" placeholder="Hasło" aria-describedby="inputGroupPrepend" required onChange={e => setPassword(e.target.value)}/>
+                            <Form.Group as={Col} md="6" controlId="validationCustom02">
+                                <Form.Label>Nazwisko</Form.Label>
+                                <Form.Control required type="text" placeholder="Nazwisko" onChange={e => setSurname(e.target.value)}/>
                                 <Form.Control.Feedback type="invalid">
-                                    Proszę wpisać poprawne hasło.
+                                    Pole nazwisko jest wymagane.
                                 </Form.Control.Feedback>
-                            </InputGroup>
+                            </Form.Group>
+
+                        </Form.Row>
+
+                        <Form.Row>
+
+                            <Form.Group as={Col} md="6" controlId="validationCustomUsername">
+                                <Form.Label>Email</Form.Label>
+                                <InputGroup hasValidation>
+                                    <Form.Control type="email" placeholder="Email" aria-describedby="inputGroupPrepend" required onChange={e => setEmail(e.target.value)}/>
+                                    <Form.Control.Feedback type="invalid">
+                                        Proszę wpisać poprawny email.
+                                    </Form.Control.Feedback>
+                                </InputGroup>
+                            </Form.Group>
+
+                            <Form.Group as={Col} md="6" controlId="validationCustomUsername">
+                                <Form.Label>Hasło</Form.Label>
+                                <InputGroup hasValidation>
+                                    <Form.Control type="password" placeholder="Hasło" aria-describedby="inputGroupPrepend" required onChange={e => setPassword(e.target.value)}/>
+                                    <Form.Control.Feedback type="invalid">
+                                        Proszę wpisać poprawne hasło.
+                                    </Form.Control.Feedback>
+                                </InputGroup>
+                            </Form.Group>
+
+                        </Form.Row>
+
+                        <Form.Row>
+
+                            <Form.Group as={Col} md="12" controlId="validationCustom03">
+                                <Form.Label>Adres</Form.Label>
+                                <Form.Control type="text" placeholder="Adres" required  onChange={e => setAddress(e.target.value)}/>
+                                <Form.Control.Feedback type="invalid">
+                                    Pole miasto jest wymagane.
+                                </Form.Control.Feedback>
+                            </Form.Group>
+
+                        </Form.Row>
+
+                        <Form.Row>
+
+                            <Form.Group as={Col} md="4" controlId="validationCustom03">
+                                <Form.Label>Miasto</Form.Label>
+                                <Form.Control type="text" placeholder="Miasto" required  onChange={e => setCity(e.target.value)}/>
+                                <Form.Control.Feedback type="invalid">
+                                    Pole miasto jest wymagane.
+                                </Form.Control.Feedback>
+                            </Form.Group>
+
+                            <Form.Group as={Col} md="5" controlId="formGridState">
+                                <Form.Label>Województwo</Form.Label>
+                                <Form.Control as="select" onChange={e => setState(e.target.value)}>
+                                    <option>dolnośląskie</option>
+                                    <option>kujawsko-pomorskie</option>
+                                    <option>lubelskie</option>
+                                    <option>lubuskie</option>
+                                    <option>łódzkie</option>
+                                    <option>małopolskie</option>
+                                    <option>mazowieckie</option>
+                                    <option>opolskie</option>
+                                    <option>podkarpackie</option>
+                                    <option>podlaskie</option>
+                                    <option>pomorskie</option>
+                                    <option>śląskie</option>
+                                    <option>świętokrzyskie</option>
+                                    <option>warmińsko-mazurskie</option>
+                                    <option>wielkopolskie</option>
+                                    <option>zachodniopomorksie</option>
+                                </Form.Control>
+                                <Form.Control.Feedback type="invalid">
+                                    Proszę wybrać województwo.
+                                </Form.Control.Feedback>
+                            </Form.Group>
+
+                            <Form.Group as={Col} md="3" controlId="validationCustom05">
+                                <Form.Label>Numer pocztowy</Form.Label>
+                                <Form.Control type="text" placeholder="xx-xxx" required onChange={e => setZip(e.target.value)}/>
+                                <Form.Control.Feedback type="invalid">
+                                    Proszę podać poprawny numer pocztowy.
+                                </Form.Control.Feedback>
+                            </Form.Group>
+
+                        </Form.Row>
+
+                        <Form.Group>
+                            <Form.Check required label="Akceptuję regulamin sklepu" onChange={e => setAcceptedRules(e.target.checked)}/>
                         </Form.Group>
+                        {loading && <LoadingBox/>}
+                        {error && <ErrorBox variant="danger">{error}</ErrorBox>}
+                        <Button onClick={submitHandler}>
+                            Załóż konto
+                        </Button>
+                    </Form>
 
-                    </Form.Row>
-
-                    <Form.Row>
-
-                        <Form.Group as={Col} md="12" controlId="validationCustom03">
-                            <Form.Label>Adres</Form.Label>
-                            <Form.Control type="text" placeholder="Adres" required  onChange={e => setAddress(e.target.value)}/>
-                            <Form.Control.Feedback type="invalid">
-                                Pole miasto jest wymagane.
-                            </Form.Control.Feedback>
-                        </Form.Group>
-
-                    </Form.Row>
-
-                    <Form.Row>
-
-                        <Form.Group as={Col} md="4" controlId="validationCustom03">
-                            <Form.Label>Miasto</Form.Label>
-                            <Form.Control type="text" placeholder="Miasto" required  onChange={e => setCity(e.target.value)}/>
-                            <Form.Control.Feedback type="invalid">
-                                Pole miasto jest wymagane.
-                            </Form.Control.Feedback>
-                        </Form.Group>
-
-                        <Form.Group as={Col} md="5" controlId="formGridState">
-                            <Form.Label>Województwo</Form.Label>
-                            <Form.Control as="select" onChange={e => setState(e.target.value)}>
-                                <option>dolnośląskie</option>
-                                <option>kujawsko-pomorskie</option>
-                                <option>lubelskie</option>
-                                <option>lubuskie</option>
-                                <option>łódzkie</option>
-                                <option>małopolskie</option>
-                                <option>mazowieckie</option>
-                                <option>opolskie</option>
-                                <option>podkarpackie</option>
-                                <option>podlaskie</option>
-                                <option>pomorskie</option>
-                                <option>śląskie</option>
-                                <option>świętokrzyskie</option>
-                                <option>warmińsko-mazurskie</option>
-                                <option>wielkopolskie</option>
-                                <option>zachodniopomorksie</option>
-                            </Form.Control>
-                            <Form.Control.Feedback type="invalid">
-                                Proszę wybrać województwo.
-                            </Form.Control.Feedback>
-                        </Form.Group>
-
-                        <Form.Group as={Col} md="3" controlId="validationCustom05">
-                            <Form.Label>Numer pocztowy</Form.Label>
-                            <Form.Control type="text" placeholder="xx-xxx" required onChange={e => setZip(e.target.value)}/>
-                            <Form.Control.Feedback type="invalid">
-                                Proszę podać poprawny numer pocztowy.
-                            </Form.Control.Feedback>
-                        </Form.Group>
-
-                    </Form.Row>
-
-                    <Form.Group>
-                        <Form.Check required label="Akceptuję regulamin sklepu" onChange={e => setAcceptedRules(e.target.value)}/>
-                    </Form.Group>
-
-                    <Button type="submit">
-                        Załóż konto
-                    </Button>
-                </Form>
-
-            </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={props.onHide}>Zamknij</Button>
-            </Modal.Footer>
-        </Modal>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={props.onHide}>Zamknij</Button>
+                </Modal.Footer>
+            </Modal>
+        </>
     );
 }
 

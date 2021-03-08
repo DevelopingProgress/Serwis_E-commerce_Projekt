@@ -1,14 +1,18 @@
 import {Button, Form, Modal, Nav} from "react-bootstrap";
 import React, {useState} from 'react';
 import Register from "./RegisterScreen";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {signin} from "../actions/userActions";
+import LoadingBox from "../components/Loading";
+import ErrorBox from "../components/Error";
 
     function MyVerticallyCenteredModal(props) {
 
         const [email, setEmail] = useState('');
         const [password, setPassword] = useState('');
         const dispatch = useDispatch();
+        const userSignin = useSelector(state => state.userSignin);
+        const {loading, error} = userSignin;
 
 
 
@@ -41,7 +45,8 @@ import {signin} from "../actions/userActions";
                                 <Form.Label>Hasło</Form.Label>
                                 <Form.Control type="password" placeholder="Hasło" onChange={e => setPassword(e.target.value)}/>
                             </Form.Group>
-
+                            {loading && <LoadingBox/>}
+                            {error && <ErrorBox variant="danger">{error}</ErrorBox>}
                             <Button variant="primary" type="submit">
                                 Zaloguj się
                             </Button>
