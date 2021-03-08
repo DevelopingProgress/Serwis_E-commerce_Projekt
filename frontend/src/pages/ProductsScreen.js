@@ -50,13 +50,13 @@ export default function Products(props) {
                     <Form.Row>
                         <Col lg="3"><h1 className="ml-3 mt-5 text-lg">Produkty</h1></Col>
                         <Form.Group as={Col} lg="3" controlId="formGridSort">
-                            <Form.Control as="select" defaultValue="Sortuj po..." className="mt-5 text-lg">
+                            <Form.Control as="select" defaultValue="Sortuj po..." className="mt-5 text-lg text-danger">
                                 <option>Sortuj po...</option>
                                 <option>...</option>
                             </Form.Control>
                         </Form.Group>
                         <Form.Group as={Col} lg="3" defaultValue="Wybierz kategorię..." controlId="formGridCategory">
-                            <Form.Control as="select" className="mt-5 text-lg">
+                            <Form.Control as="select" className="mt-5 text-lg text-danger">
                                 <option>Wybierz kategorię...</option>
                                 <option>...</option>
                             </Form.Control>
