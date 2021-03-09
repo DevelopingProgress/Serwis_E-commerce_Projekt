@@ -88,8 +88,6 @@ export default function Products(props) {
                             products.sort().filter((product) => {
                             if(name === "" && category === "Wybierz kategorię..."){
                                 return product;
-
-
                             } else if(name === "" && product.category.toString().toLowerCase().includes(category.toLowerCase())) {
                                 return product;
                             } else if(product.name.toLowerCase().includes(name.toLowerCase()) && product.category.toString().toLowerCase().includes(category.toLowerCase())){
