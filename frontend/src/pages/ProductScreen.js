@@ -104,10 +104,12 @@ export default function ProductPage(props) {
                                                       product.countInStock > 0 ? (
                                                           <>
                                                               <Col lg="12">
-                                                                  <Button variant="success" size="lg"
-                                                                          className="mt-5 text-lg mb-3" block>
-                                                                      Kup teraz
-                                                                  </Button>
+                                                                  <a href={`/cart/${product._id}?qty=${qty}`} style={{textDecoration: 'none'}}>
+                                                                      <Button variant="success" size="lg"
+                                                                              className="mt-5 text-lg mb-3" block>
+                                                                          Kup teraz
+                                                                      </Button>
+                                                                  </a>
                                                               </Col>
                                                               <Col lg="12">
                                                                   <Button variant="dark" size="lg"

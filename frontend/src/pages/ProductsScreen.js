@@ -1,7 +1,7 @@
-import React, {useCallback, useState} from 'react';
+import React, {useState} from 'react';
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button, Card, Col, Form, Nav} from "react-bootstrap";
+import {Button, Card, Col, Form} from "react-bootstrap";
 import "../index.css";
 import {Link} from "react-router-dom";
 import {useEffect} from "react";
@@ -123,9 +123,8 @@ export default function Products(props) {
                                                         ) : (
                                                                 product.countInStock > 0 ? (
                                                                     <>
-                                                                        <Button variant="outline-success"
-                                                                                className="mb-btn-m w-100 buttons-mb pl-1"><FontAwesomeIcon
-                                                                            icon={faDollarSign}/> Kup teraz</Button>
+                                                                        <a href={`/cart/${product._id}?qty=1`} className="btn btn-outline-success mb-btn-m w-100 buttons-mb pl-1 block"><FontAwesomeIcon
+                                                                            icon={faDollarSign}/> Kup teraz</a>
                                                                         <Button
                                                                             onClick={() => dispatch(addToCart(product._id, 1))}
                                                                             variant="outline-dark"

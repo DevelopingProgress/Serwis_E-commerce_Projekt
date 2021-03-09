@@ -20,6 +20,7 @@ function App() {
           <BrowserRouter>
               <Route path="/" component={Home} exact/>
               <Route path="/cart" component={CartPage} exact/>
+              <Route path="/cart/:id" component={CartPage} exact/>
               <Route path="/product" component={Products} exact/>
               <Route path="/product/:id" component={ProductPage}/>
           </BrowserRouter>
