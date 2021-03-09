@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import LoadingBox from "../components/Loading";
 import ErrorBox from "../components/Error";
-import {detailsProduct} from "../actions/productActions";
+import {detailsProduct, listProducts} from "../actions/productActions";
 import {addToCart} from "../actions/cartActions";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit} from "@fortawesome/free-solid-svg-icons";

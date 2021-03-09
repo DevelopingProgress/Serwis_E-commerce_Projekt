@@ -20,13 +20,6 @@
     margin-bottom: 10px;
 }
 
-.card-img-top {
-    transition: 0.3s ease-in-out;
-}
-
-.card-img-top:hover {
-    transform: scale(1.2);
-}
 
 .link-color {
     color: black;
@@ -75,13 +68,6 @@
     background-color: #eeffe0;
 }
 
-.cartImg {
-    transition: 0.3s ease-in-out;
-}
-
-.cartImg:hover {
-    transform: scale(1.2);
-}
 
 
 @media (max-width: 1028px) {
