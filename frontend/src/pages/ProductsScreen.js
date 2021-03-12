@@ -94,8 +94,6 @@ export default function Products(props) {
                                 return product;
                             } else if(product.thumbnail.toLowerCase().includes(name.toLowerCase()) && product.category.toString().toLowerCase().includes(category.toLowerCase())){
                                 return product;
-                            } else if(product.price.toString().toLowerCase().includes(name.toLowerCase()) && product.category.toString().toLowerCase().includes(category.toLowerCase())){
-                                return product;
                             }
 
                             }).map( (product) => (

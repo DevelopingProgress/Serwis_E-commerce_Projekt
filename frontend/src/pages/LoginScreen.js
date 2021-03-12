@@ -5,6 +5,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {signin} from "../actions/userActions";
 import LoadingBox from "../components/Loading";
 import ErrorBox from "../components/Error";
+import {faUser} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
     function MyVerticallyCenteredModal(props) {
 
@@ -69,7 +71,7 @@ export default function Login(props) {
         <>
             <Nav.Link onClick={() => setModalShow(true)}>
 
-                    Zaloguj się
+                <FontAwesomeIcon icon={faUser} />  Zaloguj się
 
             </Nav.Link>
 

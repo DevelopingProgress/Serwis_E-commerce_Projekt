@@ -37,7 +37,7 @@ export default function ProductPage(props) {
         <div className="my-container m-3">
             <Row className="p-4 mt-3">
                 <Col lg="12">
-                    <h1 className="title">Karta Techniczna Produktu</h1>
+                    <h1 className="title">Szczegóły Produktu</h1>
                 </Col>
             </Row>
             {
