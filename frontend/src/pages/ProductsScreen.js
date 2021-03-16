@@ -69,11 +69,10 @@ export default function Products(props) {
                         {/*</Form.Group>*/}
                         <Form.Group as={Col} lg="4" defaultValue="Wybierz kategorię..." controlId="formGridCategory">
                             <Form.Control as="select" className="mt-5 text-lg"  onChange={e => setCategory(e.target.value)}>
-                                <option selected>Wybierz kategorię...</option>
+                                <option selected value="all">Wybierz kategorię...</option>
                                 {categories.map((c) => (
                                     <option key={c}>{c}</option>
                                 ))}
-
                             </Form.Control>
                         </Form.Group>
                     </Form.Row>
@@ -86,7 +85,11 @@ export default function Products(props) {
                     <div className="row">
                         {
                             products.sort().filter((product) => {
-                            if(name === "" && category === "Wybierz kategorię..."){
+                            if(name === "" && category === "all"){
+                                return product;
+                            } else if(product.name.toLowerCase().includes(name.toLowerCase()) && category === "all"){
+                                return product;
+                            }else if(product.thumbnail.toLowerCase().includes(name.toLowerCase()) && category === "all"){
                                 return product;
                             } else if(name === "" && product.category.toString().toLowerCase().includes(category.toLowerCase())) {
                                 return product;
@@ -113,9 +116,11 @@ export default function Products(props) {
 
                                                         product.countInStock > 0 ? (
                                                                     <>
+                                                                    <a href={`/cart/${product._id}?qty=1`} style={{textDecoration: 'none'}}>
                                                                         <Button variant="outline-success"
                                                                                 className="mb-btn-m w-100 buttons-mb pl-1"><FontAwesomeIcon
                                                                             icon={faDollarSign}/> Kup teraz</Button>
+                                                                    </a>
                                                                         <Button
                                                                             onClick={() => dispatch(addToCart(product._id, 1))}
                                                                             variant="outline-dark"
