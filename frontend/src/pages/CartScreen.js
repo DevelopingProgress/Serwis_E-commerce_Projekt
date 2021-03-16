@@ -36,7 +36,7 @@ export default function CartPage(props){
                                         <h6><Form.Label>Ilość</Form.Label></h6>
                                         <Form.Control as="select" value={item.qty} onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}>
                                             {[...Array(item.countInStock).keys()].map((x) => (
-                                                <option maxValue={10} key={x + 1} value={x + 1}>
+                                                <option key={x + 1} value={x + 1}>
                                                     {x + 1}
                                                 </option>
                                             ))}
@@ -63,7 +63,7 @@ export default function CartPage(props){
                         <Col lg="6">
                             <h4 className="text-center">Razem:</h4>
                         </Col>
-                        <Col lg="5">
+                        <Col lg="6">
                             <h3 className="text-center">{cartItems.reduce((a, c) => a + c.price * c.qty, 0).toFixed(2)} zł</h3>
                         </Col>
                     </Row>
