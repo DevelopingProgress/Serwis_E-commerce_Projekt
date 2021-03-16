@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Container, Row, Col, Button, Table, Form, Image} from 'react-bootstrap'
 import {useDispatch, useSelector} from "react-redux";
 import {addToCart, removeFromCart} from "../actions/cartActions";
@@ -8,6 +8,14 @@ export default function CartPage(props){
     const cart = useSelector((state) => state.cart);
     const {cartItems} = cart;
     const dispatch = useDispatch();
+    const productId = props.match.params.id;
+    const qty = props.location.search ? Number(props.location.search.split('=')[1]) : 1;
+
+    useEffect(() => {
+        if(productId){
+            dispatch(addToCart(productId, qty));
+        }
+    }, [dispatch, productId, qty]);
 
     return (
     <>
