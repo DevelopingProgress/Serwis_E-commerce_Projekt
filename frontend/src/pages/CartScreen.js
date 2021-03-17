@@ -17,6 +17,10 @@ export default function CartPage(props){
         }
     }, [dispatch, productId, qty]);
 
+    const checkoutHandler = () => {
+        props.history.push(`/shipping`);
+    }
+
     return (
     <>
         <div className="ml-5 pl-4 mt-4">
@@ -63,20 +67,41 @@ export default function CartPage(props){
 
                 </Col>
             </Container>
+            {
+                cartItems.length === 0 ? <></> : (
+                    <Col lg='3'>
+                        <h2 className="text-center">Podsumowanie</h2>
+                        <div className="bg-light p-5">
+                            <Row>
+                                <Col lg="6">
+                                    <h4 className="text-center">Razem:</h4>
+                                </Col>
+                                <Col lg="6">
+                                    <h3 className="text-center">{cartItems.reduce((a, c) => a + c.price * c.qty, 0).toFixed(2)} zł</h3>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
 
-            <Col lg='3'>
-                <h2 className="text-center">Podsumowanie</h2>
-                <div className="bg-light p-5">
-                    <Row>
-                        <Col lg="6">
-                            <h4 className="text-center">Razem:</h4>
-                        </Col>
-                        <Col lg="6">
-                            <h3 className="text-center">{cartItems.reduce((a, c) => a + c.price * c.qty, 0).toFixed(2)} zł</h3>
-                        </Col>
-                    </Row>
-                </div>
-            </Col>
+                                    <Button variant="success" size="lg" className="mt-5 text-lg mb-3" block  onClick={checkoutHandler}>
+                                        Złóż Zamówienie
+                                    </Button>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <a href="/product"  style={{textDecoration: 'none'}}>
+                                        <Button variant="outline-dark" size="lg" className="text-lg mb-5" block>
+                                            Kontynuuj Zakupy
+                                        </Button>
+                                    </a>
+                                </Col>
+                            </Row>
+                        </div>
+                    </Col>
+                )
+            }
+
 
         </Row>
 

@@ -5,14 +5,14 @@ import "./index.css";
 import {BrowserRouter, Route} from "react-router-dom";
 import Home from "./pages/HomeScreen";
 import ProductPage from "./pages/ProductScreen";
-import Login from "./pages/LoginScreen";
 import Products from "./pages/ProductsScreen";
 import MyNavbar from "./components/Navbar";
 import MyFooter from "./components/Footer";
 import CartPage from "./pages/CartScreen";
+import ShippingPage from "./pages/ShippingScreen";
 
 
-function App() {
+export default function App() {
   return (
       <>
          <MyNavbar/>
@@ -23,6 +23,7 @@ function App() {
               <Route path="/cart/:id" component={CartPage} exact/>
               <Route path="/product" component={Products} exact/>
               <Route path="/product/:id" component={ProductPage}/>
+              <Route path="/shipping" component={ShippingPage}/>
           </BrowserRouter>
 
           <MyFooter/>
@@ -30,4 +31,3 @@ function App() {
   );
 }
 
-export default App;
