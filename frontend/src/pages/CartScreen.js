@@ -22,22 +22,21 @@ export default function CartPage(props){
     }
 
     return (
-    <>
+    <div style={{marginBottom: '8%'}}>
         <div className="ml-5 pl-4 mt-4">
             <h1  className='mb-5' style={{textAlign: 'left'}}>
                 Koszyk
             </h1>
         </div>
 
-        <Row className='m-auto'>
-            <Container className='bg-light mb-5 pr-0'>
-                <Col lg="12">
+        <Row className='mb-5 mx-5'>
+                <Col md="9">
                     {
                         cartItems.length === 0 ? (<h1 className="text-danger ml-1 p-5">Koszyk jest pusty! <a
                             href="/product">Przejdź do zakupów</a></h1>) : (
 
                             cartItems.map((item) => (
-                                <Row className='p-3 mb-3'>
+                                <Row className='p-3 mb-4'>
                                     <Col lg="2">
                                         <Image width={100} height={100} roundedCircle src={item.image}/>
                                     </Col>
@@ -66,18 +65,17 @@ export default function CartPage(props){
                     }
 
                 </Col>
-            </Container>
             {
                 cartItems.length === 0 ? <></> : (
-                    <Col lg='3'>
+                    <Col md='3'>
                         <h2 className="text-center">Podsumowanie</h2>
-                        <div className="bg-light p-5">
-                            <Row>
-                                <Col lg="6">
+                        <div className="bg-light p-3 mr-2">
+                            <Row className="mt-4">
+                                <Col lg="5">
                                     <h4 className="text-center">Razem:</h4>
                                 </Col>
-                                <Col lg="6">
-                                    <h3 className="text-center">{cartItems.reduce((a, c) => a + c.price * c.qty, 0).toFixed(2)} zł</h3>
+                                <Col lg="7">
+                                    <h3 className="text-left">{cartItems.reduce((a, c) => a + c.price * c.qty, 0).toFixed(2)} zł</h3>
                                 </Col>
                             </Row>
                             <Row>
@@ -105,7 +103,7 @@ export default function CartPage(props){
 
         </Row>
 
-    </>
+    </div>
     );
 }
 

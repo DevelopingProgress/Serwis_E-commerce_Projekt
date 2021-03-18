@@ -1,4 +1,6 @@
 import {
+    USER_ADDRESS_FAIL,
+    USER_ADDRESS_REQUEST, USER_ADDRESS_SUCCESS,
     USER_REGISTER_FAIL,
     USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS,
     USER_SIGNIN_FAIL,
@@ -6,6 +8,7 @@ import {
     USER_SIGNIN_SUCCESS,
     USER_SIGNOUT
 } from "../constants/userConstants";
+import {PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS} from "../constants/productsConstants";
 
 export const userSigninReducer = (state = {}, action) => {
     switch (action.type) {
@@ -34,3 +37,16 @@ export const userRegisterReducer = (state = {}, action) => {
             return state;
     }
 }
+
+export const userAddressReducer = (state = { loading: true }, action) => {
+    switch (action.type) {
+        case USER_ADDRESS_REQUEST:
+            return { loading: true };
+        case USER_ADDRESS_SUCCESS:
+            return { loading: false, userAddress: action.payload };
+        case USER_ADDRESS_FAIL:
+            return { loading: false, error: action.payload };
+        default:
+            return state;
+    }
+};

@@ -1,5 +1,7 @@
 import axios from "axios";
 import {
+    USER_ADDRESS_FAIL,
+    USER_ADDRESS_REQUEST, USER_ADDRESS_SUCCESS,
     USER_REGISTER_FAIL,
     USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS,
     USER_SIGNIN_FAIL,
@@ -7,6 +9,7 @@ import {
     USER_SIGNIN_SUCCESS,
     USER_SIGNOUT
 } from "../constants/userConstants";
+import {PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_SUCCESS} from "../constants/productsConstants";
 
 export const signin = (email, password) => async (dispatch) =>{
     dispatch({type: USER_SIGNIN_REQUEST, payload: {email, password}});
@@ -39,3 +42,15 @@ export const register = (name, surname, email, password, address, city, state, z
                 error.response.data.message : error.message});
     }
 };
+
+export const getAddress = (userId) => async (dispatch) => {
+    try {
+        dispatch({type: USER_ADDRESS_REQUEST, payload: userId});
+        const {data} = await axios.get(`/api/users/${userId}`);
+        dispatch({ type: USER_ADDRESS_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({type: USER_ADDRESS_FAIL, payload: error.response && error.response.data.message ?
+                error.response.data.message : error.message,});
+    }
+
+}
