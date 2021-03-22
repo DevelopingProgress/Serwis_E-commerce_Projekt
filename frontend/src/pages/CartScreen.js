@@ -18,7 +18,7 @@ export default function CartPage(props){
     }, [dispatch, productId, qty]);
 
     const checkoutHandler = () => {
-        props.history.push(`/shipping`);
+        props.history.push(`/login?redirect=shipping`);
     }
 
     return (
@@ -32,7 +32,7 @@ export default function CartPage(props){
         <Row className='mb-5 mx-5'>
                 <Col md="9">
                     {
-                        cartItems.length === 0 ? (<h1 className="text-danger ml-1 p-5">Koszyk jest pusty! <a
+                        cartItems.length === 0 ? (<h1 className="text-danger ml-1 p-5"  style={{marginBottom: '9%'}}>Koszyk jest pusty! <a
                             href="/product">Przejdź do zakupów</a></h1>) : (
 
                             cartItems.map((item) => (

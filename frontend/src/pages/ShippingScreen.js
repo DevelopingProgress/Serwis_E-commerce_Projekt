@@ -20,48 +20,48 @@ export default function ShippingPage(props) {
     const [zip, setZip] = useState('');
     const [deliveryMethod, setDeliveryMethod] = useState('Kurier');
     const [paymentMethod, setPaymentMethod] = useState('Karta Płatnicza');
+    const [agreed, setAgreed] = useState(false)
     const dispatch = useDispatch();
-    const redirect = props.location.search ? props.location.search.split('=')[1] : '/';
     const toPrice = (num) => Number(num.toFixed(2));
     const cartPrice = toPrice(cartItems.reduce((a, c) => a + c.price * c.qty, 0));
     const deliveryPrice = cartPrice > 1000 ? toPrice(0) : toPrice(15);
+    const totalPrice = toPrice(cartPrice + deliveryPrice);
     const [email, setEmail] = useState('');
 
     useEffect(() => {
         if(cartItems.length === 0){
            props.history.push('/cart');
         }
-
         if(userInfo){
             dispatch(getAddress(userInfo._id));
-            if(userAddress){
-                setName(userAddress.name);
-                setSurname(userAddress.surname);
-                setAddress(userAddress.address);
-                setCity(userAddress.city);
-                setState(userAddress.state);
-                setZip(userAddress.zip);
-                setEmail(userAddress.email);
-            }
         }
-
 
 
     }, [dispatch, userInfo]);
 
-
-
     const submitHandler = (e) =>{
         e.preventDefault();
-        dispatch(saveAddress({email,name, surname, address, state, city, zip}));
+        dispatch(saveAddress({email,name, surname, address, state, city, zip, deliveryMethod, paymentMethod, agreed, cartPrice, deliveryPrice, totalPrice}));
         props.history.push('/summary');
 
     }
 
 
+    const handleFill = () =>{
+        if(userAddress){
+            setName(userAddress.name);
+            setSurname(userAddress.surname);
+            setAddress(userAddress.address);
+            setCity(userAddress.city);
+            setState(userAddress.state);
+            setZip(userAddress.zip);
+            setEmail(userAddress.email);
+        }
+    }
+
     return (
         <>
-            <Form>
+            <Form onSubmit={submitHandler}>
                 <Row className="mr-0">
                     <Col lg="6" className="m-auto">
 
@@ -108,17 +108,16 @@ export default function ShippingPage(props) {
                         <Container  className="mt-5 mb-5 p-3 border border-dark">
                             <Row>
                                 <Col lg="6">
-                                    <div className="mb-5">
+                                    <div className="mb-3">
                                         <h2>3.Dane Adresowe</h2>
                                     </div>
-                                    {
-                                        !userInfo && (
-                                            <div className="my-3">
-                                                <Form.Label htmlFor="email">E-mail</Form.Label>
-                                                <Form.Control type="text" id="email" placeholder="jan.kowalski@gmail.com" value={email} onChange={event => setEmail(event.target.value)} required style={{borderRadius: '10px'}}/>
-                                            </div>
-                                        )
-                                    }
+                                    <div className="mb-3">
+                                        <Button variant="outline-primary" onClick={handleFill}>Uzupełnij danymi z konta</Button>
+                                    </div>
+                                    <div className="my-3">
+                                        <Form.Label htmlFor="email">E-mail</Form.Label>
+                                        <Form.Control type="text" id="email" placeholder="jan.kowalski@gmail.com" value={email} onChange={event => setEmail(event.target.value)} required style={{borderRadius: '10px'}}/>
+                                    </div>
                                     <div className="my-3">
                                         <Form.Label htmlFor="name">Imię</Form.Label>
                                         <Form.Control type="text" id="name" placeholder="Jan" value={name} onChange={event => setName(event.target.value)} required style={{borderRadius: '10px'}}/>
@@ -164,6 +163,9 @@ export default function ShippingPage(props) {
                                     <div className="my-2">
                                         <Form.Label htmlFor="postalCode">Kod Pocztowy</Form.Label>
                                         <Form.Control type="text" id="postalCode" placeholder="00-001" value={zip} onChange={event => setZip(event.target.value)} required style={{borderRadius: '10px'}}/>
+                                    </div>
+                                    <div className="ml-1">
+                                        <Form.Check label="Wyrażam zgodę na przetwarzanie danych osobowych."  required onChange={e => setAgreed(e.target.checked)}/>
                                     </div>
                                 </Col>
                             </Row>
@@ -219,9 +221,7 @@ export default function ShippingPage(props) {
                     </Col>
                 </Row>
                 <Row>
-                    <Col>
-                        <Form.Check label="Wyrażam zgodę na przetwarzanie Moich danych osobowych."  required/>
-                    </Col>
+
                 </Row>
             </Form>
 

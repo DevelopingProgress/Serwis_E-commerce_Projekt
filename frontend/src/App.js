@@ -10,19 +10,26 @@ import MyNavbar from "./components/Navbar";
 import MyFooter from "./components/Footer";
 import CartPage from "./pages/CartScreen";
 import ShippingPage from "./pages/ShippingScreen";
+import {LoginModal} from "./components/LoginModal";
+import Summary from "./pages/SummaryScreen";
+
 
 
 export default function App() {
-  return (
+
+
+    return (
       <>
          <MyNavbar/>
 
           <BrowserRouter>
               <Route path="/" component={Home} exact/>
+              <Route path="/summary" component={Summary} exact/>
               <Route path="/cart" component={CartPage} exact/>
               <Route path="/cart/:id" component={CartPage} exact/>
               <Route path="/product" component={Products} exact/>
               <Route path="/product/:id" component={ProductPage}/>
+              <Route path="/login" component={LoginModal}/>
               <Route path="/shipping" component={ShippingPage}/>
           </BrowserRouter>
 

@@ -1,5 +1,5 @@
 import {Button, Form, Modal, Nav} from "react-bootstrap";
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Register from "./RegisterScreen";
 import {useDispatch, useSelector} from "react-redux";
 import {signin} from "../actions/userActions";
@@ -8,14 +8,13 @@ import ErrorBox from "../components/Error";
 import {faUser} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-    function MyVerticallyCenteredModal(props) {
+    export function MyVerticallyCenteredModal(props) {
 
         const [email, setEmail] = useState('');
         const [password, setPassword] = useState('');
         const dispatch = useDispatch();
         const userSignin = useSelector(state => state.userSignin);
-        const {loading, error} = userSignin;
-
+        const {error, loading} = userSignin;
 
 
         const submitHandler = (e) =>{
@@ -66,6 +65,16 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export default function Login(props) {
     const [modalShow, setModalShow] = React.useState(false);
+
+    const userSignin = useSelector(state => state.userSignin);
+    const {userInfo} = userSignin;
+
+
+    useEffect(()=>{
+        if(userInfo){
+            props.history.push('/shipping');
+        }
+    }, [props.history, userInfo]);
 
     return (
         <>

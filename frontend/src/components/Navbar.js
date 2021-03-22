@@ -60,8 +60,8 @@ export default function MyNavbar() {
 
                                     cartItems.map((item) => (
                                         <>
-                                            <NavDropdown.ItemText  role="button" key={item.product}>
-                                                <Row className="mr-auto">
+                                            <NavDropdown.ItemText  role="button" key={item._id}>
+                                                <Row className="m-3">
                                                     <Col lg="4">
                                                         <a href={`/product/${item.product}`}>
                                                             <img className="cartImg" style={{marginRight: "20px"}} src={item.image} alt={`cartItem${item.product}`} width="100px" height="100px"/>
