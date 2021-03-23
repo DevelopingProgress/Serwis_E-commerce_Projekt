@@ -33,7 +33,7 @@ export default function Account(props) {
 
 
     return (
-        <div>
+        <div style={{marginBottom: "11%"}}>
             {
                 userLoading ? <LoadingBox/> : userError ? <ErrorBox variant="danger">{userError}</ErrorBox> : (
                     <Container style={{marginTop: '20px'}}>

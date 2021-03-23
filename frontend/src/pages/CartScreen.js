@@ -22,7 +22,7 @@ export default function CartPage(props){
     }
 
     return (
-    <div style={{marginBottom: '8%'}}>
+    <div style={{marginBottom: '17%'}}>
         <div className="ml-5 pl-4 mt-4">
             <h1  className='mb-5' style={{textAlign: 'left'}}>
                 Koszyk
