@@ -1,33 +1,57 @@
+import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {Button, Col, Container, Image, Row} from "react-bootstrap";
-import {createOrder} from "../actions/orderActions";
-import {useEffect} from "react";
-import {ORDER_CREATE_RESET} from "../constants/orderConstants";
+import {Col, Container, Image, Row} from "react-bootstrap";
+import {detailsOrder, payOrder} from "../actions/orderActions";
+import {useEffect, useState} from "react";
+import {ORDER_PAY_RESET} from "../constants/orderConstants";
+import axios from "axios";
+import LoadingBox from "../components/Loading";
+import {PayPalButton} from "react-paypal-button-v2";
+import ErrorBox from "../components/Error";
 
 
-export default function Summary(props) {
-    const cart = useSelector(state => state.cart);
-    const orderCreate = useSelector(state => state.orderCreate);
-    const {loading, success, error, order} = orderCreate;
+export default function Order(props) {
+
+
+    const orderId = props.match.params.id;
+    const [sdkReady, setSdkReady] = useState(false);
+    const orderDetails = useSelector((state) => state.orderDetails);
+    const {order, loading, error} = orderDetails;
+    const orderPay = useSelector((state) => state.orderPay);
+    const { loading: loadingPay, error: errorPay, success: successPay,} = orderPay;
     const dispatch = useDispatch();
 
-
     useEffect(() => {
-        if(cart.cartItems.length === 0){
-            props.history.push('/cart');
+        const addPayPalScript = async () => {
+            const { data } = await axios.get('/api/config/paypal');
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = `https://www.paypal.com/sdk/js?client-id=${data}&currency=PLN`;
+            script.async = true;
+            script.onload = () => {
+                setSdkReady(true);
+            };
+            document.body.appendChild(script);
+        };
+        if (!order || successPay || (order && order._id !== orderId)) {
+            dispatch({type:ORDER_PAY_RESET});
+            dispatch(detailsOrder(orderId));
+        } else {
+            if (!order.isPaid) {
+                if (!window.paypal) {
+                    addPayPalScript();
+                } else {
+                    setSdkReady(true);
+                }
+            }
         }
-        if(success){
-            props.history.push(`/order/${order._id}`);
-            dispatch({type: ORDER_CREATE_RESET});
-        }
-    }, [dispatch, order, props.history, success])
+    }, [dispatch, orderId, sdkReady, successPay, order])
 
-
-    const placeOrderHandler = () => {
-        dispatch(createOrder({...cart, orderItems: cart.cartItems}))
+    const successPaymentHandler = (paymentResult) => {
+        dispatch(payOrder(order, paymentResult));
     }
 
-    return (
+    return loading ? (<LoadingBox/>) : error ? (<ErrorBox variant="danger">{error}</ErrorBox>) : (
         <>
             <Row className="mr-0">
                 <Col lg="6" className="m-auto">
@@ -39,7 +63,7 @@ export default function Summary(props) {
                                     <h2>1.Sposób dostawy</h2>
                                 </div>
                                 <div className="ml-3">
-                                    <h4>{cart.shippingAddress.deliveryMethod}</h4>
+                                    <h4>{order.shippingAddress.deliveryMethod}</h4>
                                 </div>
                             </Col>
                         </Row>
@@ -52,7 +76,7 @@ export default function Summary(props) {
                                     <h2>2.Metoda Płatności</h2>
                                 </div>
                                 <div className="ml-3">
-                                    <h4>{cart.shippingAddress.paymentMethod}</h4>
+                                    <h4>{order.shippingAddress.paymentMethod}</h4>
                                 </div>
 
                             </Col>
@@ -66,13 +90,13 @@ export default function Summary(props) {
                                     <h2>3.Dane Adresowe</h2>
                                 </div>
                                 <div className="my-1 ml-3">
-                                    <h5>E-mail:</h5><p>{cart.shippingAddress.email}</p>
+                                    <h5>E-mail:</h5><p>{order.shippingAddress.email}</p>
                                 </div>
                                 <div className="my-1 ml-3">
-                                    <h5>Imię i Nazwisko: </h5><p>{cart.shippingAddress.name} {cart.shippingAddress.surname}</p>
+                                    <h5>Imię i Nazwisko: </h5><p>{order.shippingAddress.name} {order.shippingAddress.surname}</p>
                                 </div>
                                 <div className="my-1 ml-3">
-                                    <h5>Adres: </h5><p>{cart.shippingAddress.address}, {cart.shippingAddress.state}, {cart.shippingAddress.city}, {cart.shippingAddress.zip}</p>
+                                    <h5>Adres: </h5><p>{order.shippingAddress.address}, {order.shippingAddress.state}, {order.shippingAddress.city}, {order.shippingAddress.zip}</p>
                                 </div>
                             </Col>
                         </Row>
@@ -85,7 +109,7 @@ export default function Summary(props) {
                                 </div>
                                 <div>
                                     {
-                                        cart.cartItems.map((item) => (
+                                        order.orderItems.map((item) => (
                                             <Row className="mb-3">
                                                 <Col lg="4">
                                                     <a href={`/product/${item.product}`}>
@@ -120,7 +144,7 @@ export default function Summary(props) {
                                 <h4 className="text-center">Koszyk:</h4>
                             </Col>
                             <Col lg="7">
-                                <h3 className="text-center">{cart.shippingAddress.cartPrice.toFixed(2)} zł</h3>
+                                <h3 className="text-center">{order.shippingAddress.cartPrice.toFixed(2)} zł</h3>
                             </Col>
                         </Row>
                         <Row className="mt-4">
@@ -128,7 +152,7 @@ export default function Summary(props) {
                                 <h4 className="text-center">Dostawa:</h4>
                             </Col>
                             <Col lg="7">
-                                <h3 className="text-center">{cart.shippingAddress.deliveryMethod === 'Kurier' ? cart.shippingAddress.deliveryPrice.toFixed(2) : '0.00'} zł</h3>
+                                <h3 className="text-center">{order.shippingAddress.deliveryMethod === 'Kurier' ? order.shippingAddress.deliveryPrice.toFixed(2) : '0.00'} zł</h3>
                             </Col>
                         </Row>
                         <Row className="mt-4">
@@ -136,25 +160,26 @@ export default function Summary(props) {
                                 <h4 className="text-center">Razem:</h4>
                             </Col>
                             <Col lg="7">
-                                <h3 className="text-center">{cart.shippingAddress.deliveryMethod === 'Kurier' ? (cart.shippingAddress.cartPrice + cart.shippingAddress.deliveryPrice).toFixed(2): cart.shippingAddress.cartPrice.toFixed(2) } zł</h3>
+                                <h3 className="text-center">{order.shippingAddress.deliveryMethod === 'Kurier' ? (order.shippingAddress.cartPrice + order.shippingAddress.deliveryPrice).toFixed(2): order.shippingAddress.cartPrice.toFixed(2) } zł</h3>
                             </Col>
                         </Row>
-                        <Row>
-                            <Col>
-                                <Button variant="success" type="submit" size="lg" className="mt-5 text-lg mb-3" block onClick={placeOrderHandler}>
-                                    Do Płatności
-                                </Button>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <a href="/product"  style={{textDecoration: 'none'}}>
-                                    <Button variant="outline-dark" size="lg" className="text-lg mb-5" block>
-                                        Kontynuuj Zakupy
-                                    </Button>
-                                </a>
-                            </Col>
-                        </Row>
+                        {!order.isPaid && (
+                            <div>
+                                {!sdkReady ? (
+                                    <LoadingBox/>
+                                ) : (
+                                    <div>
+                                        {errorPay && (
+                                            <ErrorBox variant="danger">{errorPay}</ErrorBox>
+                                        )}
+                                        {loadingPay && <LoadingBox/>}
+
+                                        <PayPalButton amount={order.totalPrice} onSuccess={successPaymentHandler} currency="PLN"/>
+                                    </div>
+                                )}
+
+                            </div>
+                        )}
                     </div>
 
 

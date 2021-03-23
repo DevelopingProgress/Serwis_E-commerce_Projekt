@@ -12,6 +12,8 @@ import CartPage from "./pages/CartScreen";
 import ShippingPage from "./pages/ShippingScreen";
 import {LoginModal} from "./components/LoginModal";
 import Summary from "./pages/SummaryScreen";
+import Order from "./pages/OrderScreen";
+
 
 
 
@@ -24,6 +26,7 @@ export default function App() {
 
           <BrowserRouter>
               <Route path="/" component={Home} exact/>
+              <Route path="/order/:id" component={Order} exact/>
               <Route path="/summary" component={Summary} exact/>
               <Route path="/cart" component={CartPage} exact/>
               <Route path="/cart/:id" component={CartPage} exact/>
