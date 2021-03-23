@@ -1,4 +1,6 @@
 import {
+    MY_ORDERS_FAIL,
+    MY_ORDERS_REQUEST, MY_ORDERS_SUCCESS,
     ORDER_CREATE_FAIL,
     ORDER_CREATE_REQUEST,
     ORDER_CREATE_SUCCESS, ORDER_DETAILS_FAIL,
@@ -51,5 +53,21 @@ export const payOrder = (order, paymentResult) => async (dispatch, getState) => 
     } catch (error) {
         const message = error.response && error.response.data.message ? error.response.data.message : error.message;
         dispatch({ type: ORDER_PAY_FAIL, payload: message });
+    }
+};
+
+export const listMyOrders = () => async (dispatch, getState) => {
+    dispatch({ type: MY_ORDERS_REQUEST });
+    const {userSignin: { userInfo },} = getState();
+    try {
+        const { data } = await axios.get('/api/orders/my', {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`,
+            },
+        });
+        dispatch({ type: MY_ORDERS_SUCCESS, payload: data });
+    } catch (error) {
+        const message = error.response && error.response.data.message ? error.response.data.message : error.message;
+        dispatch({ type: MY_ORDERS_FAIL, payload: message });
     }
 };

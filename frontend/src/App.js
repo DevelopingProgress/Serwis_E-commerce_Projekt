@@ -13,6 +13,8 @@ import ShippingPage from "./pages/ShippingScreen";
 import {LoginModal} from "./components/LoginModal";
 import Summary from "./pages/SummaryScreen";
 import Order from "./pages/OrderScreen";
+import Account from "./pages/AccountScreen";
+import MyOrders from "./pages/MyOrdersScreen";
 
 
 
@@ -26,6 +28,8 @@ export default function App() {
 
           <BrowserRouter>
               <Route path="/" component={Home} exact/>
+              <Route path="/myorders" component={MyOrders} exact/>
+              <Route path="/account" component={Account} exact/>
               <Route path="/order/:id" component={Order} exact/>
               <Route path="/summary" component={Summary} exact/>
               <Route path="/cart" component={CartPage} exact/>
