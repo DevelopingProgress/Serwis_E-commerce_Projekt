@@ -10,88 +10,191 @@
     </schema>
     <schema id="4" parent="1" name="admin"/>
     <schema id="5" parent="1" name="local"/>
-    <table id="6" parent="3" name="products"/>
-    <table id="7" parent="3" name="users"/>
-    <column id="8" parent="6" name="_id">
+    <table id="6" parent="3" name="orders"/>
+    <table id="7" parent="3" name="products"/>
+    <table id="8" parent="3" name="users"/>
+    <column id="9" parent="6" name="_id">
       <DataType>ObjectId(0)|12s</DataType>
     </column>
-    <column id="9" parent="6" name="category">
-      <DataType>String(0)|12s</DataType>
-    </column>
-    <column id="10" parent="6" name="countInStock">
+    <column id="10" parent="6" name="__v">
       <DataType>Integer|4s</DataType>
     </column>
-    <column id="11" parent="6" name="description">
-      <DataType>String(0)|12s</DataType>
-    </column>
-    <column id="12" parent="6" name="image">
-      <DataType>String(0)|12s</DataType>
-    </column>
-    <column id="13" parent="6" name="name">
-      <DataType>String(0)|12s</DataType>
-    </column>
-    <column id="14" parent="6" name="price">
-      <DataType>Integer|4s</DataType>
-    </column>
-    <column id="15" parent="6" name="thumbnail">
-      <DataType>String(0)|12s</DataType>
-    </column>
-    <column id="16" parent="6" name="__v">
-      <Position>1</Position>
-      <DataType>Integer|4s</DataType>
-    </column>
-    <column id="17" parent="6" name="createdAt">
-      <Position>1</Position>
+    <column id="11" parent="6" name="createdAt">
       <DataType>Date(0)|91s</DataType>
     </column>
-    <column id="18" parent="6" name="updatedAt">
-      <Position>1</Position>
-      <DataType>Date(0)|91s</DataType>
-    </column>
-    <column id="19" parent="7" name="_id">
-      <DataType>ObjectId(0)|12s</DataType>
-    </column>
-    <column id="20" parent="7" name="__v">
-      <DataType>Integer|4s</DataType>
-    </column>
-    <column id="21" parent="7" name="city">
-      <DataType>String(0)|12s</DataType>
-    </column>
-    <column id="22" parent="7" name="createdAt">
-      <DataType>Date(0)|91s</DataType>
-    </column>
-    <column id="23" parent="7" name="email">
-      <DataType>String(0)|12s</DataType>
-    </column>
-    <column id="24" parent="7" name="isAdmin">
+    <column id="12" parent="6" name="isDelivered">
       <DataType>Boolean|12s</DataType>
     </column>
-    <column id="25" parent="7" name="name">
-      <DataType>String(0)|12s</DataType>
+    <column id="13" parent="6" name="orderItems">
+      <DataType>list(0)|4999545s</DataType>
     </column>
-    <column id="26" parent="7" name="state">
-      <DataType>String(0)|12s</DataType>
+    <column id="14" parent="6" name="shippingAddress">
+      <DataType>map(0)|4999544s</DataType>
     </column>
-    <column id="27" parent="7" name="updatedAt">
+    <column id="15" parent="6" name="updatedAt">
       <DataType>Date(0)|91s</DataType>
     </column>
-    <column id="28" parent="7" name="acceptedRules">
+    <column id="16" parent="6" name="user">
+      <DataType>ObjectId(0)|12s</DataType>
+    </column>
+    <column id="17" parent="6" name="isPaid">
       <Position>1</Position>
       <DataType>Boolean|12s</DataType>
     </column>
-    <column id="29" parent="7" name="password">
+    <column id="18" parent="6" name="orderItems._id">
+      <Position>1</Position>
+      <DataType>ObjectId(0)|12s</DataType>
+    </column>
+    <column id="19" parent="6" name="shippingAddress.address">
       <Position>1</Position>
       <DataType>String(0)|12s</DataType>
     </column>
-    <column id="30" parent="7" name="surname">
+    <column id="20" parent="6" name="orderItems.image">
+      <Position>2</Position>
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="21" parent="6" name="shippingAddress.cartPrice">
+      <Position>2</Position>
+      <DataType>Integer|4s</DataType>
+    </column>
+    <column id="22" parent="6" name="orderItems.name">
+      <Position>3</Position>
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="23" parent="6" name="shippingAddress.city">
+      <Position>3</Position>
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="24" parent="6" name="orderItems.price">
+      <Position>4</Position>
+      <DataType>Integer|4s</DataType>
+    </column>
+    <column id="25" parent="6" name="shippingAddress.deliveryMethod">
+      <Position>4</Position>
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="26" parent="6" name="orderItems.product">
+      <Position>5</Position>
+      <DataType>ObjectId(0)|12s</DataType>
+    </column>
+    <column id="27" parent="6" name="shippingAddress.deliveryPrice">
+      <Position>5</Position>
+      <DataType>Integer|4s</DataType>
+    </column>
+    <column id="28" parent="6" name="orderItems.qty">
+      <Position>6</Position>
+      <DataType>Integer|4s</DataType>
+    </column>
+    <column id="29" parent="6" name="shippingAddress.email">
+      <Position>6</Position>
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="30" parent="6" name="paidAt">
+      <Position>7</Position>
+      <DataType>Date(0)|91s</DataType>
+    </column>
+    <column id="31" parent="6" name="shippingAddress.name">
+      <Position>7</Position>
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="32" parent="6" name="shippingAddress.paymentMethod">
+      <Position>8</Position>
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="33" parent="6" name="shippingAddress.state">
+      <Position>9</Position>
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="34" parent="6" name="shippingAddress.surname">
+      <Position>10</Position>
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="35" parent="6" name="shippingAddress.totalPrice">
+      <Position>11</Position>
+      <DataType>Integer|4s</DataType>
+    </column>
+    <column id="36" parent="6" name="shippingAddress.zip">
+      <Position>12</Position>
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="37" parent="7" name="_id">
+      <DataType>ObjectId(0)|12s</DataType>
+    </column>
+    <column id="38" parent="7" name="category">
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="39" parent="7" name="countInStock">
+      <DataType>Integer|4s</DataType>
+    </column>
+    <column id="40" parent="7" name="description">
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="41" parent="7" name="image">
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="42" parent="7" name="name">
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="43" parent="7" name="price">
+      <DataType>Integer|4s</DataType>
+    </column>
+    <column id="44" parent="7" name="thumbnail">
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="45" parent="7" name="__v">
+      <Position>1</Position>
+      <DataType>Integer|4s</DataType>
+    </column>
+    <column id="46" parent="7" name="createdAt">
+      <Position>1</Position>
+      <DataType>Date(0)|91s</DataType>
+    </column>
+    <column id="47" parent="7" name="updatedAt">
+      <Position>1</Position>
+      <DataType>Date(0)|91s</DataType>
+    </column>
+    <column id="48" parent="8" name="_id">
+      <DataType>ObjectId(0)|12s</DataType>
+    </column>
+    <column id="49" parent="8" name="__v">
+      <DataType>Integer|4s</DataType>
+    </column>
+    <column id="50" parent="8" name="city">
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="51" parent="8" name="createdAt">
+      <DataType>Date(0)|91s</DataType>
+    </column>
+    <column id="52" parent="8" name="email">
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="53" parent="8" name="isAdmin">
+      <DataType>Boolean|12s</DataType>
+    </column>
+    <column id="54" parent="8" name="name">
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="55" parent="8" name="state">
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="56" parent="8" name="updatedAt">
+      <DataType>Date(0)|91s</DataType>
+    </column>
+    <column id="57" parent="8" name="password">
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="58" parent="8" name="zip">
+      <DataType>String(0)|12s</DataType>
+    </column>
+    <column id="59" parent="8" name="acceptedRules">
+      <Position>1</Position>
+      <DataType>Boolean|12s</DataType>
+    </column>
+    <column id="60" parent="8" name="surname">
       <Position>1</Position>
       <DataType>String(0)|12s</DataType>
     </column>
-    <column id="31" parent="7" name="zip">
-      <Position>1</Position>
-      <DataType>String(0)|12s</DataType>
-    </column>
-    <column id="32" parent="7" name="address">
+    <column id="61" parent="8" name="address">
       <Position>2</Position>
       <DataType>String(0)|12s</DataType>
     </column>

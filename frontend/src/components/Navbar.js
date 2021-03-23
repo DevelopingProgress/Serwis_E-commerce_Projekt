@@ -23,7 +23,7 @@ export default function MyNavbar() {
 
     const signoutHandler = () => {
         dispatch(signout());
-        window.location.reload(false);
+        window.location = '/'
     }
 
     const showDropdown = (e)=>{

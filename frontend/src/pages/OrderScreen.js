@@ -67,6 +67,9 @@ export default function Order(props) {
                                 </div>
                             </Col>
                         </Row>
+                        <div className="mt-3 mx-3">
+                            {order.isDelivered ? <ErrorBox variant="success">Dostarczono: {order.deliveredAt}</ErrorBox>: <ErrorBox variant="danger">Zamówienie Niedostarczone</ErrorBox>}
+                        </div>
                     </Container>
 
                     <Container className="mt-5 mb-5 p-3 border border-dark">
@@ -78,9 +81,11 @@ export default function Order(props) {
                                 <div className="ml-3">
                                     <h4>{order.shippingAddress.paymentMethod}</h4>
                                 </div>
-
                             </Col>
                         </Row>
+                        <div className="mt-3 mx-3">
+                            {order.isPaid ? <ErrorBox variant="success">Zapłacono: {order.paidAt}</ErrorBox>: <ErrorBox variant="danger">Zamówienie Nieopłacone</ErrorBox>}
+                        </div>
                     </Container>
 
                     <Container  className="mt-5 mb-5 p-3 border border-dark">
