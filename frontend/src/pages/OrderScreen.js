@@ -174,7 +174,7 @@ export default function Order(props) {
                                         )}
                                         {loadingPay && <LoadingBox/>}
 
-                                        <PayPalButton amount={order.totalPrice} onSuccess={successPaymentHandler} currency="PLN"/>
+                                        <PayPalButton amount={order.shippingAddress.totalPrice} onSuccess={successPaymentHandler} currency="PLN"/>
                                     </div>
                                 )}
 
