@@ -28,6 +28,7 @@
     "halogen": "^0.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.19",
+    "react-cookie-consent": "^6.2.3",
     "react-responsive": "^8.2.0"
   },
   "devDependencies": {

@@ -15,6 +15,8 @@ import Summary from "./pages/SummaryScreen";
 import Order from "./pages/OrderScreen";
 import Account from "./pages/AccountScreen";
 import MyOrders from "./pages/MyOrdersScreen";
+import CookieConsent from "react-cookie-consent";
+import PrivacyPage from "./pages/PrivacyScreen";
 
 
 
@@ -28,6 +30,7 @@ export default function App() {
 
           <BrowserRouter>
               <Route path="/" component={Home} exact/>
+              <Route path="/privacy" component={PrivacyPage} exact/>
               <Route path="/myorders" component={MyOrders} exact/>
               <Route path="/account" component={Account} exact/>
               <Route path="/order/:id" component={Order} exact/>
@@ -39,7 +42,16 @@ export default function App() {
               <Route path="/login" component={LoginModal}/>
               <Route path="/shipping" component={ShippingPage}/>
           </BrowserRouter>
-
+          <CookieConsent
+              location="bottom"
+              buttonText="Potwierdź"
+              cookieName="PrivacyPolicy"
+              style={{ background: "#2B373B" }}
+              buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
+              expires={365}
+          >
+              Ten serwis wykorzystuje pliki cookies. Więcej informacji znajdziesz w <a href="/privacy">Polityce Prywatności i Regulaminie</a>.{" "}
+          </CookieConsent>
           <MyFooter/>
       </>
   );
