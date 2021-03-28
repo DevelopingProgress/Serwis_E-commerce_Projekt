@@ -1,5 +1,5 @@
 import {Button, Col, Form, InputGroup, Modal} from "react-bootstrap";
-import {useState} from "react";
+import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {updateUserProfile} from "../actions/userActions";
 
@@ -100,22 +100,22 @@ export function UserChangeDetailsModal(props) {
                                 <Form.Group as={Col} md="5" controlId="formGridState">
                                     <Form.Label>Województwo</Form.Label>
                                     <Form.Control as="select" value={state} onChange={e => setState(e.target.value)}>
-                                        <option>dolnośląskie</option>
-                                        <option>kujawsko-pomorskie</option>
-                                        <option>lubelskie</option>
-                                        <option>lubuskie</option>
-                                        <option>łódzkie</option>
-                                        <option>małopolskie</option>
-                                        <option>mazowieckie</option>
-                                        <option>opolskie</option>
-                                        <option>podkarpackie</option>
-                                        <option>podlaskie</option>
-                                        <option>pomorskie</option>
-                                        <option>śląskie</option>
-                                        <option>świętokrzyskie</option>
-                                        <option>warmińsko-mazurskie</option>
-                                        <option>wielkopolskie</option>
-                                        <option>zachodniopomorksie</option>
+                                        <option>Dolnośląskie</option>
+                                        <option>Kujawsko-pomorskie</option>
+                                        <option>Lubelskie</option>
+                                        <option>Lubuskie</option>
+                                        <option>Łódzkie</option>
+                                        <option>Małopolskie</option>
+                                        <option>Mazowieckie</option>
+                                        <option>Opolskie</option>
+                                        <option>Podkarpackie</option>
+                                        <option>Podlaskie</option>
+                                        <option>Pomorskie</option>
+                                        <option>Śląskie</option>
+                                        <option>Świętokrzyskie</option>
+                                        <option>Warmińsko-mazurskie</option>
+                                        <option>Wielkopolskie</option>
+                                        <option>Zachodniopomorksie</option>
                                     </Form.Control>
                                     <Form.Control.Feedback type="invalid">
                                         Proszę wybrać województwo.

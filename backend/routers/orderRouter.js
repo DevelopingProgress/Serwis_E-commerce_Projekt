@@ -56,4 +56,9 @@ orderRouter.get('/:id', isAuth, expressAsyncHandler(async (req, res) => {
     }
 }));
 
+orderRouter.get('/', isAuth, isAdmin, expressAsyncHandler(async (req, res) => {
+    const orders = await Order.find({}).populate('user', 'email');
+    res.send(orders);
+}));
+
 export default orderRouter;

@@ -90,7 +90,7 @@ export default function ShippingPage(props) {
                                         <h2>2.Metoda Płatności</h2>
                                     </div>
                                     <div className="ml-3">
-                                        <Form.Check label="PayPal" type="radio" id="paypal" value="PayPal" name="paymentMethod" required onChange={event => setPaymentMethod(event.target.value)}/>
+                                        <Form.Check label="PayPal" type="radio" id="paypal" value="PayPal" name="paymentMethod" required checked onChange={event => setPaymentMethod(event.target.value)}/>
                                         <Image src="../../../images/paypal.png" width="50%"/>
                                     </div>
                                     <div className="ml-3 mt-2">

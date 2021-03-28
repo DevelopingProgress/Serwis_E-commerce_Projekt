@@ -127,6 +127,9 @@ export default function MyNavbar() {
                             <>
                                 <Nav className="mr-lg-1">
                                     <NavDropdown show={showUser}  onMouseEnter={showDropdownUser} onMouseLeave={hideDropdownUser} className="mr-lg-1" title={<div style={{display: "inline-block"}}><FontAwesomeIcon icon={faUser} /> Administrator({userInfo.name}) </div>} id="collasible-nav-dropdown">
+                                        <NavDropdown.Item href="/admin">
+                                            Panel Administratora
+                                        </NavDropdown.Item>
                                         <NavDropdown.Item onClick={signoutHandler}>
                                             Wyloguj się
                                         </NavDropdown.Item>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {Col, Container, Image, Row} from "react-bootstrap";
+import {Button, Col, Container, Image, Row} from "react-bootstrap";
 import {detailsOrder, payOrder} from "../actions/orderActions";
 import {useEffect, useState} from "react";
 import {ORDER_PAY_RESET} from "../constants/orderConstants";
@@ -19,6 +19,8 @@ export default function Order(props) {
     const {order, loading, error} = orderDetails;
     const orderPay = useSelector((state) => state.orderPay);
     const { loading: loadingPay, error: errorPay, success: successPay,} = orderPay;
+    const userSignin = useSelector((state) => state.userSignin);
+    const {userInfo} = userSignin;
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -168,7 +170,7 @@ export default function Order(props) {
                                 <h3 className="text-center">{order.shippingAddress.deliveryMethod === 'Kurier' ? (order.shippingAddress.cartPrice + order.shippingAddress.deliveryPrice).toFixed(2): order.shippingAddress.cartPrice.toFixed(2) } zł</h3>
                             </Col>
                         </Row>
-                        {!order.isPaid && (
+                        {!userInfo.isAdmin && !order.isPaid && (
                             <div>
                                 {!sdkReady ? (
                                     <LoadingBox/>
@@ -184,6 +186,9 @@ export default function Order(props) {
                                 )}
 
                             </div>
+                        )}
+                        {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                            <Button variant="outline-dark" size="md" className="mt-5 px-3 text-lg mb-3" block>Dostarcz Zamówienie</Button>
                         )}
                     </div>
 
