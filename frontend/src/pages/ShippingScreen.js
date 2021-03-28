@@ -25,7 +25,7 @@ export default function ShippingPage(props) {
     const toPrice = (num) => Number(num.toFixed(2));
     const cartPrice = toPrice(cartItems.reduce((a, c) => a + c.price * c.qty, 0));
     const deliveryPrice = cartPrice > 1000 ? toPrice(0) : toPrice(15);
-    const totalPrice = toPrice(cartPrice + deliveryPrice);
+    const totalPrice = deliveryMethod === 'Kurier' ? toPrice(cartPrice + deliveryPrice) : (cartPrice);
     const [email, setEmail] = useState('');
 
     useEffect(() => {
@@ -90,13 +90,8 @@ export default function ShippingPage(props) {
                                         <h2>2.Metoda Płatności</h2>
                                     </div>
                                     <div className="ml-3">
-                                        <Form.Check label="Karta Płatnicza" type="radio" id="card" value="Karta Płatnicza" name="paymentMethod" required defaultChecked  onChange={event => setPaymentMethod(event.target.value)}/>
-                                        <Image src="../../../images/visa.png" width="20%"/>
-                                        <Image src="../../../images/mastercard.png" width="20%" className="ml-2"/>
-                                    </div>
-                                    <div className="ml-3">
                                         <Form.Check label="PayPal" type="radio" id="paypal" value="PayPal" name="paymentMethod" required onChange={event => setPaymentMethod(event.target.value)}/>
-                                        <Image src="../../../images/paypal.png" width="40%"/>
+                                        <Image src="../../../images/paypal.png" width="50%"/>
                                     </div>
                                     <div className="ml-3 mt-2">
                                         <Form.Check label="Gotówka przy odbiorze" type="radio" id="cash" value="Gotówka przy odbiorze" name="paymentMethod" required onChange={event => setPaymentMethod(event.target.value)}/>

@@ -42,7 +42,9 @@ export default function MyOrders(props) {
                                 <td>{order.shippingAddress.totalPrice.toFixed(2)} zł</td>
                                 <td>{order.isPaid ? order.paidAt.substring(0, 10) : 'Nieopłacone'}</td>
                                 <td>{order.isDelivered ? order.deliveredAt.substring(0, 10) : 'Niedostarczone'}</td>
-                                <td><Button size="sm" onClick={() => {props.history.push(`/order/${order._id}`);}}>Szczegóły</Button>
+                                <td>
+                                    <Button size="sm" onClick={() => {props.history.push(`/order/${order._id}`);}}>Szczegóły</Button>
+                                    <Button size="sm" variant="danger" className="ml-3">Anuluj Zamówienie</Button>
                                 </td>
                             </tr>
                         ))}

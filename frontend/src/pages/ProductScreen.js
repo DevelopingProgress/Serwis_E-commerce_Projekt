@@ -34,7 +34,7 @@ export default function ProductPage(props) {
 
     return (
         <>
-        <div className="my-container m-3">
+        <div className="m-3">
             <Row className="p-4 mt-3">
                 <Col lg="12">
                     <h1 className="title">Szczegóły Produktu</h1>
@@ -57,7 +57,7 @@ export default function ProductPage(props) {
                                   <Carousel.Item>
                                       <img
                                           className="d-block w-100"
-                                          src={product.image}
+                                          src={product.image1}
                                           alt="Third slide"
                                       />
 
@@ -142,8 +142,8 @@ export default function ProductPage(props) {
                               }
                           </Col>
                       </Row>
-                      <div className="container  bg-light mt-5">
-                          <Row className="p-4 pr-2">
+                      <div className="bg-light mt-5 p-3">
+                          <Row className="text-center">
                               <Col>
                                   <h2>
                                       Opis Produktu

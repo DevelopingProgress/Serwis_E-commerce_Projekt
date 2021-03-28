@@ -49,7 +49,7 @@ export default function Products(props) {
 
 
     return (
-            <div className="my-container" id="products">
+            <div className="my-container mt-5" id="products">
                 <Form>
 
                     <Form.Row>
@@ -58,15 +58,6 @@ export default function Products(props) {
                             <Form.Label className="mt-3">Wyszukaj</Form.Label>
                             <Form.Control className="text-lg" onChange={e => setName(e.target.value)}/>
                         </Form.Group>
-                        {/*<Form.Group as={Col} lg="3" controlId="formGridSort">*/}
-                        {/*    <Form.Label className="mt-3">Sortuj po</Form.Label>*/}
-                        {/*    <Form.Control as="select" defaultValue="A-Z" className="text-lg text-danger" onChange={e => console.log(e.target.value)}>*/}
-                        {/*        <option value="a-z">Nazwa: A-Z</option>*/}
-                        {/*        <option value="z-a">Nazwa: Z-A</option>*/}
-                        {/*        <option value="lowest">Cena: Od Najmniejszej</option>*/}
-                        {/*        <option value="highest">Cena: Od Największej</option>*/}
-                        {/*    </Form.Control>*/}
-                        {/*</Form.Group>*/}
                         <Form.Group as={Col} lg="4" defaultValue="Wybierz kategorię..." controlId="formGridCategory">
                             <Form.Control as="select" className="mt-5 text-lg"  onChange={e => setCategory(e.target.value)}>
                                 <option selected value="all">Wybierz kategorię...</option>
@@ -82,7 +73,7 @@ export default function Products(props) {
                 </Form>
                 {loading ? <LoadingBox/> :error ? <ErrorBox variant="danger">{error}</ErrorBox> : (
 
-                    <div className="row">
+                    <div className="row pb-5" style={{marginBottom: "10%"}}>
                         {
                             products.sort().filter((product) => {
                             if(name === "" && category === "all"){
@@ -100,10 +91,10 @@ export default function Products(props) {
                             }
 
                             }).map( (product) => (
-                                    <div className="col-lg-3" key={product._id}>
+                                    <div className="col-lg-3 mt-3" key={product._id}>
                                         <Card className="m-lg-3">
                                             <Link to={`/product/${product._id}`}>
-                                                <Card.Img variant="top" src={product.image} width="316px" height="248px"/>
+                                                <Card.Img variant="top" src={product.image} className="img-fluid w-100"/>
                                             </Link>
                                             <Card.Body>
                                                 <Link to={`/product/${product._id}`} className="link-color">

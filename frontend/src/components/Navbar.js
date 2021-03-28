@@ -61,10 +61,10 @@ export default function MyNavbar() {
                                     cartItems.map((item) => (
                                         <>
                                             <NavDropdown.ItemText  role="button" key={item._id}>
-                                                <Row className="m-3">
+                                                <Row>
                                                     <Col lg="4">
                                                         <a href={`/product/${item.product}`}>
-                                                            <img className="cartImg" style={{marginRight: "20px"}} src={item.image} alt={`cartItem${item.product}`} width="100px" height="100px"/>
+                                                            <img className="cartImg img-fluid" src={item.image} alt={`cartItem${item.product}`}/>
                                                         </a>
                                                     </Col>
                                                     <Col lg="4">
@@ -75,7 +75,7 @@ export default function MyNavbar() {
                                                         </a>
                                                     </Col>
                                                     <Col lg="4">
-                                                        <Button role="button" variant="outline-danger" onClick={() => dispatch(removeFromCart(item.product))} className="mt-4">X</Button>
+                                                        <Button role="button" variant="outline-danger" size="sm" onClick={() => dispatch(removeFromCart(item.product))} className="mt-4">X</Button>
                                                     </Col>
                                                 </Row>
                                             </NavDropdown.ItemText>
