@@ -17,7 +17,7 @@
 .env.development.local
 .env.test.local
 .env.production.local
-../.env
+C:\Users\kacpi\OneDrive\Pulpit\Projekty\Serwis E-commerce Projekt\.env
 
 npm-debug.log*
 yarn-debug.log*
