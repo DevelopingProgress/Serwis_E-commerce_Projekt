@@ -1,4 +1,4 @@
-import {Container, Tab, Tabs} from "react-bootstrap";
+import {Tab, Tabs} from "react-bootstrap";
 import {useState} from "react";
 import OrdersTab from "./Orders";
 import ProductsTab from "./Products";
