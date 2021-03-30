@@ -28,6 +28,7 @@ export default function Products(props) {
 
 
 
+
     useEffect(() => {
 
 
@@ -40,6 +41,8 @@ export default function Products(props) {
         body.scrollIntoView({
             behavior: 'smooth'
         }, 500);
+
+
 
 
 
@@ -74,7 +77,7 @@ export default function Products(props) {
                 </Form>
                 {loading ? <LoadingBox/> :error ? <ErrorBox variant="danger">{error}</ErrorBox> : (
 
-                    <div className="row pb-5" style={{marginBottom: "10%"}}>
+                    <div className="row pb-5" style={{marginBottom: "20%"}}>
                         {
                             products.sort().filter((product) => {
                             if(name === "" && category === "all"){
