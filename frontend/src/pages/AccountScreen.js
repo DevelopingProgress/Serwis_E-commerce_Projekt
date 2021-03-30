@@ -1,10 +1,10 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useState} from "react";
-import {detailsUser, updateUserProfile} from "../actions/userActions";
+import {useEffect} from "react";
+import {detailsUser} from "../actions/userActions";
 import {USER_UPDATE_PROFILE_RESET} from "../constants/userConstants";
 import LoadingBox from "../components/Loading";
 import ErrorBox from "../components/Error";
-import {Button, Col, Container, Form, InputGroup, Row} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 import UserData from "../components/UserData";
 import UserChangeDetails from "../components/UserChangeDetailsModal";
 import UserChangePassword from "../components/UserChangePassword";
@@ -12,9 +12,6 @@ import UserChangePassword from "../components/UserChangePassword";
 
 export default function Account(props) {
 
-
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
 
     const userSignin = useSelector(state => state.userSignin);
     const {userInfo} = userSignin;

@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {createProduct, deleteProduct, listProducts} from "../actions/productActions";
+import {deleteProduct, listProducts} from "../actions/productActions";
 import {useEffect} from "react";
 import LoadingBox from "./Loading";
 import ErrorBox from "./Error";
 import {Button, Col, Row, Table} from "react-bootstrap";
-import {CREATE_PRODUCT_RESET, PRODUCT_DELETE_RESET} from "../constants/productsConstants";
+import {PRODUCT_DELETE_RESET} from "../constants/productsConstants";
 import ProductCreate from "./ProductCreateModal";
+
 
 
 export default function ProductsTab(props) {
@@ -16,8 +17,13 @@ export default function ProductsTab(props) {
     const productDelete = useSelector(state => state.productDelete);
     const { loading: loadingDelete, error: errorDelete, success: successDelete} = productDelete;
     const productCreate = useSelector(state => state.productCreate);
-    const {loading: loadingCreate, error: errorCreate, success: successCreate, product: createdProduct} = productCreate;
+    const {loading: loadingCreate, error: errorCreate, success: successCreate} = productCreate;
     const dispatch = useDispatch();
+
+
+    const editHandler = (product) => {
+        window.location.href = `/product/${product._id}/edit`;
+    }
 
 
     useEffect(() => {
@@ -78,7 +84,9 @@ export default function ProductsTab(props) {
                                         <td>{product.price} zł</td>
                                         <td>{product.category}</td>
                                         <td>
-                                            <Button size="sm">Edytuj</Button>
+                                            <Button size="sm" onClick={() => editHandler(product)}>
+                                                Edytuj
+                                            </Button>
                                             <Button size="sm" variant="danger" className="ml-3" onClick={() => deleteHandler(product)}>Usuń</Button>
                                         </td>
                                     </tr>

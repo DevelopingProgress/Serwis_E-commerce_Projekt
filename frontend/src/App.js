@@ -19,6 +19,7 @@ import CookieConsent from "react-cookie-consent";
 import PrivacyPage from "./pages/PrivacyScreen";
 import AdminPanel from "./pages/AdminPanelScreen";
 import AdminRoute from "./components/AdminRoute";
+import {ProductEditModal} from "./components/ProductEditModal";
 
 
 
@@ -32,6 +33,7 @@ export default function App() {
 
           <BrowserRouter>
               <Route path="/" component={Home} exact/>
+              <AdminRoute path="/product/:id/edit" component={ProductEditModal} exact/>
               <AdminRoute path="/admin" component={AdminPanel} exact/>
               <Route path="/privacy" component={PrivacyPage} exact/>
               <Route path="/myorders" component={MyOrders} exact/>

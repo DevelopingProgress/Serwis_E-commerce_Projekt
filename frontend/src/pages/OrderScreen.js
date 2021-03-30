@@ -12,7 +12,8 @@ import ErrorBox from "../components/Error";
 
 export default function Order(props) {
 
-
+    const cart = useSelector((state) => state.cart);
+    const {cartItems} = cart;
     const orderId = props.match.params.id;
     const [sdkReady, setSdkReady] = useState(false);
     const orderDetails = useSelector((state) => state.orderDetails);
@@ -47,7 +48,7 @@ export default function Order(props) {
                 }
             }
         }
-    }, [dispatch, orderId, sdkReady, successPay, order])
+    }, [dispatch, orderId, sdkReady, successPay, order, cartItems])
 
     const successPaymentHandler = (paymentResult) => {
         dispatch(payOrder(order, paymentResult));
@@ -70,7 +71,7 @@ export default function Order(props) {
                             </Col>
                         </Row>
                         <div className="mt-3 mx-3">
-                            {order.isDelivered ? <ErrorBox variant="success">Dostarczono: {order.deliveredAt}</ErrorBox>: <ErrorBox variant="danger">Zamówienie Niedostarczone</ErrorBox>}
+                            {order.isDelivered ? <ErrorBox variant="success">Dostarczono: {order.deliveredAt}</ErrorBox>: (!order.shippingAddress.deliveryMethod === 'Odbiór Osobisty' && <ErrorBox variant="danger">Zamówienie Niedostarczone</ErrorBox>)}
                         </div>
                     </Container>
 
@@ -86,7 +87,7 @@ export default function Order(props) {
                             </Col>
                         </Row>
                         <div className="mt-3 mx-3">
-                            {order.isPaid ? <ErrorBox variant="success">Zapłacono: {order.paidAt}</ErrorBox>: <ErrorBox variant="danger">Zamówienie Nieopłacone</ErrorBox>}
+                            {order.isPaid ? <ErrorBox variant="success">Zapłacono: {order.paidAt}</ErrorBox>: (order.shippingAddress.paymentMethod === 'PayPal' && <ErrorBox variant="danger">Zamówienie Nieopłacone</ErrorBox>)}
                         </div>
                     </Container>
 
@@ -170,7 +171,7 @@ export default function Order(props) {
                                 <h3 className="text-center">{order.shippingAddress.deliveryMethod === 'Kurier' ? (order.shippingAddress.cartPrice + order.shippingAddress.deliveryPrice).toFixed(2): order.shippingAddress.cartPrice.toFixed(2) } zł</h3>
                             </Col>
                         </Row>
-                        {!userInfo.isAdmin && !order.isPaid && (
+                        {!userInfo.isAdmin && !order.isPaid && order.shippingAddress.paymentMethod === 'PayPal' && (
                             <div>
                                 {!sdkReady ? (
                                     <LoadingBox/>
@@ -180,14 +181,19 @@ export default function Order(props) {
                                             <ErrorBox variant="danger">{errorPay}</ErrorBox>
                                         )}
                                         {loadingPay && <LoadingBox/>}
-
-                                        <PayPalButton amount={order.shippingAddress.totalPrice} onSuccess={successPaymentHandler} currency="PLN"/>
+                                        {
+                                            <PayPalButton amount={order.shippingAddress.totalPrice} onSuccess={successPaymentHandler} currency="PLN"/>
+                                        }
                                     </div>
                                 )}
 
                             </div>
                         )}
-                        {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+
+                        {userInfo.isAdmin && order.isPaid && !order.isDelivered && order.shippingAddress.deliveryMethod === "Kurier" &&(
+                            <Button variant="outline-dark" size="md" className="mt-5 px-3 text-lg mb-3" block>Dostarcz Zamówienie</Button>
+                        )}
+                        {userInfo.isAdmin && !order.isPaid && !order.isDelivered && order.shippingAddress.paymentMethod === "Gotówka przy odbiorze" &&(
                             <Button variant="outline-dark" size="md" className="mt-5 px-3 text-lg mb-3" block>Dostarcz Zamówienie</Button>
                         )}
                     </div>

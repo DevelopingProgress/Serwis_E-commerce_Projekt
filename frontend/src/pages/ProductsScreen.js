@@ -23,7 +23,6 @@ export default function Products(props) {
     const {userInfo} = userSignin;
     const [name, setName] = useState('');
     const [category, setCategory]= useState('');
-    const [sort, setSort]= useState('');
     const productCategoryList = useSelector((state) => state.productCategoryList);
     const {categories} = productCategoryList;
 
@@ -46,7 +45,9 @@ export default function Products(props) {
 
     }, []);
 
-
+    const editHandler = (product) => {
+        window.location.href = `/product/${product._id}/edit`;
+    }
 
     return (
             <div className="my-container mt-5" id="products">
@@ -125,7 +126,8 @@ export default function Products(props) {
                                                         (userInfo && userInfo.isAdmin ? (
                                                             <Button
                                                                 variant="outline-dark"
-                                                                className="mb-btn-m w-100 buttons-mb"><FontAwesomeIcon
+                                                                className="mb-btn-m w-100 buttons-mb"
+                                                                onClick={() => editHandler(product)}><FontAwesomeIcon
                                                                 icon={faEdit}/> Edytuj Produkt</Button>
                                                         ) : (
                                                                 product.countInStock > 0 ? (

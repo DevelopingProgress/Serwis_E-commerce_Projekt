@@ -40,11 +40,11 @@ export default function MyOrders(props) {
                                 <td>{order._id}</td>
                                 <td>{order.createdAt.substring(0, 10)}</td>
                                 <td>{order.shippingAddress.totalPrice.toFixed(2)} zł</td>
-                                <td>{order.isPaid ? order.paidAt.substring(0, 10) : 'Nieopłacone'}</td>
-                                <td>{order.isDelivered ? order.deliveredAt.substring(0, 10) : 'Niedostarczone'}</td>
+                                <td>{order.isPaid ? order.paidAt.substring(0, 10) : (order.shippingAddress.paymentMethod === 'Gotówka przy odbiorze' ? 'Przy odbiorze':'Nieopłacone')}</td>
+                                <td>{order.isDelivered ? order.deliveredAt.substring(0, 10) : (order.shippingAddress.deliveryMethod === 'Odbiór Osobisty' ? 'Odbiór Osobisty': 'Niedostarczone')}</td>
                                 <td>
                                     <Button size="sm" onClick={() => {props.history.push(`/order/${order._id}`);}}>Szczegóły</Button>
-                                    <Button size="sm" variant="danger" className="ml-3">Anuluj Zamówienie</Button>
+                                    {/*<Button size="sm" variant="danger" className="ml-3">Anuluj Zamówienie</Button>*/}
                                 </td>
                             </tr>
                         ))}

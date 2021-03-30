@@ -32,6 +32,10 @@ export default function ProductPage(props) {
 
     }, [dispatch, productId]);
 
+    const editHandler = (product) => {
+        window.location.href = `/product/${product._id}/edit`;
+    }
+
     return (
         <>
         <div className="m-3">
@@ -134,7 +138,8 @@ export default function ProductPage(props) {
                                           </div>
                                           <Button
                                               variant="outline-dark"
-                                              className="mb-btn-m mt-5 w-100 buttons-mb"><FontAwesomeIcon
+                                              className="mb-btn-m mt-5 w-100 buttons-mb"
+                                              onClick={() => editHandler(product)}><FontAwesomeIcon
                                               icon={faEdit}/> Edytuj Produkt</Button>
                                       </>
                                   )

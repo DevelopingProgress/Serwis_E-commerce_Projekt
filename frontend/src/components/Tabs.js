@@ -16,9 +16,9 @@ export default function AdminTabs() {
                 <Tab eventKey="products" title="Produkty">
                     <ProductsTab/>
                 </Tab>
-                <Tab eventKey="users" title="Użytkownicy">
-                    UsersTab
-                </Tab>
+                {/*<Tab eventKey="users" title="Użytkownicy">*/}
+                {/*    UsersTab*/}
+                {/*</Tab>*/}
             </Tabs>
         </div>
 

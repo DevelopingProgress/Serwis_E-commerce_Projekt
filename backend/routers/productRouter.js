@@ -59,3 +59,23 @@ productRouter.post('/createproduct', isAuth, isAdmin, expressAsyncHandler(async 
     res.send({message: 'Product was created', product: createdProduct});
 
 }));
+
+productRouter.put('/:id', isAuth, isAdmin, expressAsyncHandler(async (req, res) => {
+    const productId = req.params.id;
+    const product = await Product.findById(productId);
+    if(product){
+        product.name = req.body.name;
+        product.image = req.body.image;
+        product.image1 = req.body.image;
+        product.price = req.body.price;
+        product.category = req.body.category;
+        product.countInStock = req.body.countInStock;
+        product.thumbnail = req.body.thumbnail;
+        product.description = req.body.description;
+        const updatedProduct = await product.save();
+        res.send({message: 'Product was updated', product: updatedProduct});
+    } else {
+        res.status(404).send({message: 'Product not found'});
+    }
+
+}));
