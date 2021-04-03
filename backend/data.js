@@ -30,7 +30,7 @@ export const data = {
         {
             name: 'Product 1',
             image: '../../../images/pexels-markus-spiske-1002635.jpg',
-            image1: '../../../images/pexels-markus-spiske-1002635_2.jpg',
+            image1: '../../../images/pexels-markus-spiske-2.jpg',
             price: 121,
             category: 'Technologia',
             thumbnail: 'Some quick example text to build on the card title and make up the bulk of the card\'s content.Some quick example text to build on the card title and make up the bulk of the card\'s content.',

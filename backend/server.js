@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import {productRouter} from "./routers/productRouter.js";
 import orderRouter from "./routers/orderRouter.js";
 import uploadRouter from "./routers/uploadRouter.js";
+import path from 'path';
 
 dotenv.config();
 const app = express();
@@ -20,6 +21,9 @@ app.use('/api/uploads', uploadRouter);
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
 app.use('/api/orders', orderRouter);
+
+const __dirname = path.resolve();
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 app.get('/api/config/paypal', (req, res) => {
     const paypalId = process.env.PAYPAL_CLIENT || 'sb';

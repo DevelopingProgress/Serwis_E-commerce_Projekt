@@ -151,7 +151,7 @@ export function ProductEditModal(props) {
 
                             <Form.Group as={Col} md="6" controlId="validationCustom01">
                                 <Form.Label>Wybierz Zdjęcie nr 1</Form.Label>
-                                <Form.Control required type="file" onChange={uploadFileHandler}/>
+                                <Form.Control type="file" onChange={uploadFileHandler}/>
                                 <Form.Control.Feedback type="invalid">
                                     Pole zdjęcie produktu jest wymagane.
                                 </Form.Control.Feedback>
@@ -168,7 +168,7 @@ export function ProductEditModal(props) {
 
                             <Form.Group as={Col} md="6" controlId="validationCustom01">
                                 <Form.Label>Wybierz Zdjęcie nr 2</Form.Label>
-                                <Form.Control required type="file" onChange={uploadFile1Handler}/>
+                                <Form.Control type="file" onChange={uploadFile1Handler}/>
                                 <Form.Control.Feedback type="invalid">
                                     Pole zdjęcie produktu jest wymagane.
                                 </Form.Control.Feedback>

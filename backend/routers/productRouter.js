@@ -66,7 +66,7 @@ productRouter.put('/:id', isAuth, isAdmin, expressAsyncHandler(async (req, res) 
     if(product){
         product.name = req.body.name;
         product.image = req.body.image;
-        product.image1 = req.body.image;
+        product.image1 = req.body.image1;
         product.price = req.body.price;
         product.category = req.body.category;
         product.countInStock = req.body.countInStock;
