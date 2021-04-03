@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {deleteProduct, listProducts} from "../actions/productActions";
+import {deleteProduct, listProducts, listProductsCategories} from "../actions/productActions";
 import {useEffect} from "react";
 import LoadingBox from "./Loading";
 import ErrorBox from "./Error";
-import {Button, Col, Row, Table} from "react-bootstrap";
+import {Button, Col, Container, Form, Row, Table} from "react-bootstrap";
 import {PRODUCT_DELETE_RESET} from "../constants/productsConstants";
 import ProductCreate from "./ProductCreateModal";
 
@@ -19,6 +19,10 @@ export default function ProductsTab(props) {
     const productCreate = useSelector(state => state.productCreate);
     const {loading: loadingCreate, error: errorCreate, success: successCreate} = productCreate;
     const dispatch = useDispatch();
+    const [name, setName] = useState('');
+    const [category, setCategory]= useState('');
+    const productCategoryList = useSelector((state) => state.productCategoryList);
+    const {categories} = productCategoryList;
 
 
     const editHandler = (product) => {
@@ -32,6 +36,7 @@ export default function ProductsTab(props) {
             dispatch({type: PRODUCT_DELETE_RESET});
         }
         dispatch(listProducts());
+        dispatch(listProductsCategories());
 
         const body = document.querySelector('#root');
 
@@ -62,6 +67,22 @@ export default function ProductsTab(props) {
             {errorDelete && <ErrorBox variant="danger">{errorDelete}</ErrorBox>}
             {loadingCreate && <LoadingBox/>}
             {errorCreate && <ErrorBox variant="danger">{errorCreate}</ErrorBox>}
+
+            <Form.Row className="ml-2">
+                <Form.Group as={Col} lg="4" controlId="formGridSearch">
+                    <Form.Label className="mt-3">Wyszukaj</Form.Label>
+                    <Form.Control className="text-lg" onChange={e => setName(e.target.value)}/>
+                </Form.Group>
+                <Form.Group as={Col} lg="4" defaultValue="Wybierz kategorię..." controlId="formGridCategory">
+                    <Form.Control as="select" className="mt-5 text-lg"  onChange={e => setCategory(e.target.value)}>
+                        <option selected value="all">Wybierz kategorię...</option>
+                        {categories.map((c) => (
+                            <option key={c}>{c}</option>
+                        ))}
+                    </Form.Control>
+                </Form.Group>
+            </Form.Row>
+
             {
                 loading ? <LoadingBox/>:
                     error ? <ErrorBox variant="danger">{error}</ErrorBox>:
@@ -77,7 +98,25 @@ export default function ProductsTab(props) {
                             </thead>
                             <tbody>
                             {
-                                products.map((product) => (
+                                products.filter((product) => {
+                                    if(name === "" && category === "all"){
+                                        return product;
+                                    } else if(product.name.toLowerCase().includes(name.toLowerCase()) && category === "all"){
+                                        return product;
+                                    }else if(product.thumbnail.toLowerCase().includes(name.toLowerCase()) && category === "all"){
+                                        return product;
+                                    } else if(name === "" && product.category.toString().toLowerCase().includes(category.toLowerCase())) {
+                                        return product;
+                                    } else if(product.name.toLowerCase().includes(name.toLowerCase()) && product.category.toString().toLowerCase().includes(category.toLowerCase())){
+                                        return product;
+                                    } else if(product._id.toLowerCase().includes(name.toLowerCase()) && product.category.toString().toLowerCase().includes(category.toLowerCase())){
+                                        return product;
+                                    }
+                                    else if(product.thumbnail.toLowerCase().includes(name.toLowerCase()) && product.category.toString().toLowerCase().includes(category.toLowerCase())){
+                                        return product;
+                                    }
+
+                                }).map((product) => (
                                     <tr key={product._id}>
                                         <td>{product._id}</td>
                                         <td>{product.name}</td>

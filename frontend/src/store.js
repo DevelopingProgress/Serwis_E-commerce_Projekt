@@ -15,7 +15,7 @@ import {
     userUpdateProfileReducer
 } from "./reducers/userReducers";
 import {
-    adminOrdersReducer,
+    adminOrdersReducer, deleteOrdersReducer,
     myOrdersReducer,
     orderCreateReducer,
     orderDetailsReducer,
@@ -51,6 +51,7 @@ const reducer = combineReducers({
     productDelete: productDeleteReducer,
     productCreate: productCreateReducer,
     productUpdate: productUpdateReducer,
+    deleteOrder: deleteOrdersReducer
 });
 
 const composeEnhancers =
