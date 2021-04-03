@@ -1,7 +1,9 @@
 import {Button, Col, Form, Modal} from "react-bootstrap";
 import React, {useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {createProduct} from "../actions/productActions";
+import ErrorBox from "./Error";
+import axios from "axios";
 
 
 
@@ -28,6 +30,44 @@ export function ProductCreateModal(props) {
         }
         setValidated(true);
         dispatch(createProduct(name, image, image1, price,  category, countInStock, thumbnail, description));
+    }
+
+    const [error, setError] = useState('');
+    const userSignin = useSelector(state => state.userSignin);
+    const {userInfo} = userSignin;
+    const uploadFileHandler = async (e) => {
+        const file = e.target.files[0];
+        const bodyFormData = new FormData();
+        bodyFormData.append('image', file);
+        try {
+            const {data} = await axios.post('/api/uploads', bodyFormData, {
+                headers: {
+                    'Content-Type':'multipart/form-data',
+                    Authorization: `Bearer ${userInfo.token}`
+                }
+            });
+            setImage(data);
+        } catch (error) {
+            setError(error.message);
+        }
+    }
+
+    const [error1, setError1] = useState('');
+    const uploadFile1Handler = async (e) => {
+        const file = e.target.files[0];
+        const bodyFormData = new FormData();
+        bodyFormData.append('image', file);
+        try {
+            const {data} = await axios.post('/api/uploads', bodyFormData, {
+                headers: {
+                    'Content-Type':'multipart/form-data',
+                    Authorization: `Bearer ${userInfo.token}`
+                }
+            });
+            setImage1(data);
+        } catch (error1) {
+            setError1(error1.message);
+        }
     }
 
 
@@ -70,11 +110,29 @@ export function ProductCreateModal(props) {
                             </Form.Group>
 
                             <Form.Group as={Col} md="6" controlId="validationCustom01">
+                                <Form.Label>Wybierz Zdjęcie nr 1</Form.Label>
+                                <Form.Control type="file" onChange={uploadFileHandler}/>
+                                <Form.Control.Feedback type="invalid">
+                                    Pole zdjęcie produktu jest wymagane.
+                                </Form.Control.Feedback>
+                                {error && <ErrorBox variant="danger">{error}</ErrorBox>}
+                            </Form.Group>
+
+                            <Form.Group as={Col} md="6" controlId="validationCustom01">
                                 <Form.Label>Zdjęcie nr 2 Produktu</Form.Label>
                                 <Form.Control required type="text" placeholder="Zdjęcie nr 2 Produktu" value={image1} onChange={e => setImage1(e.target.value)}/>
                                 <Form.Control.Feedback type="invalid">
                                     Pole zdjęcie produktu jest wymagane.
                                 </Form.Control.Feedback>
+                            </Form.Group>
+
+                            <Form.Group as={Col} md="6" controlId="validationCustom01">
+                                <Form.Label>Wybierz Zdjęcie nr 2</Form.Label>
+                                <Form.Control type="file" onChange={uploadFile1Handler}/>
+                                <Form.Control.Feedback type="invalid">
+                                    Pole zdjęcie produktu jest wymagane.
+                                </Form.Control.Feedback>
+                                {error1 && <ErrorBox variant="danger">{error1}</ErrorBox>}
                             </Form.Group>
 
                             <Form.Group as={Col} md="6" controlId="validationCustom01">
