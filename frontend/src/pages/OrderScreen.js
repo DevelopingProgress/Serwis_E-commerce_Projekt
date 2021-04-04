@@ -1,9 +1,9 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {Button, Col, Container, Image, Row} from "react-bootstrap";
-import {detailsOrder, payOrder} from "../actions/orderActions";
+import {deliverOrder, detailsOrder, payOrder} from "../actions/orderActions";
 import {useEffect, useState} from "react";
-import {ORDER_PAY_RESET} from "../constants/orderConstants";
+import {ORDER_DELIVER_RESET, ORDER_PAY_RESET} from "../constants/orderConstants";
 import axios from "axios";
 import LoadingBox from "../components/Loading";
 import {PayPalButton} from "react-paypal-button-v2";
@@ -23,6 +23,8 @@ export default function Order(props) {
     const userSignin = useSelector((state) => state.userSignin);
     const {userInfo} = userSignin;
     const dispatch = useDispatch();
+    const orderDeliver = useSelector((state) => state.orderDeliver);
+    const { loading: loadingDeliver, error: errorDeliver, success: successDeliver,} = orderDeliver;
 
     useEffect(() => {
         const addPayPalScript = async () => {
@@ -36,8 +38,9 @@ export default function Order(props) {
             };
             document.body.appendChild(script);
         };
-        if (!order || successPay || (order && order._id !== orderId)) {
+        if (!order || successPay || successDeliver || (order && order._id !== orderId)) {
             dispatch({type:ORDER_PAY_RESET});
+            dispatch({type:ORDER_DELIVER_RESET});
             dispatch(detailsOrder(orderId));
         } else {
             if (!order.isPaid) {
@@ -48,10 +51,14 @@ export default function Order(props) {
                 }
             }
         }
-    }, [dispatch, orderId, sdkReady, successPay, order, cartItems])
+    }, [dispatch, orderId, sdkReady, successPay, successDeliver, order, cartItems])
 
     const successPaymentHandler = (paymentResult) => {
         dispatch(payOrder(order, paymentResult));
+    }
+
+    const deliverHandler = () => {
+        dispatch(deliverOrder(order._id));
     }
 
     return loading ? (<LoadingBox/>) : error ? (<ErrorBox variant="danger">{error}</ErrorBox>) : (
@@ -71,7 +78,7 @@ export default function Order(props) {
                             </Col>
                         </Row>
                         <div className="mt-3 mx-3">
-                            {order.isDelivered ? <ErrorBox variant="success">Dostarczono: {order.deliveredAt}</ErrorBox>: (!order.shippingAddress.deliveryMethod === 'Odbiór Osobisty' && <ErrorBox variant="danger">Zamówienie Niedostarczone</ErrorBox>)}
+                            {order.isDelivered ? <ErrorBox variant="success">Dostarczono: {order.deliveredAt}</ErrorBox>: (order.shippingAddress.deliveryMethod === 'Kurier' && <ErrorBox variant="danger">Zamówienie Niedostarczone</ErrorBox>)}
                         </div>
                     </Container>
 
@@ -191,10 +198,10 @@ export default function Order(props) {
                         )}
 
                         {userInfo.isAdmin && order.isPaid && !order.isDelivered && order.shippingAddress.deliveryMethod === "Kurier" &&(
-                            <Button variant="outline-dark" size="md" className="mt-5 px-3 text-lg mb-3" block>Dostarcz Zamówienie</Button>
+                            <Button variant="outline-dark" size="md" className="mt-5 px-3 text-lg mb-3" block onClick={deliverHandler}>Dostarcz Zamówienie</Button>
                         )}
                         {userInfo.isAdmin && !order.isPaid && !order.isDelivered && order.shippingAddress.paymentMethod === "Gotówka przy odbiorze" &&(
-                            <Button variant="outline-dark" size="md" className="mt-5 px-3 text-lg mb-3" block>Dostarcz Zamówienie</Button>
+                            <Button variant="outline-dark" size="md" className="mt-5 px-3 text-lg mb-3" block onClick={deliverHandler}>Dostarcz Zamówienie</Button>
                         )}
                     </div>
 

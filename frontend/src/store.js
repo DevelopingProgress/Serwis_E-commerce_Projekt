@@ -17,7 +17,7 @@ import {
 import {
     adminOrdersReducer, deleteOrdersReducer,
     myOrdersReducer,
-    orderCreateReducer,
+    orderCreateReducer, orderDeliverReducer,
     orderDetailsReducer,
     orderPayReducer
 } from "./reducers/orderReducers";
@@ -51,7 +51,8 @@ const reducer = combineReducers({
     productDelete: productDeleteReducer,
     productCreate: productCreateReducer,
     productUpdate: productUpdateReducer,
-    deleteOrder: deleteOrdersReducer
+    deleteOrder: deleteOrdersReducer,
+    orderDeliver: orderDeliverReducer
 });
 
 const composeEnhancers =
