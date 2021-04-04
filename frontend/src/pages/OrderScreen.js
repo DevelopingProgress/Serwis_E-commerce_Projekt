@@ -8,6 +8,7 @@ import axios from "axios";
 import LoadingBox from "../components/Loading";
 import {PayPalButton} from "react-paypal-button-v2";
 import ErrorBox from "../components/Error";
+import Moment from 'moment';
 
 
 export default function Order(props) {
@@ -25,6 +26,7 @@ export default function Order(props) {
     const dispatch = useDispatch();
     const orderDeliver = useSelector((state) => state.orderDeliver);
     const { loading: loadingDeliver, error: errorDeliver, success: successDeliver,} = orderDeliver;
+    Moment.locale('pl');
 
     useEffect(() => {
         const addPayPalScript = async () => {
@@ -51,14 +53,16 @@ export default function Order(props) {
                 }
             }
         }
-    }, [dispatch, orderId, sdkReady, successPay, successDeliver, order, cartItems])
+    }, [dispatch, orderId, sdkReady, successPay, successDeliver, order])
 
     const successPaymentHandler = (paymentResult) => {
         dispatch(payOrder(order, paymentResult));
     }
 
     const deliverHandler = () => {
-        dispatch(deliverOrder(order._id));
+        if(window.confirm(`Czy chcesz dostarczyć zamówienie numer ${order._id}?`)) {
+            dispatch(deliverOrder(order._id));
+        }
     }
 
     return loading ? (<LoadingBox/>) : error ? (<ErrorBox variant="danger">{error}</ErrorBox>) : (
@@ -78,7 +82,7 @@ export default function Order(props) {
                             </Col>
                         </Row>
                         <div className="mt-3 mx-3">
-                            {order.isDelivered ? <ErrorBox variant="success">Dostarczono: {order.deliveredAt}</ErrorBox>: (order.shippingAddress.deliveryMethod === 'Kurier' && <ErrorBox variant="danger">Zamówienie Niedostarczone</ErrorBox>)}
+                            {order.isDelivered ? <ErrorBox variant="success">Dostarczono: {Moment(order.deliveredAt).format('YYYY/MM/DD HH:MM')}</ErrorBox>: (order.shippingAddress.deliveryMethod === 'Kurier' && <ErrorBox variant="danger">Zamówienie Niedostarczone</ErrorBox>)}
                         </div>
                     </Container>
 
@@ -94,7 +98,7 @@ export default function Order(props) {
                             </Col>
                         </Row>
                         <div className="mt-3 mx-3">
-                            {order.isPaid ? <ErrorBox variant="success">Zapłacono: {order.paidAt}</ErrorBox>: (order.shippingAddress.paymentMethod === 'PayPal' && <ErrorBox variant="danger">Zamówienie Nieopłacone</ErrorBox>)}
+                            {order.isPaid ? <ErrorBox variant="success">Zapłacono: {Moment(order.paidAt).format('YYYY/MM/DD HH:MM')}</ErrorBox>: (order.shippingAddress.paymentMethod === 'PayPal' && <ErrorBox variant="danger">Zamówienie Nieopłacone</ErrorBox>)}
                         </div>
                     </Container>
 
@@ -187,7 +191,6 @@ export default function Order(props) {
                                         {errorPay && (
                                             <ErrorBox variant="danger">{errorPay}</ErrorBox>
                                         )}
-                                        {loadingPay && <LoadingBox/>}
                                         {
                                             <PayPalButton amount={order.shippingAddress.totalPrice} onSuccess={successPaymentHandler} currency="PLN"/>
                                         }

@@ -38,7 +38,7 @@ export default function CartPage(props){
                             cartItems.map((item) => (
                                 <Row className='p-3 mb-4'>
                                     <Col lg="2">
-                                        <Image width={100} height={100} roundedCircle src={item.image}/>
+                                        <Image className="img-fluid" src={item.image}/>
                                     </Col>
                                     <Col lg="2" className="mx-3 pt-4">
                                         <h6>{item.name}</h6>

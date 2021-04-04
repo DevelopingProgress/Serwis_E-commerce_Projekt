@@ -21,6 +21,10 @@ export default function MyNavbar() {
     const userSignin = useSelector(state => state.userSignin);
     const {userInfo} = userSignin;
 
+    useEffect(() => {
+
+    }, [cartItems])
+
     const signoutHandler = () => {
         dispatch(signout());
         window.location = '/'

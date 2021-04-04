@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect, useState} from "react";
 import {listOrders, orderDelete} from "../actions/orderActions";
 import {ORDER_DELETE_RESET} from "../constants/orderConstants";
+import Moment from "moment";
 
 export default function OrdersTab(props) {
 
@@ -77,7 +78,7 @@ export default function OrdersTab(props) {
                             <tr key={order._id}>
                                 <td>{order._id}</td>
                                 <td><Mailto email={order.user.email} subject={`Zamówienie nr ${order._id}`} body="Dzień Dobry...Pozdrawiamy">{order.user.email}</Mailto></td>
-                                <td>{order.createdAt.substring(0, 10)}</td>
+                                <td>{Moment(order.createdAt).format('YYYY/MM/DD HH:MM')}</td>
                                 <td>{order.shippingAddress.totalPrice.toFixed(2)} zł</td>
                                 <td>{order.isPaid ? order.paidAt.substring(0, 10) : (order.shippingAddress.paymentMethod === 'Gotówka przy odbiorze' ? 'Przy odbiorze':'Nieopłacone')}</td>
                                 <td>{order.isDelivered ? order.deliveredAt.substring(0, 10) : (order.shippingAddress.deliveryMethod === 'Odbiór Osobisty' ? 'Odbiór Osobisty': 'Niedostarczone')}</td>

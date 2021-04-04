@@ -4,12 +4,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {listMyOrders} from "../actions/orderActions";
 import {Button, Table} from "react-bootstrap";
+import Moment from "moment";
 
 
 export default function MyOrders(props) {
 
     const myOrdersList = useSelector(state => state.myOrdersList);
     const { loading, error, orders } = myOrdersList;
+    Moment.locale('pl');
 
     const dispatch = useDispatch();
 
@@ -38,7 +40,7 @@ export default function MyOrders(props) {
                         {orders.map(order => (
                             <tr key={order._id}>
                                 <td>{order._id}</td>
-                                <td>{order.createdAt.substring(0, 10)}</td>
+                                <td>{Moment(order.createdAt).format('YYYY/MM/DD HH:MM')}</td>
                                 <td>{order.shippingAddress.totalPrice.toFixed(2)} zł</td>
                                 <td>{order.isPaid ? order.paidAt.substring(0, 10) : (order.shippingAddress.paymentMethod === 'Gotówka przy odbiorze' ? 'Przy odbiorze':'Nieopłacone')}</td>
                                 <td>{order.isDelivered ? order.deliveredAt.substring(0, 10) : (order.shippingAddress.deliveryMethod === 'Odbiór Osobisty' ? 'Odbiór Osobisty': 'Niedostarczone')}</td>
