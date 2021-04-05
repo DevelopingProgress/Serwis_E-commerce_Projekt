@@ -36,11 +36,7 @@ export default function ShippingPage(props) {
             dispatch(getAddress(userInfo._id));
         }
 
-        const body = document.querySelector('#root');
-
-        body.scrollIntoView({
-            behavior: 'smooth'
-        }, 500);
+        window.scrollTo(0, 0);
 
     }, [dispatch, userInfo]);
 

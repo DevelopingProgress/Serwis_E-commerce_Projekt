@@ -36,12 +36,7 @@ export default function Products(props) {
 
         dispatch(listProductsCategories());
 
-        const body = document.querySelector('#root');
-
-        body.scrollIntoView({
-            behavior: 'smooth'
-        }, 500);
-
+        window.scrollTo(0, 0);
 
 
 

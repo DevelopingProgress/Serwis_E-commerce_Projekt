@@ -21,11 +21,7 @@ export default function Summary(props) {
             dispatch({type: ORDER_CREATE_RESET});
         }
 
-        const body = document.querySelector('#root');
-
-        body.scrollIntoView({
-            behavior: 'smooth'
-        }, 500);
+        window.scrollTo(0, 0);
 
     }, [dispatch, order, props.history, success])
 
