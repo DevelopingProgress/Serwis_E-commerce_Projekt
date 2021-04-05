@@ -25,6 +25,8 @@ export default function ProductPage(props) {
 
         dispatch(detailsProduct(productId));
 
+        const body = document.querySelector('#root');
+
         body.scrollIntoView({
             behavior: 'smooth'
         }, 500);

@@ -113,13 +113,13 @@ export default function Products(props) {
                                                                     <>
                                                                     <a href={`/cart/${product._id}?qty=1`} style={{textDecoration: 'none'}}>
                                                                         <Button variant="outline-success"
-                                                                                className="mb-btn-m w-100 buttons-mb pl-1"><FontAwesomeIcon
+                                                                                className="mb-btn-m w-100 pl-1"><FontAwesomeIcon
                                                                             icon={faDollarSign}/> Kup teraz</Button>
                                                                     </a>
                                                                         <Button
                                                                             onClick={() => dispatch(addToCart(product._id, 1))}
                                                                             variant="outline-dark"
-                                                                            className="mb-btn-m w-100 buttons-mb"><FontAwesomeIcon
+                                                                            className="mb-btn-m w-100"><FontAwesomeIcon
                                                                             icon={faShoppingCart}/> Do koszyka</Button>
                                                                     </>
                                                                 ) : (
@@ -129,7 +129,7 @@ export default function Products(props) {
                                                         (userInfo && userInfo.isAdmin ? (
                                                             <Button
                                                                 variant="outline-dark"
-                                                                className="mb-btn-m w-100 buttons-mb"
+                                                                className="mb-btn-m w-100"
                                                                 onClick={() => editHandler(product)}><FontAwesomeIcon
                                                                 icon={faEdit}/> Edytuj Produkt</Button>
                                                         ) : (
@@ -140,7 +140,7 @@ export default function Products(props) {
                                                                         <Button
                                                                             onClick={() => dispatch(addToCart(product._id, 1))}
                                                                             variant="outline-dark"
-                                                                            className="mb-btn-m w-100 buttons-mb"><FontAwesomeIcon
+                                                                            className="mb-btn-m w-100"><FontAwesomeIcon
                                                                             icon={faShoppingCart}/> Do koszyka</Button>
                                                                     </>
                                                                 ) : (

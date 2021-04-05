@@ -20,6 +20,13 @@ export default function Summary(props) {
             props.history.push(`/order/${order._id}`);
             dispatch({type: ORDER_CREATE_RESET});
         }
+
+        const body = document.querySelector('#root');
+
+        body.scrollIntoView({
+            behavior: 'smooth'
+        }, 500);
+
     }, [dispatch, order, props.history, success])
 
 
