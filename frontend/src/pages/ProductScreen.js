@@ -110,14 +110,14 @@ export default function ProductPage(props) {
                                                               <Col lg="12">
                                                                   <a href={`/cart/${product._id}?qty=${qty}`} style={{textDecoration: 'none'}}>
                                                                       <Button variant="success" size="lg"
-                                                                              className="mt-5 text-lg mb-3" block>
+                                                                              className="mt-5 mb-3" block>
                                                                           Kup teraz
                                                                       </Button>
                                                                   </a>
                                                               </Col>
                                                               <Col lg="12">
                                                                   <Button variant="dark" size="lg"
-                                                                          className="text-lg mb-5" onClick={() => dispatch(addToCart(product._id, qty))} block>
+                                                                          className="mb-5" onClick={() => dispatch(addToCart(product._id, qty))} block>
                                                                       Do koszyka
                                                                   </Button>
                                                               </Col>
