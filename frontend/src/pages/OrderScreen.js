@@ -132,7 +132,7 @@ export default function Order(props) {
                                             <Row className="mb-3">
                                                 <Col lg="4">
                                                     <a href={`/product/${item.product}`}>
-                                                        <Image width={100} height={100} roundedCircle src={item.image}/>
+                                                        <Image className="img-fluid" src={item.image}/>
                                                     </a>
                                                 </Col>
                                                 <Col lg="4">
