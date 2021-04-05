@@ -71,7 +71,7 @@ export default function Order(props) {
                 <Col lg="6" className="m-auto">
                     <Col sm="6">
                         <h1 className="mt-3 black-text-lg">Zamówienie nr</h1>
-                        <h2>{order._id}</h2>
+                        <h3>{order._id}</h3>
                     </Col>
                     <Container className="mt-5 mb-5 p-3 border border-dark">
                         <Row>
