@@ -69,8 +69,8 @@ export default function Order(props) {
         <>
             <Row className="mr-0">
                 <Col lg="6" className="m-auto">
-                    <h1 className="mt-3">Zamówienie nr {order._id}</h1>
                     <Container className="mt-5 mb-5 p-3 border border-dark">
+                        <h1 className="mt-3">Zamówienie nr {order._id}</h1>
                         <Row>
                             <Col lg="6">
                                 <div className="mb-5">
@@ -85,6 +85,7 @@ export default function Order(props) {
                             {order.isDelivered ? <ErrorBox variant="success">Dostarczono: {Moment(order.deliveredAt).format('YYYY/MM/DD HH:MM')}</ErrorBox>: (order.shippingAddress.deliveryMethod === 'Kurier' && <ErrorBox variant="danger">Zamówienie Niedostarczone</ErrorBox>)}
                         </div>
                     </Container>
+
 
                     <Container className="mt-5 mb-5 p-3 border border-dark">
                         <Row>
