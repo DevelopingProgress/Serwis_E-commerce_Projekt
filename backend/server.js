@@ -6,6 +6,7 @@ import {productRouter} from "./routers/productRouter.js";
 import orderRouter from "./routers/orderRouter.js";
 import uploadRouter from "./routers/uploadRouter.js";
 import path from 'path';
+require('newrelic');
 
 dotenv.config();
 const app = express();
