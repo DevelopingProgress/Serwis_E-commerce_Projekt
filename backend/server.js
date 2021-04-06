@@ -29,16 +29,16 @@ app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 app.use(express.static(path.join(__dirname, '/frontend/build')));
 
-
+app.get('/api/config/paypal', (req, res) => {
+    const paypalId = process.env.PAYPAL_CLIENT || 'sb';
+    res.send(paypalId);
+});
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
 });
 
-app.get('/api/config/paypal', (req, res) => {
-    const paypalId = process.env.PAYPAL_CLIENT || 'sb';
-    res.send(paypalId);
-});
+
 
 // app.get('/', (req, res) => {
 //     res.send('Server is ready');
