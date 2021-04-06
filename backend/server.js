@@ -7,7 +7,7 @@ import orderRouter from "./routers/orderRouter.js";
 import uploadRouter from "./routers/uploadRouter.js";
 import path from 'path';
 
-const rn = require('newrelic.js');
+
 dotenv.config();
 const app = express();
 app.use(express.json());
@@ -28,7 +28,6 @@ app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 app.use(express.static(path.join(__dirname, '/frontend/build')));
 
-app.use(rn);
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
