@@ -6,6 +6,7 @@ import {productRouter} from "./routers/productRouter.js";
 import orderRouter from "./routers/orderRouter.js";
 import uploadRouter from "./routers/uploadRouter.js";
 import path from 'path';
+import nr from 'newrelic';
 
 
 dotenv.config();
@@ -28,6 +29,7 @@ app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 app.use(express.static(path.join(__dirname, '/frontend/build')));
 
+app.use(nr);
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
