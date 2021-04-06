@@ -108,7 +108,7 @@ export default function Products(props) {
                                                                     <>
                                                                     <a href={`/cart/${product._id}?qty=1`} style={{textDecoration: 'none'}}>
                                                                         <Button variant="outline-success"
-                                                                                className="mb-btn-m w-100 pl-1"><FontAwesomeIcon
+                                                                                className="mb-btn-m w-100 pl-1 mb-2"><FontAwesomeIcon
                                                                             icon={faDollarSign}/> Kup teraz</Button>
                                                                     </a>
                                                                         <Button
