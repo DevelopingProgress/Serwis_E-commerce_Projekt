@@ -1,4 +1,3 @@
-require('newrelic');
 import React from 'react';
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -21,7 +20,7 @@ import PrivacyPage from "./pages/PrivacyScreen";
 import AdminPanel from "./pages/AdminPanelScreen";
 import AdminRoute from "./components/AdminRoute";
 import {ProductEditModal} from "./components/ProductEditModal";
-
+require('newrelic');
 
 
 
