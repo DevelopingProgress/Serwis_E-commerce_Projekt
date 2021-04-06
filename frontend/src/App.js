@@ -20,7 +20,7 @@ import PrivacyPage from "./pages/PrivacyScreen";
 import AdminPanel from "./pages/AdminPanelScreen";
 import AdminRoute from "./components/AdminRoute";
 import {ProductEditModal} from "./components/ProductEditModal";
-require('newrelic');
+
 
 
 
