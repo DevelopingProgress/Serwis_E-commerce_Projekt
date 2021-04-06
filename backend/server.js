@@ -6,7 +6,7 @@ import {productRouter} from "./routers/productRouter.js";
 import orderRouter from "./routers/orderRouter.js";
 import uploadRouter from "./routers/uploadRouter.js";
 import path from 'path';
-import nr from 'newrelic';
+import nr from 'newrelic.js';
 
 
 dotenv.config();
