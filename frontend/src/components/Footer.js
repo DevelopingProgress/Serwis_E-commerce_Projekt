@@ -24,7 +24,7 @@ export default function MyFooter() {
             </div>
 
             <div className="text-center p-3" style={{backgroundColor: "rgba(0, 0, 0, 0.2)"}}>
-                © 2021 Sekcja: Kacper Gaweł, Łukasz Szumilak, Maciej Podlasek, Marcin Krzesiński, Agnieszka Lisowska, Julia Jędryszek
+                © 2021 Kacper Gaweł
             </div>
 
         </footer>
