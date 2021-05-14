@@ -34,7 +34,7 @@ export default function Summary(props) {
     return (
         <>
             <Row className="mr-0">
-                <Col lg="6" className="mx-3">
+                <Col lg="6" className="ml-2">
 
                     <Container className="mt-5 mb-5 p-3 border border-dark">
                         <Row>
