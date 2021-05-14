@@ -2,7 +2,7 @@ import React from 'react';
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./index.css";
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter, Link, Route} from "react-router-dom";
 import Home from "./pages/HomeScreen";
 import ProductPage from "./pages/ProductScreen";
 import Products from "./pages/ProductsScreen";
@@ -29,9 +29,10 @@ export default function App() {
 
     return (
       <>
-         <MyNavbar/>
+
 
           <BrowserRouter>
+              <MyNavbar/>
               <Route path="/" component={Home} exact/>
               <AdminRoute path="/product/:id/edit" component={ProductEditModal} exact/>
               <AdminRoute path="/admin" component={AdminPanel} exact/>
@@ -46,18 +47,18 @@ export default function App() {
               <Route path="/product/:id" component={ProductPage}/>
               <Route path="/login" component={LoginModal}/>
               <Route path="/shipping" component={ShippingPage}/>
+              <CookieConsent
+                  location="bottom"
+                  buttonText="Potwierdź"
+                  cookieName="PrivacyPolicy"
+                  style={{ background: "#2B373B" }}
+                  buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
+                  expires={365}
+              >
+                  Ten serwis wykorzystuje pliki cookies. Więcej informacji znajdziesz w <Link to="/privacy">Polityce Prywatności i Regulaminie</Link>.{" "}
+              </CookieConsent>
+              <MyFooter/>
           </BrowserRouter>
-          <CookieConsent
-              location="bottom"
-              buttonText="Potwierdź"
-              cookieName="PrivacyPolicy"
-              style={{ background: "#2B373B" }}
-              buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
-              expires={365}
-          >
-              Ten serwis wykorzystuje pliki cookies. Więcej informacji znajdziesz w <a href="/privacy">Polityce Prywatności i Regulaminie</a>.{" "}
-          </CookieConsent>
-          <MyFooter/>
       </>
   );
 }

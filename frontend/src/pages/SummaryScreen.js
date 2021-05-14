@@ -152,11 +152,11 @@ export default function Summary(props) {
                         </Row>
                         <Row>
                             <Col>
-                                <a href="/product"  style={{textDecoration: 'none'}}>
+                                <Link to="/product"  style={{textDecoration: 'none'}}>
                                     <Button variant="outline-dark" size="lg" className="text-lg mb-5" block>
                                         Kontynuuj Zakupy
                                     </Button>
-                                </a>
+                                </Link>
                             </Col>
                         </Row>
                     </div>

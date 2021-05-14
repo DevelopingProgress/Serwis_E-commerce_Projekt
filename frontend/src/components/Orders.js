@@ -6,6 +6,7 @@ import React, {useEffect, useState} from "react";
 import {listOrders, orderDelete} from "../actions/orderActions";
 import {ORDER_DELETE_RESET} from "../constants/orderConstants";
 import Moment from "moment";
+import {Link} from "react-router-dom";
 
 export default function OrdersTab(props) {
 
@@ -26,7 +27,7 @@ export default function OrdersTab(props) {
         if (subject) params += `subject=${encodeURIComponent(subject)}`;
         if (body) params += `${subject ? '&' : ''}body=${encodeURIComponent(body)}`;
 
-        return <a href={`mailto:${email}${params}`}>{children}</a>;
+        return <Link to={`mailto:${email}${params}`}>{children}</Link>;
     };
 
     const deleteHandler = (order) => {
