@@ -65,7 +65,7 @@ export default function ShippingPage(props) {
         <>
             <Form onSubmit={submitHandler}>
                 <Row className="mr-0">
-                    <Col lg="6" className="m-auto">
+                    <Col lg="6" className="mx-3">
 
                         <Container className="mt-5 mb-5 p-3 border border-dark">
                             <Row>

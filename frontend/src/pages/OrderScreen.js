@@ -69,7 +69,7 @@ export default function Order(props) {
     return loading ? (<LoadingBox/>) : error ? (<ErrorBox variant="danger">{error}</ErrorBox>) : (
         <>
             <Row className="mr-0">
-                <Col lg="6" className="m-auto">
+                <Col lg="6" className="mx-3">
                     <Col sm="6">
                         <h1 className="mt-3 black-text-lg">Zamówienie nr</h1>
                         <h1 className="black-text-lg">{order._id}</h1>
