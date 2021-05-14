@@ -6,7 +6,6 @@ import {useMediaQuery} from "react-responsive/src";
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect, useState} from "react";
 import {removeFromCart} from "../actions/cartActions";
-import {Link} from "react-router-dom";
 import {signout} from "../actions/userActions";
 
 
@@ -67,16 +66,16 @@ export default function MyNavbar() {
                                             <NavDropdown.ItemText  role="button" key={item._id}>
                                                 <Row>
                                                     <Col lg="4">
-                                                        <Link to={`/product/${item.product}`}>
+                                                        <a href={`/product/${item.product}`}>
                                                             <img className="cartImg img-fluid" src={item.image} alt={`cartItem${item.product}`}/>
-                                                        </Link>
+                                                        </a>
                                                     </Col>
                                                     <Col lg="4">
-                                                        <Link className="link-color-carousel" to={`/product/${item.product}`}>
+                                                        <a className="link-color-carousel" href={`/product/${item.product}`}>
                                                             <p className="mt-4" style={{marginRight: "185px",whiteSpace: "nowrap", overflow: "hidden",textOverflow: "ellipsis",width: "13ch"}}>
                                                                 {item.name} x {item.qty}
                                                             </p>
-                                                        </Link>
+                                                        </a>
                                                     </Col>
                                                     <Col lg="4">
                                                         <Button role="button" variant="outline-danger" size="sm" onClick={() => dispatch(removeFromCart(item.product))} className="mt-4">X</Button>
