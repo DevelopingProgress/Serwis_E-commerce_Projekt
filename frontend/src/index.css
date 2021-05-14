@@ -90,8 +90,14 @@
         margin: 10px 0 10px 0;
         font-size: 2rem;
     }
+    .upper-caption{
+        position: absolute;
+        top: 30px;
+    }
 
 }
+
+
 
 
 

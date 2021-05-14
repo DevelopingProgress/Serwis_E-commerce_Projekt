@@ -11,10 +11,10 @@ export default function MyCarousel() {
                     src="../../../images/pexels-karolina-grabowska-5632371.jpg"
                     alt="First slide"
                 />
-                <Carousel.Caption>
+                <Carousel.Caption className="upper-caption">
                     <div className="carousel-caption-p">
-                        <h3 className="black-text-lg">Witaj w Naszym Sklepie Internetowym!</h3>
-                        <Link to={"/product"} className="black-text-md link-color-carousel">Przejdź do zakupów</Link>
+                        <h2 className="carousel-h1" style={{color: 'black'}}>Witaj w Naszym Sklepie Internetowym!</h2>
+                        <Link to={"/product"} className="link-color-carousel"><h4>Przejdź do zakupów</h4></Link>
                     </div>
                 </Carousel.Caption>
             </Carousel.Item>
@@ -26,10 +26,10 @@ export default function MyCarousel() {
                     alt="Third slide"
                 />
 
-                <Carousel.Caption>
-                    <div className="carousel-caption-p ">
-                        <h3 className="black-text-lg">Witaj w Naszym Sklepie Internetowym!</h3>
-                        <Link to={"/product"} className="black-text-md link-color-carousel">Przejdź do zakupów</Link>
+                <Carousel.Caption className="upper-caption">
+                    <div className="carousel-caption-p">
+                        <h2 className="carousel-h1" style={{color: 'black'}}>Witaj w Naszym Sklepie Internetowym!</h2>
+                        <Link to={"/product"} className="link-color-carousel"><h4>Przejdź do zakupów</h4></Link>
                     </div>
                 </Carousel.Caption>
             </Carousel.Item>
