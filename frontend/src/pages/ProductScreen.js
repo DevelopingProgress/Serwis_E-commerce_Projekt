@@ -83,7 +83,7 @@ export default function ProductPage(props) {
                                                       <>
                                                           <Form.Group as={Col} lg="6" controlId="formGridQty">
                                                               <Form.Label className="mt-5 text-lg">Ilość</Form.Label>
-                                                              <Form.Control as="select" defaultValue="Ilość..." className="text-lg" value={qty} onChange={(e) => setQty(e.target.value)}>
+                                                              <Form.Control as="select" defaultValue="Ilość..." className="text-lg w-75" value={qty} onChange={(e) => setQty(e.target.value)}>
                                                                   {[...Array(product.countInStock).keys()].map(
                                                                       (x) => (
                                                                           <option key={x + 1} value={x + 1}>
@@ -106,16 +106,16 @@ export default function ProductPage(props) {
                                                       product.countInStock > 0 ? (
                                                           <>
                                                               <Col lg="12">
-                                                                  <a href={`/cart/${product._id}?qty=${qty}`} style={{textDecoration: 'none'}}>
+                                                                  <Link to={`/cart/${product._id}?qty=${qty}`} style={{textDecoration: 'none'}}>
                                                                       <Button variant="success" size="lg"
-                                                                              className="mt-5 mb-3" block>
+                                                                              className="mt-5 mb-3 w-75" block>
                                                                           Kup teraz
                                                                       </Button>
-                                                                  </a>
+                                                                  </Link>
                                                               </Col>
                                                               <Col lg="12">
                                                                   <Button variant="dark" size="lg"
-                                                                          className="mb-5" onClick={() => dispatch(addToCart(product._id, qty))} block>
+                                                                          className="mb-5  w-75" onClick={() => dispatch(addToCart(product._id, qty))} block>
                                                                       Do koszyka
                                                                   </Button>
                                                               </Col>

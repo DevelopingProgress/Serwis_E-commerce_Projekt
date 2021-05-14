@@ -3,6 +3,7 @@ import React, {Component, useEffect, useState} from "react";
 import {saveAddress} from "../actions/cartActions";
 import {getAddress} from "../actions/userActions";
 import {Button, Col, Container, Form, Image, Row} from "react-bootstrap";
+import {Link} from "react-router-dom";
 
 
 export default function ShippingPage(props) {
@@ -206,11 +207,11 @@ export default function ShippingPage(props) {
                             </Row>
                             <Row>
                                 <Col>
-                                    <a href="/product"  style={{textDecoration: 'none'}}>
+                                    <Link to="/product"  style={{textDecoration: 'none'}}>
                                         <Button variant="outline-dark" size="lg" className="text-lg mb-5" block>
                                             Kontynuuj Zakupy
                                         </Button>
-                                    </a>
+                                    </Link>
                                 </Col>
                             </Row>
                         </div>

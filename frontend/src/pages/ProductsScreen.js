@@ -106,11 +106,11 @@ export default function Products(props) {
 
                                                         product.countInStock > 0 ? (
                                                                     <>
-                                                                    <a href={`/cart/${product._id}?qty=1`} style={{textDecoration: 'none'}}>
+                                                                    <Link to={`/cart/${product._id}?qty=1`} style={{textDecoration: 'none'}}>
                                                                         <Button variant="outline-success"
                                                                                 className="mb-btn-m w-100 pl-1 mb-2"><FontAwesomeIcon
                                                                             icon={faDollarSign}/> Kup teraz</Button>
-                                                                    </a>
+                                                                    </Link>
                                                                         <Button
                                                                             onClick={() => dispatch(addToCart(product._id, 1))}
                                                                             variant="outline-dark"
@@ -130,8 +130,8 @@ export default function Products(props) {
                                                         ) : (
                                                                 product.countInStock > 0 ? (
                                                                     <>
-                                                                        <a href={`/cart/${product._id}?qty=1`} className="btn btn-outline-success mb-btn-m w-100 buttons-mb pl-1 block"><FontAwesomeIcon
-                                                                            icon={faDollarSign}/> Kup teraz</a>
+                                                                        <Link to={`/cart/${product._id}?qty=1`} className="btn btn-outline-success mb-btn-m w-100 buttons-mb pl-1 block"><FontAwesomeIcon
+                                                                            icon={faDollarSign}/> Kup teraz</Link>
                                                                         <Button
                                                                             onClick={() => dispatch(addToCart(product._id, 1))}
                                                                             variant="outline-dark"

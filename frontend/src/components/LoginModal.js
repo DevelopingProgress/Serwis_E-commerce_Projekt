@@ -6,6 +6,7 @@ import Register from "../pages/RegisterScreen";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {addToCart, removeFromCart} from "../actions/cartActions";
+import {Link} from "react-router-dom";
 
 export function LoginModal(props) {
 
@@ -42,8 +43,8 @@ export function LoginModal(props) {
                 <Row className='mb-5 mx-5'>
                     <Col md="9">
                         {
-                            cartItems.length === 0 ? (<h1 className="text-danger ml-1 p-5">Koszyk jest pusty! <a
-                                href="/product">Przejdź do zakupów</a></h1>) : (
+                            cartItems.length === 0 ? (<h1 className="text-danger ml-1 p-5">Koszyk jest pusty! <Link
+                                to="/product">Przejdź do zakupów</Link></h1>) : (
 
                                 cartItems.map((item) => (
                                     <Row className='p-3 mb-4'>
@@ -98,11 +99,11 @@ export function LoginModal(props) {
                                     </Row>
                                     <Row>
                                         <Col>
-                                            <a href="/product"  style={{textDecoration: 'none'}}>
+                                            <Link to="/product"  style={{textDecoration: 'none'}}>
                                                 <Button variant="outline-dark" size="lg" className="text-lg mb-5" block>
                                                     Kontynuuj Zakupy
                                                 </Button>
-                                            </a>
+                                            </Link>
                                         </Col>
                                     </Row>
                                 </div>

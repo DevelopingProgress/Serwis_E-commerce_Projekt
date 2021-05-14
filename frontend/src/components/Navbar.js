@@ -67,16 +67,16 @@ export default function MyNavbar() {
                                             <NavDropdown.ItemText  role="button" key={item._id}>
                                                 <Row>
                                                     <Col lg="4">
-                                                        <a href={`/product/${item.product}`}>
+                                                        <Link to={`/product/${item.product}`}>
                                                             <img className="cartImg img-fluid" src={item.image} alt={`cartItem${item.product}`}/>
-                                                        </a>
+                                                        </Link>
                                                     </Col>
                                                     <Col lg="4">
-                                                        <a className="link-color-carousel" href={`/product/${item.product}`}>
+                                                        <Link className="link-color-carousel" to={`/product/${item.product}`}>
                                                             <p className="mt-4" style={{marginRight: "185px",whiteSpace: "nowrap", overflow: "hidden",textOverflow: "ellipsis",width: "13ch"}}>
                                                                 {item.name} x {item.qty}
                                                             </p>
-                                                        </a>
+                                                        </Link>
                                                     </Col>
                                                     <Col lg="4">
                                                         <Button role="button" variant="outline-danger" size="sm" onClick={() => dispatch(removeFromCart(item.product))} className="mt-4">X</Button>

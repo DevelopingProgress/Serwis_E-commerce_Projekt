@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Container, Row, Col, Button, Table, Form, Image} from 'react-bootstrap'
 import {useDispatch, useSelector} from "react-redux";
 import {addToCart, removeFromCart} from "../actions/cartActions";
+import {Link} from "react-router-dom";
 
 export default function CartPage(props){
 
@@ -88,11 +89,11 @@ export default function CartPage(props){
                             </Row>
                             <Row>
                                 <Col>
-                                    <a href="/product"  style={{textDecoration: 'none'}}>
+                                    <Link to="/product"  style={{textDecoration: 'none'}}>
                                         <Button variant="outline-dark" size="lg" className="text-lg mb-5" block>
                                             Kontynuuj Zakupy
                                         </Button>
-                                    </a>
+                                    </Link>
                                 </Col>
                             </Row>
                         </div>

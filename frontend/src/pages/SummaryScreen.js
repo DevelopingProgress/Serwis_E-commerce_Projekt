@@ -3,6 +3,7 @@ import {Button, Col, Container, Image, Row} from "react-bootstrap";
 import {createOrder} from "../actions/orderActions";
 import {useEffect} from "react";
 import {ORDER_CREATE_RESET} from "../constants/orderConstants";
+import {Link} from "react-router-dom";
 
 
 export default function Summary(props) {
@@ -91,16 +92,16 @@ export default function Summary(props) {
                                         cart.cartItems.map((item) => (
                                             <Row className="mb-3">
                                                 <Col lg="4">
-                                                    <a href={`/product/${item.product}`}>
+                                                    <Link to={`/product/${item.product}`}>
                                                         <Image className="img-fluid" src={item.image}/>
-                                                    </a>
+                                                    </Link>
                                                 </Col>
                                                 <Col lg="4">
-                                                    <a className="link-color-carousel" href={`/product/${item.product}`}>
+                                                    <Link className="link-color-carousel" to={`/product/${item.product}`}>
                                                         <p className="mt-4" style={{marginRight: "200px",whiteSpace: "nowrap", overflow: "hidden",textOverflow: "ellipsis",width: "13ch"}}>
                                                             {item.name} x {item.qty}
                                                         </p>
-                                                    </a>
+                                                    </Link>
                                                 </Col>
                                                 <Col lg="4">
                                                     <p className="mt-4" style={{marginRight: "200px",whiteSpace: "nowrap", overflow: "hidden",textOverflow: "ellipsis",width: "13ch"}}>{(item.qty * item.price).toFixed(2)} zł</p>
