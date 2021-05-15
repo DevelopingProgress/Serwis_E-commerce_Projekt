@@ -7,6 +7,7 @@ import ProductsTab from "./Products";
 import {PRODUCT_UPDATE_RESET} from "../constants/productsConstants";
 import ErrorBox from "./Error";
 import axios from "axios";
+import LoadingBox from "./Loading";
 
 
 
@@ -57,7 +58,7 @@ export function ProductEditModal(props) {
         dispatch(updateProduct({_id: productId, name, image, image1, price, category, countInStock, thumbnail, description}));
     }
 
-
+    const [loadingUpload, setLoadingUpload] = useState(false);
     const [error, setError] = useState('');
     const userSignin = useSelector(state => state.userSignin);
     const {userInfo} = userSignin;
@@ -65,34 +66,41 @@ export function ProductEditModal(props) {
         const file = e.target.files[0];
         const bodyFormData = new FormData();
         bodyFormData.append('image', file);
+        setLoadingUpload(true);
         try {
             const {data} = await axios.post('/api/uploads', bodyFormData, {
                 headers: {
-                    'Content-Type':'multipart/form-data',
+                    'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${userInfo.token}`
                 }
             });
             setImage(data);
+            setLoadingUpload(false);
         } catch (error) {
             setError(error.message);
+            setLoadingUpload(false);
         }
     }
 
+    const [loadingUpload1, setLoadingUpload1] = useState(false);
     const [error1, setError1] = useState('');
     const uploadFile1Handler = async (e) => {
         const file = e.target.files[0];
         const bodyFormData = new FormData();
         bodyFormData.append('image', file);
+        setLoadingUpload1(true);
         try {
             const {data} = await axios.post('/api/uploads', bodyFormData, {
                 headers: {
-                    'Content-Type':'multipart/form-data',
+                    'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${userInfo.token}`
                 }
             });
             setImage1(data);
+            setLoadingUpload1(false);
         } catch (error1) {
             setError1(error1.message);
+            setLoadingUpload1(false);
         }
     }
 
@@ -156,6 +164,7 @@ export function ProductEditModal(props) {
                                     Pole zdjęcie produktu jest wymagane.
                                 </Form.Control.Feedback>
                                 {error && <ErrorBox variant="danger">{error}</ErrorBox>}
+                                {loadingUpload && <LoadingBox/>}
                             </Form.Group>
 
                             <Form.Group as={Col} md="6" controlId="validationCustom01">
@@ -173,6 +182,7 @@ export function ProductEditModal(props) {
                                     Pole zdjęcie produktu jest wymagane.
                                 </Form.Control.Feedback>
                                 {error1 && <ErrorBox variant="danger">{error1}</ErrorBox>}
+                                {loadingUpload1 && <LoadingBox/>}
                             </Form.Group>
 
                             <Form.Group as={Col} md="6" controlId="validationCustom01">
